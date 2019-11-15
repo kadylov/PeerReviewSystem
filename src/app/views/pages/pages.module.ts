@@ -10,11 +10,15 @@ import { CoreModule } from '../../core/core.module';
 import { MailModule } from './apps/mail/mail.module';
 import { ECommerceModule } from './apps/e-commerce/e-commerce.module';
 import { UserManagementModule } from './user-management/user-management.module';
-import { MyPageComponent } from './my-page/my-page.component';
-import { ReviewerComponent } from './reviewer/reviewer.component';
+import { IncomingWorkComponent } from './admin/incoming-work/incoming-work.component';
+import { AssignmentComponent } from './admin/assignment/assignment.component';
+import { ScorecardComponent } from './admin/scorecard/scorecard.component';
+import { ResultComponent } from './admin/result/result.component';
+import { InProgressComponent } from './admin/in-progress/in-progress.component';
+import { CompletedReviewComponent } from './admin/completed-review/completed-review.component';
 
 @NgModule({
-	declarations: [MyPageComponent, ReviewerComponent],
+	declarations: [IncomingWorkComponent, AssignmentComponent, ScorecardComponent, ResultComponent, InProgressComponent, CompletedReviewComponent],
 	exports: [],
 	imports: [
 		CommonModule,

@@ -7,6 +7,14 @@ import { ErrorPageComponent } from './views/theme/content/error-page/error-page.
 // Auth
 import { AuthGuard } from './core/auth';
 
+// Admin Parts
+import {IncomingWorkComponent} from "./views/pages/admin/incoming-work/incoming-work.component";
+import {AssignmentComponent} from "./views/pages/admin/assignment/assignment.component";
+import {CompletedReviewComponent} from "./views/pages/admin/completed-review/completed-review.component";
+import {ScorecardComponent} from "./views/pages/admin/scorecard/scorecard.component";
+import {ResultComponent} from "./views/pages/admin/result/result.component";
+import {InProgressComponent} from "./views/pages/admin/in-progress/in-progress.component";
+
 const routes: Routes = [
 	{path: 'auth', loadChildren: () => import('app/views/pages/auth/auth.module').then(m => m.AuthModule)},
 
@@ -16,6 +24,30 @@ const routes: Routes = [
 		canActivate: [AuthGuard],
 		children: [
 			{
+				path: 'incoming-work',
+				component: IncomingWorkComponent
+			},
+			{
+				path: 'assignment',
+				component: AssignmentComponent
+			},
+			{
+				path: 'scorecard',
+				component: ScorecardComponent
+			},
+			{
+				path: 'result',
+				component: ResultComponent
+			},
+			{
+				path: 'in-progress',
+				component: InProgressComponent
+			},
+			{
+				path: 'completed-review',
+				component: CompletedReviewComponent
+			},
+			{
 				path: 'dashboard',
 				loadChildren: () => import('app/views/pages/dashboard/dashboard.module').then(m => m.DashboardModule)
 			},
@@ -23,18 +55,18 @@ const routes: Routes = [
 			// 	path: 'mail',
 			// 	loadChildren: () => import('app/views/pages/apps/mail/mail.module').then(m => m.MailModule)
 			// },
-			{
-				path: 'ecommerce',
-				loadChildren: () => import('app/views/pages/apps/e-commerce/e-commerce.module').then(m => m.ECommerceModule),
-			},
-			{
-				path: 'ngbootstrap',
-				loadChildren: () => import('app/views/pages/ngbootstrap/ngbootstrap.module').then(m => m.NgbootstrapModule)
-			},
-			{
-				path: 'material',
-				loadChildren: () => import('app/views/pages/material/material.module').then(m => m.MaterialModule)
-			},
+			// {
+			// 	path: 'ecommerce',
+			// 	loadChildren: () => import('app/views/pages/apps/e-commerce/e-commerce.module').then(m => m.ECommerceModule),
+			// },
+			// {
+			// 	path: 'ngbootstrap',
+			// 	loadChildren: () => import('app/views/pages/ngbootstrap/ngbootstrap.module').then(m => m.NgbootstrapModule)
+			// },
+			// {
+			// 	path: 'material',
+			// 	loadChildren: () => import('app/views/pages/material/material.module').then(m => m.MaterialModule)
+			// },
 			{
 				path: 'user-management',
 				loadChildren: () => import('app/views/pages/user-management/user-management.module').then(m => m.UserManagementModule)
