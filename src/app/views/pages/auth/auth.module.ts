@@ -37,10 +37,10 @@ const routes: Routes = [
 				component: LoginComponent,
 				data: {returnUrl: window.location.pathname}
 			},
-			{
-				path: 'register',
-				component: RegisterComponent
-			},
+			// {
+			// 	path: 'register',
+			// 	component: RegisterComponent
+			// },
 			{
 				path: 'forgot-password',
 				component: ForgotPasswordComponent,

@@ -19,10 +19,10 @@ const routes: Routes = [
 				path: 'dashboard',
 				loadChildren: () => import('app/views/pages/dashboard/dashboard.module').then(m => m.DashboardModule)
 			},
-			{
-				path: 'mail',
-				loadChildren: () => import('app/views/pages/apps/mail/mail.module').then(m => m.MailModule)
-			},
+			// {
+			// 	path: 'mail',
+			// 	loadChildren: () => import('app/views/pages/apps/mail/mail.module').then(m => m.MailModule)
+			// },
 			{
 				path: 'ecommerce',
 				loadChildren: () => import('app/views/pages/apps/e-commerce/e-commerce.module').then(m => m.ECommerceModule),
@@ -39,14 +39,14 @@ const routes: Routes = [
 				path: 'user-management',
 				loadChildren: () => import('app/views/pages/user-management/user-management.module').then(m => m.UserManagementModule)
 			},
-			{
-				path: 'wizard',
-				loadChildren: () => import('app/views/pages/wizard/wizard.module').then(m => m.WizardModule)
-			},
-			{
-				path: 'builder',
-				loadChildren: () => import('app/views/theme/content/builder/builder.module').then(m => m.BuilderModule)
-			},
+			// {
+			// 	path: 'wizard',
+			// 	loadChildren: () => import('app/views/pages/wizard/wizard.module').then(m => m.WizardModule)
+			// },
+			// {
+			// 	path: 'builder',
+			// 	loadChildren: () => import('app/views/theme/content/builder/builder.module').then(m => m.BuilderModule)
+			// },
 			{
 				path: 'error/403',
 				component: ErrorPageComponent,
@@ -63,7 +63,6 @@ const routes: Routes = [
 		]
 	},
 
-	{path: '**', redirectTo: 'error/403', pathMatch: 'full'},
 ];
 
 @NgModule({
