@@ -64,25 +64,25 @@ export class MenuConfig {
 				{
 					title: 'Incoming Works', // <= Title of the page
 					root: true,
-					page: '/my-page', // <= URL
+					page: '/incoming-work', // <= URL
 					icon: 'flaticon-line-graph' // <= Choose the icon class
 				},
 				{
 					title: 'Assignments', // <= Title of the page
 					root: true,
-					page: '/my-page', // <= URL
+					page: '/assignment', // <= URL
 					icon: 'flaticon-line-graph' // <= Choose the icon class
 				},
 				{
 					title: 'In-Progress', // <= Title of the page
 					root: true,
-					page: '/my-page', // <= URL
+					page: '/in-progress', // <= URL
 					icon: 'flaticon-line-graph' // <= Choose the icon class
 				},
 				{
 					title: 'Completed Reviews', // <= Title of the page
 					root: true,
-					page: '/my-page', // <= URL
+					page: '/result', // <= URL
 					icon: 'flaticon-line-graph' // <= Choose the icon class
 				},
 				// {
