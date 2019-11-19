@@ -17,12 +17,23 @@ import {InProgressComponent} from "./views/pages/admin/in-progress/in-progress.c
 
 const routes: Routes = [
 	{path: 'auth', loadChildren: () => import('app/views/pages/auth/auth.module').then(m => m.AuthModule)},
+	{path: 'public-page', loadChildren: () => import('app/views/pages/public-page/public-page.module').then(m => m.PublicPageModule)},
+
+	// Public user
 
 	{
 		path: '',
 		component: BaseComponent,
 		canActivate: [AuthGuard],
 		children: [
+
+			// {
+			// 	path: 'public-page',
+			// 	component: WorkListComponent
+			//
+			// },
+
+			// Admin page routing
 			{
 				path: 'incoming-work',
 				component: IncomingWorkComponent
@@ -47,6 +58,7 @@ const routes: Routes = [
 				path: 'completed-review',
 				component: CompletedReviewComponent
 			},
+
 			{
 				path: 'dashboard',
 				loadChildren: () => import('app/views/pages/dashboard/dashboard.module').then(m => m.DashboardModule)
@@ -71,14 +83,6 @@ const routes: Routes = [
 				path: 'user-management',
 				loadChildren: () => import('app/views/pages/user-management/user-management.module').then(m => m.UserManagementModule)
 			},
-			// {
-			// 	path: 'wizard',
-			// 	loadChildren: () => import('app/views/pages/wizard/wizard.module').then(m => m.WizardModule)
-			// },
-			// {
-			// 	path: 'builder',
-			// 	loadChildren: () => import('app/views/theme/content/builder/builder.module').then(m => m.BuilderModule)
-			// },
 			{
 				path: 'error/403',
 				component: ErrorPageComponent,
@@ -90,8 +94,10 @@ const routes: Routes = [
 				}
 			},
 			{path: 'error/:type', component: ErrorPageComponent},
-			{path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-			{path: '**', redirectTo: 'dashboard', pathMatch: 'full'}
+			// {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+			// {path: '**', redirectTo: 'dashboard', pathMatch: 'full'}
+			{path: '', redirectTo: 'public-page', pathMatch: 'full'},
+			{path: '**', redirectTo: 'public-page', pathMatch: 'full'}
 		]
 	},
 

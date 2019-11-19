@@ -18,7 +18,7 @@ export class LayoutConfig {
 			},
 			"loader": {
 				"enabled": true,
-				"type": "spinner-logo",
+				"type": "",
 				"logo": "./assets/media/logos/logo-mini-md.png",
 				"message": "Please wait..."
 			},

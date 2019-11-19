@@ -17,6 +17,9 @@ import { ResultComponent } from './admin/result/result.component';
 import { InProgressComponent } from './admin/in-progress/in-progress.component';
 import { CompletedReviewComponent } from './admin/completed-review/completed-review.component';
 
+
+import {PublicPageModule} from "./public-page/public-page.module";
+
 @NgModule({
 	declarations: [IncomingWorkComponent, AssignmentComponent, ScorecardComponent, ResultComponent, InProgressComponent, CompletedReviewComponent],
 	exports: [],
@@ -29,6 +32,8 @@ import { CompletedReviewComponent } from './admin/completed-review/completed-rev
 		// MailModule,
 		// ECommerceModule,
 		UserManagementModule,
+
+		PublicPageModule
 	],
 	providers: []
 })

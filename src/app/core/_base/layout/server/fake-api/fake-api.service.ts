@@ -11,6 +11,8 @@ import { ECommerceDataContext } from '../../../../e-commerce';
 // Models
 import { CarsDb } from './fake-db/cars';
 
+import {WorksDb} from "./fake-db/works";
+
 @Injectable()
 export class FakeApiService implements InMemoryDbService {
 	/**
@@ -41,7 +43,9 @@ export class FakeApiService implements InMemoryDbService {
 			orders: ECommerceDataContext.orders,
 
 			// data-table
-			cars: CarsDb.cars
+			cars: CarsDb.cars,
+
+			works: WorksDb.works
 		};
 		return db;
 	}

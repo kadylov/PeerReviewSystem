@@ -45,7 +45,12 @@ import {
 	MenuHorizontalService,
 	PageConfigService,
 	SplashScreenService,
-	SubheaderService
+	SubheaderService,
+
+
+	DataTableWorkService,
+
+
 } from './core/_base/layout';
 // Auth
 import { AuthModule } from './views/pages/auth/auth.module';
@@ -60,6 +65,11 @@ import * as typescript from 'highlight.js/lib/languages/typescript';
 import * as scss from 'highlight.js/lib/languages/scss';
 import * as xml from 'highlight.js/lib/languages/xml';
 import * as json from 'highlight.js/lib/languages/json';
+
+
+// import {PublicPageModule} from "./views/pages/public-page/public-page.module";
+////////////////////////////////////////////////////
+
 
 // tslint:disable-next-line:class-name
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -110,7 +120,10 @@ export function hljsLanguages(): HighlightLanguage[] {
 		TranslateModule.forRoot(),
 		MatProgressSpinnerModule,
 		InlineSVGModule.forRoot(),
-		ThemeModule
+		ThemeModule,
+
+		// PublicPageModule ////////////////
+
 	],
 	exports: [],
 	providers: [
@@ -121,7 +134,14 @@ export function hljsLanguages(): HighlightLanguage[] {
 		PageConfigService,
 		KtDialogService,
 		DataTableService,
+
+
+		DataTableWorkService,
+
+
+
 		SplashScreenService,
+
 		{
 			provide: PERFECT_SCROLLBAR_CONFIG,
 			useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

@@ -1,16 +1,16 @@
-import { Subscription } from 'rxjs';
+import {Subscription} from 'rxjs';
 // Angular
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
+import {NavigationEnd, Router} from '@angular/router';
 // Layout
-import { LayoutConfigService, SplashScreenService, TranslationService } from './core/_base/layout';
+import {LayoutConfigService, SplashScreenService, TranslationService} from './core/_base/layout';
 // language list
-import { locale as enLang } from './core/_config/i18n/en';
-import { locale as chLang } from './core/_config/i18n/ch';
-import { locale as esLang } from './core/_config/i18n/es';
-import { locale as jpLang } from './core/_config/i18n/jp';
-import { locale as deLang } from './core/_config/i18n/de';
-import { locale as frLang } from './core/_config/i18n/fr';
+import {locale as enLang} from './core/_config/i18n/en';
+import {locale as chLang} from './core/_config/i18n/ch';
+import {locale as esLang} from './core/_config/i18n/es';
+import {locale as jpLang} from './core/_config/i18n/jp';
+import {locale as deLang} from './core/_config/i18n/de';
+import {locale as frLang} from './core/_config/i18n/fr';
 
 @Component({
 	// tslint:disable-next-line:component-selector
@@ -51,12 +51,12 @@ export class AppComponent implements OnInit, OnDestroy {
 	 */
 	ngOnInit(): void {
 		// enable/disable loader
-		this.loader = this.layoutConfigService.getConfig('loader.enabled');
+		// this.loader = this.layoutConfigService.getConfig('loader.enabled');
 
 		const routerSubscription = this.router.events.subscribe(event => {
 			if (event instanceof NavigationEnd) {
 				// hide splash screen
-				this.splashScreenService.hide();
+				// this.splashScreenService.hide();
 
 				// scroll to top on every route change
 				window.scrollTo(0, 0);

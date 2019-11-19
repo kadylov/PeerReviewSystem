@@ -17,6 +17,10 @@ export { OffcanvasOptions } from './directives/offcanvas.directive';
 export { ScrollTopOptions } from './directives/scroll-top.directive';
 export { ToggleOptions } from './directives/toggle.directive';
 
+// Work Model
+export  { DataTableWorkModel} from './models/datatable-work.model'
+
+
 export { LayoutConfigModel } from './models/layout-config.model';
 export { MenuOptions } from './directives/menu.directive';
 
@@ -40,6 +44,11 @@ export { PageConfigService } from './services/page-config.service';
 export { SplashScreenService } from './services/splash-screen.service';
 export { SubheaderService } from './services/subheader.service';
 export { KtDialogService } from './services/kt-dialog.service';
+
+
+// work service
+export { DataTableWorkService } from './services/datatable-work.service';
+
 
 // Server
 export { FakeApiService } from './server/fake-api/fake-api.service';
