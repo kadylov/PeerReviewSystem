@@ -6,7 +6,7 @@ import {DataTableWorkModel} from "../models/datatable-work.model";
 import {HttpClient} from "@angular/common/http";
 
 // const API_DATATABLE_URL = 'api/works'
-const API_DATATABLE_URL = '/controler/';
+const API_DATATABLE_URL = 'http://localhost:80/controler/index.php';
 @Injectable()
 export class DataTableWorkService {
 

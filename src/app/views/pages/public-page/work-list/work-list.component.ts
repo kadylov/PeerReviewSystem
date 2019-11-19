@@ -19,19 +19,12 @@ import { DataTableWorkSource} from "./data-table.work-source";
 })
 export class WorkListComponent implements OnInit {
 
-
-	displayedColumns = ['cTitle', 'cUrl', 'cAuthors', 'cDateWritten', 'cDateSubmission', 'cScore'];
 	dataSource: DataTableWorkSource;
-
-
+	displayedColumns = ['Title', 'URL', 'DateSubmission', 'DateWritten', 'AuthorName'];
 	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 	@ViewChild(MatSort, {static: true}) sort: MatSort;
 	selection = new SelectionModel<DataTableWorkModel>(true, []);
 
-	/**
-	 * Set the sort after the view init since this component will
-	 * be able to query its view for the initialized sort.
-	 */
 
 	constructor(private dataTableWorkService: DataTableWorkService) {
 	}
@@ -72,7 +65,7 @@ export class WorkListComponent implements OnInit {
 			firstLoad ? 6 : this.paginator.pageSize
 		);
 		this.dataSource.loadItems(queryParams);
-		this.selection.clear();
+		// this.selection.clear();
 	}
 
 	/* UI */

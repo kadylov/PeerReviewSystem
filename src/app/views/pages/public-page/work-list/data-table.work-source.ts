@@ -61,7 +61,7 @@ export class DataTableWorkSource implements DataSource<DataTableWorkModel> {
 
 	baseFilter(_entities: any[], _queryParams: QueryParamsModel): QueryResultsModel {
 		let entitiesResult = _entities;
-
+		// console.log(_entities);
 		// Sorting
 		// start
 		if (_queryParams.sortField) {
@@ -89,6 +89,8 @@ export class DataTableWorkSource implements DataSource<DataTableWorkModel> {
 				const result = this.baseFilter(res, queryParams);
 				this.entitySubject.next(result.items);
 				this.paginatorTotalSubject.next(result.totalCount);
+				console.log("Result below\n");
+				console.log(result.items);
 
 			}),
 			catchError(err => of(new QueryResultsModel([], err))),

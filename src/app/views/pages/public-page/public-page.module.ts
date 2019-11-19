@@ -40,7 +40,6 @@ const routes: Routes = [
 		PartialsModule
 	],
 	exports: [RouterModule],
-
 	declarations: [WorkListComponent]
 
 })

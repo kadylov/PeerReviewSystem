@@ -1,11 +1,16 @@
 export class DataTableWorkModel {
-	id: number;
-	title: string;
-	url: string;
-	dateWritten: string;
-	dateSubmission: string;
-	author: string;
-	score: number;
+	WID: number;
+	Title: string;
+	URL: string;
+	DateSubmission: string;
+	DateWritten: string;
+	IsRetired: string;
+	Status: string;
+	AuthorName: string;
+	AuthorEmail: string;
+	Tag: string;
+	RSID: null;
+	Score: number
 	// reviewSummary: string;
 
 }

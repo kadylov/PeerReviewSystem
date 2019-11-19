@@ -28,7 +28,7 @@ class DB
         $conn = self::connect();
         $sql = "select * from Work;";
 
-        $result = $conn->query('SELECT * FROM peer_review_db.Work');
+        $result = $conn->query('SELECT * FROM peer_review_db.Work;');
 
         $works = $result->fetch_all(MYSQLI_ASSOC);
         echo json_encode($works);

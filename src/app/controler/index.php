@@ -8,6 +8,6 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 
 require_once "../db/DB.php";
 
-echo DB::selectAllWorks();
+DB::selectAllWorks();
 
 ?>

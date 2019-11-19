@@ -38,40 +38,40 @@
 	<!-- https://run.stackblitz.com/api/angular/v1?file=app%2Ftable-selection-example.ts -->
 	<table mat-table class="lmat-elevation-z8" [dataSource]="dataSource" matSort matSortActive="id" matSortDirection="asc" matSortDisableClear>
 
+<!--		displayedColumns = ['Title', 'URL', 'DateSubmission', 'DateWritten', 'AuthorName'];-->
 
-<!--		displayedColumns = ['title', 'url', 'authors', 'date-written', 'date-submission', 'score'];-->
 
-		<ng-container matColumnDef="cTitle">
+		<ng-container matColumnDef="Title">
 			<th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
-			<td mat-cell *matCellDef="let work">{{work.cTitle}}</td>
+			<td mat-cell *matCellDef="let work">{{work.Title}}</td>
 		</ng-container>
 
-		<ng-container matColumnDef="cUrl">
+		<ng-container matColumnDef="URL">
 			<th mat-header-cell *matHeaderCellDef mat-sort-header>Url</th>
-			<td mat-cell *matCellDef="let work">{{work.cUrl}}</td>
+			<td mat-cell *matCellDef="let work">{{work.URL}}</td>
 		</ng-container>
 
-		<ng-container matColumnDef="cAuthors">
-			<th mat-header-cell *matHeaderCellDef mat-sort-header>Authors</th>
-			<td mat-cell *matCellDef="let work">{{work.cAuthors}}</td>
-		</ng-container>
-
-		<ng-container matColumnDef="cDateWritten">
-			<th mat-header-cell *matHeaderCellDef mat-sort-header>Date Written</th>
-			<td mat-cell *matCellDef="let work">{{work.cMileage}}</td>
-		</ng-container>
-
-		<ng-container matColumnDef="cDateSubmission">
+		<ng-container matColumnDef="DateSubmission">
 			<th mat-header-cell *matHeaderCellDef mat-sort-header>Date Submission</th>
-			<td mat-cell *matCellDef="let work" [ngStyle]="{ 'color' : work.cDateSubmission }">{{work.cColor}}</td>
+			<td mat-cell *matCellDef="let work"> {{work.DateSubmission}}</td>
 		</ng-container>
 
-		<ng-container matColumnDef="cScore">
-			<th mat-header-cell *matHeaderCellDef mat-sort-header>Score</th>
-			<td mat-cell *matCellDef="let work">${{work.cScore}}</td>
+		<ng-container matColumnDef="DateWritten">
+			<th mat-header-cell *matHeaderCellDef mat-sort-header>Date Written</th>
+			<td mat-cell *matCellDef="let work">{{work.DateWritten}}</td>
 		</ng-container>
-		<ng-container matColumnDef="actions">
+
+		<ng-container matColumnDef="AuthorName">
+			<th mat-header-cell *matHeaderCellDef mat-sort-header>Authors</th>
+			<td mat-cell *matCellDef="let work">{{work.AuthorName}}</td>
 		</ng-container>
+
+<!--		<ng-container matColumnDef="cScore">-->
+<!--			<th mat-header-cell *matHeaderCellDef mat-sort-header>Score</th>-->
+<!--			<td mat-cell *matCellDef="let work">${{work.score}}</td>-->
+<!--		</ng-container>-->
+<!--		<ng-container matColumnDef="actions">-->
+<!--		</ng-container>-->
 
 		<tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
 		<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
