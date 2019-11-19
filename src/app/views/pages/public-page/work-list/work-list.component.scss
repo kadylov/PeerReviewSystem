@@ -1,0 +1,23 @@
+//
+//.example-container {
+//	display: flex;
+//	flex-direction: column;
+//	min-width: 300px;
+//}
+//.mat-table {
+//	overflow: auto;
+//	max-height: 500px;
+//}
+//.mat-header-cell.mat-sort-header-sorted {
+//	color: black;
+//}
+:host {
+	::ng-deep {
+		.mat-table-sticky {
+			z-index: 0 !important;
+		}
+
+		.mat-header-cell { z-index: 2 !important;}
+
+	}
+}
