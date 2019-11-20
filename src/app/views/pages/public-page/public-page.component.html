@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-xl-12">
+
+
+        <kt-portlet [class]="'kt-portlet--height-fluid'">
+<!--            <div class="button-row">-->
+<!--                <button mat-raised-button>Basic</button>-->
+<!--                <button mat-raised-button color="primary">Primary</button>-->
+<!--                <button mat-raised-button color="accent">Accent</button>-->
+<!--                <button mat-raised-button color="warn">Warn</button>-->
+<!--                <button mat-raised-button disabled>Disabled</button>-->
+<!--            </div>-->
+
+
+            <kt-portlet-header [title]="'Works'"
+                               [class]="'kt-portlet__head--lg kt-portlet__head--noborder kt-portlet__head--break-sm'">
+<!--                <ng-container ktPortletTools>-->
+<!--                    &lt;!&ndash;                    <<kt-context-menu></kt-context-menu>>&ndash;&gt;-->
+<!--                </ng-container>-->
+
+            </kt-portlet-header>
+
+
+            <kt-portlet-body [class]="'kt-portlet__body--fit'">
+                <mat-card>Simple card</mat-card>
+
+                <kt-work-list></kt-work-list>
+            </kt-portlet-body>
+        </kt-portlet>
+    </div>
+</div>

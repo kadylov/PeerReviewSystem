@@ -13,11 +13,12 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatCardModule} from "@angular/material/card";
 import {WidgetModule} from "../../partials/content/widgets/widget.module";
 import {PartialsModule} from "../../partials/partials.module";
+import { PublicPageComponent } from './public-page.component';
 
 const routes: Routes = [
 	{
 		path: '',
-		component: WorkListComponent
+		component: PublicPageComponent
 	}
 ]
 
@@ -40,7 +41,7 @@ const routes: Routes = [
 		PartialsModule
 	],
 	exports: [RouterModule],
-	declarations: [WorkListComponent]
+	declarations: [WorkListComponent, PublicPageComponent]
 
 })
 export class PublicPageModule { }
