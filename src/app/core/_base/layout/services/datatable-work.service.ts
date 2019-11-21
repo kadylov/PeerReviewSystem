@@ -23,22 +23,6 @@ export class DataTableWorkService {
 	): Observable<DataTableWorkModel[]> {
 		return this.http.get<DataTableWorkModel[]>(API_DATATABLE_URL,{params:{scoredWorks: 'scoredWorks'}}).pipe(retry(3));
 
-		// public getAllWorks(
-		//     // filter = '', sortOrder = 'asc', pageNumber = 0, pageSize = 3
-		// ): Observable<DataTableWorkModel[]> {
-		//
-		//
-		//     return this.http.get<DataTableWorkModel[]>(API_DATATABLE_URL);
-
-		// 	return this.http.get(API_DATATABLE_URL, {
-		//
-		// 		params: new HttpParams()
-		// 			.set('filter', filter)
-		// 			.set('sortOrder', sortOrder)
-		// 			.set('pageNumber', pageNumber.toString())
-		// 			.set('pageSize', pageSize.toString())
-		// }).pipe(map(res=>res["payload"]));
-
 	}
 
 }
@@ -57,19 +41,3 @@ WID: number;
 	RSID: null;
 	Score: number
  */
-
-    // findLessons(
-    //     courseId: number, filter = '', sortOrder = 'asc',
-    //     pageNumber = 0, pageSize = 3): Observable<Work[]> {
-	//
-    //     return this.http.get('/api/lessons', {
-    //         params: new HttpParams()
-    //             .set('courseId', courseId.toString())
-    //             .set('filter', filter)
-    //             .set('sortOrder', sortOrder)
-    //             .set('pageNumber', pageNumber.toString())
-    //             .set('pageSize', pageSize.toString())
-    //     }).pipe(
-    //         map(res => res["payload"])
-    //     );
-    // }
