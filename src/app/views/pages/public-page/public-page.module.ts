@@ -13,11 +13,14 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatCardModule} from "@angular/material/card";
 import {WidgetModule} from "../../partials/content/widgets/widget.module";
 import {PartialsModule} from "../../partials/partials.module";
+import { PublicPageComponent } from './public-page.component';
+
+import {MatInputModule} from '@angular/material';
 
 const routes: Routes = [
 	{
 		path: '',
-		component: WorkListComponent
+		component: PublicPageComponent
 	}
 ]
 
@@ -37,10 +40,11 @@ const routes: Routes = [
 		MatSortModule,
 		MatCardModule,
 		WidgetModule,
-		PartialsModule
+		PartialsModule,
+		MatInputModule
 	],
 	exports: [RouterModule],
-	declarations: [WorkListComponent]
+	declarations: [WorkListComponent, PublicPageComponent]
 
 })
 export class PublicPageModule { }

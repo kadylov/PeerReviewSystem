@@ -20,6 +20,7 @@ export enum UserActionTypes {
     UsersActionToggleLoading = '[Users] Users Action Toggle Loading'
 }
 
+
 export class UserOnServerCreated implements Action {
     readonly type = UserActionTypes.UserOnServerCreated;
     constructor(public payload: { user: User }) { }
