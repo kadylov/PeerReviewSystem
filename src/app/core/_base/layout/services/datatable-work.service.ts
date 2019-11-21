@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 // models
 import {DataTableWorkModel} from "../models/datatable-work.model";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {map} from "rxjs/operators";
+import {map, retry} from "rxjs/operators";
 
 // const API_DATATABLE_URL = 'api/works'
 const API_DATATABLE_URL = 'http://3.95.8.94/example/index.php';
@@ -19,8 +19,9 @@ export class DataTableWorkService {
 
 	public getAllWorks(
 		// filter = '', sortOrder = 'asc', pageNumber = 0, pageSize = 3
+
 	): Observable<DataTableWorkModel[]> {
-		return this.http.get<DataTableWorkModel[]>(API_DATATABLE_URL);
+		return this.http.get<DataTableWorkModel[]>(API_DATATABLE_URL,{params:{scoredWorks: 'scoredWorks'}}).pipe(retry(3));
 
 		// public getAllWorks(
 		//     // filter = '', sortOrder = 'asc', pageNumber = 0, pageSize = 3
