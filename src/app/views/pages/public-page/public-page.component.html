@@ -3,28 +3,71 @@
 
 
         <kt-portlet [class]="'kt-portlet--height-fluid'">
-<!--            <div class="button-row">-->
-<!--                <button mat-raised-button>Basic</button>-->
-<!--                <button mat-raised-button color="primary">Primary</button>-->
-<!--                <button mat-raised-button color="accent">Accent</button>-->
-<!--                <button mat-raised-button color="warn">Warn</button>-->
-<!--                <button mat-raised-button disabled>Disabled</button>-->
-<!--            </div>-->
 
-
-            <kt-portlet-header [title]="'Works'"
+            <kt-portlet-header [title]="''"
                                [class]="'kt-portlet__head--lg kt-portlet__head--noborder kt-portlet__head--break-sm'">
-<!--                <ng-container ktPortletTools>-->
-<!--                    &lt;!&ndash;                    <<kt-context-menu></kt-context-menu>>&ndash;&gt;-->
-<!--                </ng-container>-->
-
             </kt-portlet-header>
 
-
             <kt-portlet-body [class]="'kt-portlet__body--fit'">
-                <mat-card>Simple card</mat-card>
 
-                <kt-work-list></kt-work-list>
+                <div class="kt-portlet kt-portlet--mobile">
+                    <div class="kt-portlet__head kt-portlet__head--lg">
+                        <div class="kt-portlet__head-label">
+			<span class="kt-portlet__head-icon">
+				<i class="kt-font-brand flaticon2-line-chart"></i>
+			</span>
+                            <h3 class="kt-portlet__head-title">
+                                PRS Works
+                                <small>the highest scored works</small>
+                            </h3>
+                        </div>
+                        <div class="kt-portlet__head-toolbar">
+                            <div class="kt-portlet__head-wrapper">
+                                <div class="kt-portlet__head-actions">
+                                    <div class="dropdown dropdown-inline">
+                                        <button type="button" class="btn btn-default btn-icon-sm dropdown-toggle"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="la"></i> Submit Work
+                                        </button>
+                                    </div>
+                                    &nbsp;
+                                    <a href="/auth/login" class="btn btn-brand btn-elevate btn-icon-sm">
+                                        <i class="la la-plus"></i>
+                                        Login
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="kt-portlet__body">
+<!--                        &lt;!&ndash;begin: Search Form &ndash;&gt;-->
+<!--                        <div class="kt-form kt-form&#45;&#45;label-right kt-margin-t-20 kt-margin-b-10">-->
+<!--                            <div class="row align-items-center">-->
+<!--                                <div class="col-xl-8 order-2 order-xl-1">-->
+<!--                                    <div class="row align-items-center">-->
+<!--                                        <div class="col-md-4 kt-margin-b-20-tablet-and-mobile">-->
+<!--                                            <div class="kt-input-icon kt-input-icon&#45;&#45;left">-->
+<!--                                                <input type="text" class="form-control" placeholder="Search..."-->
+<!--                                                       id="generalSearch">-->
+<!--                                                <span class="kt-input-icon__icon kt-input-icon__icon&#45;&#45;left">-->
+<!--							                        <span><i class="la la-search"></i></span>-->
+<!--                                                </span>-->
+
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>        &lt;!&ndash;end: Search Form &ndash;&gt;-->
+                    </div>
+                    <div class="kt-portlet__body kt-portlet__body--fit">
+                        <!--begin: Datatable -->
+                        <kt-work-list></kt-work-list>
+                        <!--end: Datatable -->
+                    </div>
+                </div>
+
             </kt-portlet-body>
         </kt-portlet>
     </div>

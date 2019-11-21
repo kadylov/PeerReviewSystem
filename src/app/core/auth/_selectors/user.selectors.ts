@@ -22,6 +22,13 @@ export const selectUsersPageLoading = createSelector(
     }
 );
 
+export const selectWorksPageLoading = createSelector(
+    selectUsersState,
+    usersState => {
+        return usersState.listLoading;
+    }
+);
+
 export const selectUsersActionLoading = createSelector(
     selectUsersState,
     usersState => usersState.actionsloading

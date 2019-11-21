@@ -1,86 +1,67 @@
-<!--<div class="panel panel-primary">-->
-<!--	<div class="panel-heading">-->
-<!--		<h2>Employee List</h2>-->
-<!--	</div>-->
-<!--	<div class="panel-body">-->
-<!--		<table class="table table-striped">-->
-<!--			<thead>-->
-<!--			<tr>-->
-<!--				<th>Title</th>-->
-<!--				<th>Url</th>-->
-<!--				<th>Authors</th>-->
-<!--				<th>Date Written</th>-->
-<!--				<th>Date Submission</th>-->
-<!--				<th>Score</th>-->
-<!--			</tr>-->
-<!--			</thead>-->
-<!--			<tbody>-->
-<!--			<tr *ngFor="let work of works | async">-->
-<!--				<td>{{work.title}}</td>-->
-<!--				<td>{{work.url}}</td>-->
-<!--				<td>{{work.author}}</td>-->
-<!--				<td>{{work.dateWritten}}</td>-->
-<!--				<td>{{work.dateSubmission}}</td>-->
-<!--				<td>{{work.score}}</td>-->
-<!--			</tr>-->
-<!--			</tbody>-->
-<!--		</table>-->
-<!--	</div>-->
+<kt-portlet>
+    <kt-portlet-body>
 
-<!--	<router-outlet></router-outlet>-->
+        <!-- start::FILTERS & GROUP ACTIONS -->
+        <div class="kt-form kt-margin-b-30">
+            <!-- start::FILTERS -->
+            <div class="kt-form__filtration">
+                <div class="row align-items-center">
+                    <div class="col-md-2 kt-margin-bottom-10-mobile">
+                        <!--                        <mat-form-field class="mat-form-field-fluid">-->
+                        <!--                            <input matInput placeholder="Search work" #searchInput placeholder="Search">-->
+                        <!--                        </mat-form-field>-->
 
-<!--</div>-->
+                        <mat-form-field>
+                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end::FILTERS -->
 
-<!-- See off.documentations 'https://material.angular.io/components/table/overview' -->
-<div perfectScrollbar [ngStyle]="{'max-height': '43vh', 'position': 'relative'}" class="mat-table__wrapper mat-table__wrapper--dashboard mb-4">
-	<!-- Checkbox Column -->
-	<!-- Table with selection -->
-	<!-- https://run.stackblitz.com/api/angular/v1?file=app%2Ftable-selection-example.ts -->
-	<table mat-table class="lmat-elevation-z8" [dataSource]="dataSource" matSort matSortActive="id" matSortDirection="asc" matSortDisableClear>
+        <!--        <div class="mat-elevation-z8">-->
+        <div perfectScrollbar [ngStyle]="{'max-height': '43vh', 'position': 'relative'}"
+             class="mat-table__wrapper mat-table__wrapper--dashboard mb-4">
+            <table mat-table [dataSource]="dataSource" matSort>
 
-<!--		displayedColumns = ['Title', 'URL', 'DateSubmission', 'DateWritten', 'AuthorName'];-->
+                <!-- Tag Column -->
+                <ng-container matColumnDef="Tag">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Tag</th>
+                    <td mat-cell *matCellDef="let row"> tag</td>
+                </ng-container>
+
+                <!-- Progress Title -->
+                <ng-container matColumnDef="Title">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Title</th>
+                    <td mat-cell *matCellDef="let row"> {{row.Title}} </td>
+                </ng-container>
+
+                <!-- AuthorName Column -->
+                <ng-container matColumnDef="AuthorName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> AuthorName</th>
+                    <td mat-cell *matCellDef="let row"> {{row.AuthorName}} </td>
+                </ng-container>
+
+                <!-- Score Column -->
+                <ng-container matColumnDef="Score">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Score</th>
+                    <td mat-cell *matCellDef="let row"> {{row.Score}} </td>
+                </ng-container>
+
+                <!-- Summary Column -->
+                <ng-container matColumnDef="Summary">
+                    <th mat-header-cell *matHeaderCellDef> Summary</th>
+                    <td mat-cell *matCellDef="let row"><a href="#">View</a></td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                </tr>
+            </table>
 
 
-		<ng-container matColumnDef="Title">
-			<th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
-			<td mat-cell *matCellDef="let work">{{work.Title}}</td>
-		</ng-container>
-
-		<ng-container matColumnDef="URL">
-			<th mat-header-cell *matHeaderCellDef mat-sort-header>Url</th>
-			<td mat-cell *matCellDef="let work">{{work.URL}}</td>
-		</ng-container>
-
-		<ng-container matColumnDef="DateSubmission">
-			<th mat-header-cell *matHeaderCellDef mat-sort-header>Date Submission</th>
-			<td mat-cell *matCellDef="let work"> {{work.DateSubmission}}</td>
-		</ng-container>
-
-		<ng-container matColumnDef="DateWritten">
-			<th mat-header-cell *matHeaderCellDef mat-sort-header>Date Written</th>
-			<td mat-cell *matCellDef="let work">{{work.DateWritten}}</td>
-		</ng-container>
-
-		<ng-container matColumnDef="AuthorName">
-			<th mat-header-cell *matHeaderCellDef mat-sort-header>Authors</th>
-			<td mat-cell *matCellDef="let work">{{work.AuthorName}}</td>
-		</ng-container>
-
-<!--		<ng-container matColumnDef="cScore">-->
-<!--			<th mat-header-cell *matHeaderCellDef mat-sort-header>Score</th>-->
-<!--			<td mat-cell *matCellDef="let work">${{work.score}}</td>-->
-<!--		</ng-container>-->
-<!--		<ng-container matColumnDef="actions">-->
-<!--		</ng-container>-->
-
-		<tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-		<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-	</table>
-
-	<div class="mat-table__message" *ngIf="!dataSource.hasItems">No records found</div>
-</div>
-<!-- start: BOTTOM -->
-<div class="mat-table__bottom mat-table__bottom--padding">
-	<mat-spinner [diameter]="20" *ngIf="dataSource.loading$ | async"></mat-spinner>
-	<mat-paginator [pageSize]="6" [pageSizeOptions]="[3, 6, 15]" [length]="dataSource.paginatorTotal$ | async" [showFirstLastButtons]="true"></mat-paginator>
-</div>
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+    </kt-portlet-body>
+</kt-portlet>
