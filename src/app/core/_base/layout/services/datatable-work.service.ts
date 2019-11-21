@@ -4,7 +4,6 @@ import {Observable} from "rxjs";
 // models
 import {DataTableWorkModel} from "../models/datatable-work.model";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {Work} from "../../../../views/pages/public-page/work-list/Work";
 import {map} from "rxjs/operators";
 
 // const API_DATATABLE_URL = 'api/works'
