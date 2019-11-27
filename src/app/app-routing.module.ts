@@ -17,16 +17,11 @@ import {InProgressComponent} from "./views/pages/admin/in-progress/in-progress.c
 
 const routes: Routes = [
 	{path: 'auth', loadChildren: () => import('app/views/pages/auth/auth.module').then(m => m.AuthModule)},
-	{
-		path: 'public-page',
-		loadChildren: () => import('app/views/pages/public-page/public-page.module').then(m => m.PublicPageModule)
-	},
-	// {path: 'reviewer', loadChildren: () => import('app/views/pages/reviewer/reviewer.module').then(m => m.ReviewerModule)},
+	{ path: 'public-page', loadChildren: () => import('app/views/pages/public-page/public-page.module').then(m => m.PublicPageModule)},
+	{path: 'reviewer', loadChildren: () => import('app/views/pages/reviewer/reviewer.module').then(m => m.ReviewerModule)},
 
-	{
-		path: 'reviewer',
-		loadChildren: () => import('app/views/pages/reviewer/reviewer.module').then(m => m.ReviewerModule)
-	},
+	{ path: '', loadChildren: () => import('app/views/pages/public-page/public-page.module').then(m => m.PublicPageModule)},
+
 	{
 		path: '',
 		component: BaseComponent,
