@@ -1,5 +1,6 @@
 // SERVICES
 export { AuthService } from './_services';
+// export { AuthS}
 export { AuthNoticeService } from './auth-notice/auth-notice.service';
 
 // DATA SOURCERS

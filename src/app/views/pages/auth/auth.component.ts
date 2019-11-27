@@ -1,7 +1,8 @@
 // Angular
 import { Component, ElementRef, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 // Layout
-import { LayoutConfigService, SplashScreenService, TranslationService } from '../../../core/_base/layout';
+// import { LayoutConfigService, SplashScreenService, TranslationService } from '../../../core/_base/layout';
+import { LayoutConfigService, TranslationService } from '../../../core/_base/layout';
 // Auth
 import { AuthNoticeService } from '../../../core/auth';
 
@@ -32,7 +33,9 @@ export class AuthComponent implements OnInit {
 		private layoutConfigService: LayoutConfigService,
 		public authNoticeService: AuthNoticeService,
 		private translationService: TranslationService,
-		private splashScreenService: SplashScreenService) {
+		// private splashScreenService: SplashScreenService
+
+	) {
 	}
 
 	/**
@@ -46,7 +49,7 @@ export class AuthComponent implements OnInit {
 		this.translationService.setLanguage(this.translationService.getSelectedLanguage());
 		this.headerLogo = this.layoutConfigService.getLogo();
 
-		this.splashScreenService.hide();
+		// this.splashScreenService.hide();
 	}
 
 	/**

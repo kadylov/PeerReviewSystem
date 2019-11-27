@@ -1,17 +1,18 @@
 // Angular
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 // RxJS
-import { Observable, Subject } from 'rxjs';
-import { finalize, takeUntil, tap } from 'rxjs/operators';
+import {Observable, Subject} from 'rxjs';
+import {finalize, takeUntil, tap} from 'rxjs/operators';
 // Translate
-import { TranslateService } from '@ngx-translate/core';
+import {TranslateService} from '@ngx-translate/core';
 // Store
-import { Store } from '@ngrx/store';
-import { AppState } from '../../../../core/reducers';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../../../core/reducers';
 // Auth
-import { AuthNoticeService, AuthService, Login } from '../../../../core/auth';
+import {AuthNoticeService, AuthService, Login} from '../../../../core/auth';
+import {User1} from "../../../../core/auth/_models/user1.model";
 
 /**
  * ! Just example => Should be removed in development
@@ -20,6 +21,7 @@ const DEMO_PARAMS = {
 	EMAIL: 'admin@demo.com',
 	PASSWORD: 'demo'
 };
+
 
 @Component({
 	selector: 'kt-login',
@@ -36,6 +38,12 @@ export class LoginComponent implements OnInit, OnDestroy {
 	private unsubscribe: Subject<any>;
 
 	private returnUrl: any;
+
+	private username: string;
+	private password: string;
+	private user: User1;
+	private reviewerPage = "/reviewer";
+	private adminPage = "/dashboard";
 
 	// Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
 
@@ -78,6 +86,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 		this.route.queryParams.subscribe(params => {
 			this.returnUrl = params['returnUrl'] || '/';
 		});
+
+
 	}
 
 	/**
@@ -96,22 +106,35 @@ export class LoginComponent implements OnInit, OnDestroy {
 	 */
 	initLoginForm() {
 		// demo message to show
-		if (!this.authNoticeService.onNoticeChanged$.getValue()) {
-			const initialNotice = `Use account
-			<strong>${DEMO_PARAMS.EMAIL}</strong> and password
-			<strong>${DEMO_PARAMS.PASSWORD}</strong> to continue.`;
-			this.authNoticeService.setNotice(initialNotice, 'info');
-		}
+		// if (!this.authNoticeService.onNoticeChanged$.getValue()) {
+		// 	const initialNotice = `Use account
+		// 	<strong>${DEMO_PARAMS.EMAIL}</strong> and password
+		// 	<strong>${DEMO_PARAMS.PASSWORD}</strong> to continue.`;
+		// 	this.authNoticeService.setNotice(initialNotice, 'info');
+		// }
 
 		this.loginForm = this.fb.group({
-			email: [DEMO_PARAMS.EMAIL, Validators.compose([
+			// email: [DEMO_PARAMS.EMAIL, Validators.compose([
+			// 	Validators.required,
+			// 	Validators.email,
+			// 	Validators.minLength(3),
+			// 	Validators.maxLength(320) // https://stackoverflow.com/questions/386294/what-is-the-maximum-length-of-a-valid-email-address
+			// ])
+			// ],
+			username: [this.username, Validators.compose([
 				Validators.required,
-				Validators.email,
+				// Validators.username,
 				Validators.minLength(3),
-				Validators.maxLength(320) // https://stackoverflow.com/questions/386294/what-is-the-maximum-length-of-a-valid-email-address
+				Validators.maxLength(100) // https://stackoverflow.com/questions/386294/what-is-the-maximum-length-of-a-valid-email-address
 			])
 			],
-			password: [DEMO_PARAMS.PASSWORD, Validators.compose([
+			// password: [DEMO_PARAMS.PASSWORD, Validators.compose([
+			// 	Validators.required,
+			// 	Validators.minLength(3),
+			// 	Validators.maxLength(100)
+			// ])
+			// ]
+			password: [this.password, Validators.compose([
 				Validators.required,
 				Validators.minLength(3),
 				Validators.maxLength(100)
@@ -136,27 +159,62 @@ export class LoginComponent implements OnInit, OnDestroy {
 		this.loading = true;
 
 		const authData = {
-			email: controls['email'].value,
+			// email: controls['email'].value,
+			username: controls['username'].value,
+
 			password: controls['password'].value
 		};
 		this.auth
-			.login(authData.email, authData.password)
-			.pipe(
-				tap(user => {
-					if (user) {
-						this.store.dispatch(new Login({authToken: user.accessToken}));
-						this.router.navigateByUrl(this.returnUrl); // Main page
+			.login(authData.username, authData.password)
+			.subscribe(
+				res => {
+
+					if (res.body[0] !=undefined) {
+						this.user = res.body[0];
+						console.log(res.body);
+						console.log("user fullname: ", this.user.Fullname);
+						console.log("user role: ", this.user.RoleId);
+							if (this.user.RoleId != 3) {
+								// this.router.navigateByUrl(this.returnUrl); // Main page
+								// this.store.dispatch(new Login({authToken: this.user.Username}));
+								this.router.navigateByUrl('/reviewer'); // Main page
+							}else {
+								this.router.navigateByUrl('/dashboard'); // Main page
+							}
 					} else {
 						this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
+
 					}
+				},
+				error => {
+					// this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
+					console.log('There was an error while retrieving Posts !!!' + error);
 				}),
 				takeUntil(this.unsubscribe),
 				finalize(() => {
 					this.loading = false;
 					this.cdr.markForCheck();
-				})
-			)
-			.subscribe();
+				});
+
+
+		// this.auth
+		// 	.login(authData.email, authData.password)
+		// 	.pipe(
+		// 		tap(user => {
+		// 			if (user) {
+		// 				this.store.dispatch(new Login({authToken: user.accessToken}));
+		// 				this.router.navigateByUrl(this.returnUrl); // Main page
+		// 			} else {
+		// 				this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
+		// 			}
+		// 		}),
+		// 		takeUntil(this.unsubscribe),
+		// 		finalize(() => {
+		// 			this.loading = false;
+		// 			this.cdr.markForCheck();
+		// 		})
+		// 	)
+		// 	.subscribe();
 	}
 
 	/**
