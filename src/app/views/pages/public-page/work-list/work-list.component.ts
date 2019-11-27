@@ -47,6 +47,8 @@ export class WorkListComponent implements OnInit {
         this.workService.getAllWorks()
             .subscribe(
                 res => {
+                	// console.log("AAAA\n");
+					// console.log(res);
                     this.dataSource.data = res;
                     this.dataSource.sort = this.sort;
                     this.dataSource.paginator = this.paginator;

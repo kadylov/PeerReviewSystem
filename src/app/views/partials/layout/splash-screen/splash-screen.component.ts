@@ -3,7 +3,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 // Object-Path
 import * as objectPath from 'object-path';
 // Layout
-import { LayoutConfigService, SplashScreenService } from '../../../../core/_base/layout';
+// import { LayoutConfigService, SplashScreenService } from '../../../../core/_base/layout';
+import { LayoutConfigService } from '../../../../core/_base/layout';
 
 @Component({
 	selector: 'kt-splash-screen',
@@ -28,7 +29,9 @@ export class SplashScreenComponent implements OnInit {
 	constructor(
 		private el: ElementRef,
 		private layoutConfigService: LayoutConfigService,
-		private splashScreenService: SplashScreenService) {
+		// private splashScreenService: SplashScreenService)
+	)
+	{
 	}
 
 	/**
@@ -45,6 +48,6 @@ export class SplashScreenComponent implements OnInit {
 		this.loaderType = objectPath.get(loaderConfig, 'type');
 		this.loaderMessage = objectPath.get(loaderConfig, 'message');
 
-		this.splashScreenService.init(this.splashScreen);
+		// this.splashScreenService.init(this.splashScreen);
 	}
 }
