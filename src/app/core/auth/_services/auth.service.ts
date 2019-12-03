@@ -27,14 +27,14 @@ export class AuthService {
 	// login(username: string, password: string): Observable<User> {
 	// 	return this.http.post<User>(API_USERS_URL, {userLogin: "userLogin", username, password });
 	// }
-	login(username: string, password: string): Observable<HttpResponse<User1>> {
+	login(username: string, password: string): Observable<HttpResponse<any>> {
 
     	const body = new HttpParams()
 			.set(`userLogin`,"userLogin",).set(`username`,username).set(`password`,password);
 		const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
 
 		// return this.http.post<User1>(API_USERS_URL, {userLogin: "userLogin", username, password });
-		return this.http.post<User1>(API_USERS_URL, body.toString(), {headers,observe: 'response'});
+		return this.http.post<any>(API_USERS_URL, body.toString(), {headers,observe: 'response'});
 
 	}
 

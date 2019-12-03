@@ -32,7 +32,6 @@ export class AppComponent implements OnInit, OnDestroy {
 	 * @param translationService: TranslationService
 	 * @param router: Router
 	 * @param layoutConfigService: LayoutCongifService
-	 * @param splashScreenService: SplashScreenService
 	 */
 	constructor(private translationService: TranslationService,
 				private router: Router,
