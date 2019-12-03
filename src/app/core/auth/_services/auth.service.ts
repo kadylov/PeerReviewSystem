@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 import {User1} from "../_models/user1.model";
 
 // const API_USERS_URL = 'api/users';
-// const API_USERS_URL = 'http://3.95.8.94/example/index.php';
-const API_USERS_URL = 'http://localhost/index.php';
+const API_USERS_URL = 'http://3.95.8.94/example/index.php';
+// const API_USERS_URL = 'http://localhost/index.php';
 
 const API_PERMISSION_URL = 'api/permissions';
 const API_ROLES_URL = 'api/roles';
