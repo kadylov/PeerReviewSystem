@@ -22,8 +22,11 @@ import { CompletedReviewComponent } from './admin/completed-review/completed-rev
 
 import {PublicPageModule} from "./public-page/public-page.module";
 import {ReviewerModule} from "./reviewer/reviewer.module";
+<<<<<<< HEAD
 import {MatFormFieldModule, MatRadioModule} from '@angular/material';
 
+=======
+>>>>>>> 870233891b04cb39c8c1d2a3a7774b6004170b75
 
 @NgModule({
 	declarations: [IncomingWorkComponent, AssignmentComponent, ScorecardComponent, ResultComponent, InProgressComponent, CompletedReviewComponent],
@@ -40,8 +43,11 @@ import {MatFormFieldModule, MatRadioModule} from '@angular/material';
 
 		PublicPageModule,
 		ReviewerModule,
+<<<<<<< HEAD
 		MatRadioModule,
 		MatFormFieldModule,
+=======
+>>>>>>> 870233891b04cb39c8c1d2a3a7774b6004170b75
 	],
 	providers: []
 })
