@@ -9,6 +9,8 @@ import { PartialsModule } from '../partials/partials.module';
 import { CoreModule } from '../../core/core.module';
 // import { MailModule } from './apps/mail/mail.module';
 // import { ECommerceModule } from './apps/e-commerce/e-commerce.module';
+
+
 import { UserManagementModule } from './user-management/user-management.module';
 import { IncomingWorkComponent } from './admin/incoming-work/incoming-work.component';
 import { AssignmentComponent } from './admin/assignment/assignment.component';
@@ -20,6 +22,8 @@ import { CompletedReviewComponent } from './admin/completed-review/completed-rev
 
 import {PublicPageModule} from "./public-page/public-page.module";
 import {ReviewerModule} from "./reviewer/reviewer.module";
+import {MatFormFieldModule, MatRadioModule} from '@angular/material';
+
 
 @NgModule({
 	declarations: [IncomingWorkComponent, AssignmentComponent, ScorecardComponent, ResultComponent, InProgressComponent, CompletedReviewComponent],
@@ -36,6 +40,8 @@ import {ReviewerModule} from "./reviewer/reviewer.module";
 
 		PublicPageModule,
 		ReviewerModule,
+		MatRadioModule,
+		MatFormFieldModule,
 	],
 	providers: []
 })
