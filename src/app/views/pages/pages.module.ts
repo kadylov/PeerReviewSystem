@@ -19,9 +19,10 @@ import { CompletedReviewComponent } from './admin/completed-review/completed-rev
 
 
 import {PublicPageModule} from "./public-page/public-page.module";
+import { ReviewerComponent } from './reviewer/reviewer.component';
 
 @NgModule({
-	declarations: [IncomingWorkComponent, AssignmentComponent, ScorecardComponent, ResultComponent, InProgressComponent, CompletedReviewComponent],
+	declarations: [IncomingWorkComponent, AssignmentComponent, ScorecardComponent, ResultComponent, InProgressComponent, CompletedReviewComponent, ReviewerComponent],
 	exports: [],
 	imports: [
 		CommonModule,

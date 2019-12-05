@@ -1,24 +1,25 @@
 // Angular
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 // RxJS
-import { Observable, Subject } from 'rxjs';
-import { finalize, takeUntil, tap } from 'rxjs/operators';
+import {Observable, Subject} from 'rxjs';
+import {finalize, takeUntil, tap} from 'rxjs/operators';
 // Translate
-import { TranslateService } from '@ngx-translate/core';
+import {TranslateService} from '@ngx-translate/core';
 // Store
-import { Store } from '@ngrx/store';
-import { AppState } from '../../../../core/reducers';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../../../core/reducers';
 // Auth
-import { AuthNoticeService, AuthService, Login } from '../../../../core/auth';
+import {AuthNoticeService, AuthService, Login} from '../../../../core/auth';
+import {User1} from "../../../../core/auth/_models/user1.model";
 
 /**
  * ! Just example => Should be removed in development
  */
 const DEMO_PARAMS = {
-	EMAIL: 'admin@demo.com',
-	PASSWORD: 'demo'
+	USERNAME: 'admin',
+	PASSWORD: '1234'
 };
 
 @Component({
@@ -35,7 +36,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 
 	private unsubscribe: Subject<any>;
 
+
 	private returnUrl: any;
+	private user: User1;
 
 	// Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
 
@@ -59,7 +62,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 		private store: Store<AppState>,
 		private fb: FormBuilder,
 		private cdr: ChangeDetectorRef,
-		private route: ActivatedRoute
+		// private route: ActivatedRoute
 	) {
 		this.unsubscribe = new Subject();
 	}
@@ -75,9 +78,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 		this.initLoginForm();
 
 		// redirect back to the returnUrl before login
-		this.route.queryParams.subscribe(params => {
-			this.returnUrl = params['returnUrl'] || '/';
-		});
+		// this.route.queryParams.subscribe(params => {
+		// 	this.returnUrl = params['returnUrl'] || '/';
+		// });
 	}
 
 	/**
@@ -85,8 +88,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 	 */
 	ngOnDestroy(): void {
 		this.authNoticeService.setNotice(null);
-		this.unsubscribe.next();
-		this.unsubscribe.complete();
+		// this.unsubscribe.next();
+		// this.unsubscribe.complete();
 		this.loading = false;
 	}
 
@@ -98,15 +101,14 @@ export class LoginComponent implements OnInit, OnDestroy {
 		// demo message to show
 		if (!this.authNoticeService.onNoticeChanged$.getValue()) {
 			const initialNotice = `Use account
-			<strong>${DEMO_PARAMS.EMAIL}</strong> and password
+			<strong>${DEMO_PARAMS.USERNAME}</strong> and password
 			<strong>${DEMO_PARAMS.PASSWORD}</strong> to continue.`;
 			this.authNoticeService.setNotice(initialNotice, 'info');
 		}
 
 		this.loginForm = this.fb.group({
-			email: [DEMO_PARAMS.EMAIL, Validators.compose([
+			username: [DEMO_PARAMS.USERNAME, Validators.compose([
 				Validators.required,
-				Validators.email,
 				Validators.minLength(3),
 				Validators.maxLength(320) // https://stackoverflow.com/questions/386294/what-is-the-maximum-length-of-a-valid-email-address
 			])
@@ -123,7 +125,44 @@ export class LoginComponent implements OnInit, OnDestroy {
 	/**
 	 * Form Submit
 	 */
+	// submit() {
+	// 	const controls = this.loginForm.controls;
+	// 	/** check form */
+	// 	if (this.loginForm.invalid) {
+	// 		Object.keys(controls).forEach(controlName =>
+	// 			controls[controlName].markAsTouched()
+	// 		);
+	// 		return;
+	// 	}
+	//
+	// 	this.loading = true;
+	//
+	// 	const authData = {
+	// 		email: controls['email'].value,
+	// 		password: controls['password'].value
+	// 	};
+	// 	this.auth
+	// 		.login(authData.email, authData.password)
+	// 		.pipe(
+	// 			tap(user => {
+	// 				if (user) {
+	// 					this.store.dispatch(new Login({authToken: user.accessToken}));
+	// 					this.router.navigateByUrl(this.returnUrl); // Main page
+	// 				} else {
+	// 					this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
+	// 				}
+	// 			}),
+	// 			takeUntil(this.unsubscribe),
+	// 			finalize(() => {
+	// 				this.loading = false;
+	// 				this.cdr.markForCheck();
+	// 			})
+	// 		)
+	// 		.subscribe();
+	// }
+
 	submit() {
+
 		const controls = this.loginForm.controls;
 		/** check form */
 		if (this.loginForm.invalid) {
@@ -136,27 +175,100 @@ export class LoginComponent implements OnInit, OnDestroy {
 		this.loading = true;
 
 		const authData = {
-			email: controls['email'].value,
+			username: controls['username'].value,
 			password: controls['password'].value
 		};
+
+		/*
+		*
+		*
+		* showConfig() {
+		  this.configService.getConfig()
+			.subscribe((data: Config) => this.config = {
+				heroesUrl: data['heroesUrl'],
+				textfile:  data['textfile']
+			});
+		}
+		*
+		* */
+
 		this.auth
-			.login(authData.email, authData.password)
-			.pipe(
-				tap(user => {
-					if (user) {
-						this.store.dispatch(new Login({authToken: user.accessToken}));
-						this.router.navigateByUrl(this.returnUrl); // Main page
+			.login(authData.username, authData.password).subscribe(
+			res => {
+
+				if (res.body[0] != undefined) {
+					this.user = res.body[0];
+					console.log(res.body);
+					console.log("user fullname: ", this.user.Fullname);
+					console.log("user role: ", this.user.RoleId);
+					if (this.user.RoleId != 3) {
+						// this.router.navigateByUrl(this.returnUrl); // Main page
+						// this.store.dispatch(new Login({authToken: this.user.Username}));
+						this.router.navigateByUrl('/reviewer'); // Main page
 					} else {
-						this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
+						this.router.navigateByUrl('/dashboard'); // Main page
 					}
-				}),
-				takeUntil(this.unsubscribe),
-				finalize(() => {
-					this.loading = false;
-					this.cdr.markForCheck();
-				})
-			)
-			.subscribe();
+				} else {
+					this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
+
+				}
+			},
+			error => {
+				// this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
+				console.log('There was an error while retrieving Posts !!!' + error);
+			}),
+			takeUntil(this.unsubscribe),
+			finalize(() => {
+				this.loading = false;
+				this.cdr.markForCheck();
+			});
+
+		// (user => {
+		// 	if (user) {
+		// 		// this.store.dispatch(new Login({authToken: user.Email}));
+		// 		console.log(user);
+		// 		// if user is not admin, redirect to reviewer page
+		// 		this.loading = false;
+		//
+		// 		// if (user.RoleId != 3) {
+		// 		// 	this.router.navigateByUrl("/reviewer"); // Main page
+		// 		// } else
+		// 		// 	this.router.navigateByUrl("/dashboard"); // Main page
+		//
+		//
+		// 	} else {
+		// 		this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
+		// 	}
+
+		// this.loading = false;
+		// this.cdr.markForCheck();
+
+
+		// 	takeUntil(this.unsubscribe),
+		// 		finalize(() => {
+		// 			this.loading = false;
+		// 			this.cdr.markForCheck();
+		// 		})
+		// }));
+
+
+		// 		if (user) {
+		// 			this.store.dispatch(new Login({authToken: user.Email}));
+		// 			this.router.navigateByUrl(this.returnUrl); // Main page
+		// 		} else {
+		// 			this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
+		// 		}
+		//
+		// 		takeUntil(this.unsubscribe),
+		// 			finalize(() => {
+		// 				this.loading = false;
+		// 				this.cdr.markForCheck();
+		// 			})
+		// }));
+		// finalize(() => {
+		// 	this.loading = false;
+		// 	this.cdr.markForCheck();
+		// })
 	}
 
 	/**

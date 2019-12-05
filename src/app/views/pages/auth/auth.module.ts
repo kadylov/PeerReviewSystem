@@ -12,7 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 // CRUD
-import { InterceptService } from '../../../core/_base/crud/';
+// import { InterceptService } from '../../../core/_base/crud/';
 // Module components
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
@@ -20,7 +20,7 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AuthNoticeComponent } from './auth-notice/auth-notice.component';
 // Auth
-import { AuthEffects, AuthGuard, authReducer, AuthService } from '../../../core/auth';
+// import { AuthEffects, AuthGuard, authReducer, AuthService } from '../../../core/auth';
 
 const routes: Routes = [
 	{
@@ -61,16 +61,16 @@ const routes: Routes = [
 		MatFormFieldModule,
 		MatCheckboxModule,
 		TranslateModule.forChild(),
-		StoreModule.forFeature('auth', authReducer),
-		EffectsModule.forFeature([AuthEffects])
+		// StoreModule.forFeature('auth', authReducer),
+		// EffectsModule.forFeature([AuthEffects])
 	],
 	providers: [
-		InterceptService,
-		{
-			provide: HTTP_INTERCEPTORS,
-			useClass: InterceptService,
-			multi: true
-		},
+		// InterceptService,
+		// {
+		// 	provide: HTTP_INTERCEPTORS,
+			// useClass: InterceptService,
+			// multi: true
+		// },
 	],
 	exports: [AuthComponent],
 	declarations: [
@@ -87,8 +87,8 @@ export class AuthModule {
 		return {
 			ngModule: AuthModule,
 			providers: [
-				AuthService,
-				AuthGuard
+				// AuthService,
+				// AuthGuard
 			]
 		};
 	}

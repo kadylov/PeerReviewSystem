@@ -11,6 +11,7 @@ import { AppState} from '../../../core/reducers/';
 import { isLoggedIn } from '../_selectors/auth.selectors';
 
 @Injectable()
+
 export class AuthGuard implements CanActivate {
     constructor(private store: Store<AppState>, private router: Router) { }
 

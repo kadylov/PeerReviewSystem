@@ -12,26 +12,24 @@
 		<form class="kt-form" [formGroup]="loginForm" autocomplete="off">
 			<div class="form-group">
 				<mat-form-field>
-					<mat-label>{{ 'AUTH.INPUT.EMAIL' | translate }}</mat-label>
-					<input matInput type="email" placeholder="{{ 'AUTH.INPUT.EMAIL' | translate }}"
-						   formControlName="email" autocomplete="off"/>
-					<mat-error *ngIf="isControlHasError('email','required')">
+					<input matInput type="username" placeholder="username"
+						   formControlName="username" autocomplete="off"/>
+					<mat-error *ngIf="isControlHasError('username','required')">
 						<strong>{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}</strong>
 					</mat-error>
-					<mat-error *ngIf="isControlHasError('email','email')">
+					<mat-error *ngIf="isControlHasError('username','username')">
 						<strong>{{ 'AUTH.VALIDATION.INVALID_FIELD' | translate }}</strong>
 					</mat-error>
-					<mat-error *ngIf="isControlHasError('email','minlength')">
+					<mat-error *ngIf="isControlHasError('username','minlength')">
 						<strong>{{ 'AUTH.VALIDATION.MIN_LENGTH_FIELD' | translate }} 3</strong>
 					</mat-error>
-					<mat-error *ngIf="isControlHasError('email','maxlength')">
+					<mat-error *ngIf="isControlHasError('username','maxlength')">
 						<strong>{{ 'AUTH.VALIDATION.MAX_LENGTH_FIELD' | translate }} 320</strong>
 					</mat-error>
 				</mat-form-field>
 			</div>
 			<div class="form-group">
 				<mat-form-field>
-					<mat-label>{{ 'AUTH.INPUT.PASSWORD' | translate }}</mat-label>
 					<input matInput type="password" placeholder="{{ 'AUTH.INPUT.PASSWORD' | translate }}"
 						   formControlName="password" autocomplete="off"/>
 					<mat-error *ngIf="isControlHasError('password','required')">
@@ -51,9 +49,8 @@
 					Forgot Password
 				</a>
 				<button (click)="submit()"
-						[ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading}"
 						id="kt_login_signin_submit"
-						class="btn btn-primary btn-elevate kt-login__btn-primary">{{ 'AUTH.LOGIN.BUTTON' | translate }}</button>
+						class="btn btn-primary btn-elevate kt-login__btn-primary">Submit</button>
 			</div>
 			<!--end::Action-->
 		</form>

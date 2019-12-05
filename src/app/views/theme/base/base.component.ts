@@ -33,8 +33,8 @@ export class BaseComponent implements OnInit, OnDestroy {
 	fluid: boolean;
 
 	// Private properties
-	private unsubscribe: Subscription[] = []; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
-	private currentUserPermissions$: Observable<Permission[]>;
+	// private unsubscribe: Subscription[] = []; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
+	// private currentUserPermissions$: Observable<Permission[]>;
 
 
 	/**
@@ -69,7 +69,7 @@ export class BaseComponent implements OnInit, OnDestroy {
 			document.body.className = '';
 			this.htmlClassService.setConfig(layoutConfig);
 		});
-		this.unsubscribe.push(subscr);
+		// this.unsubscribe.push(subscr);
 	}
 
 	/**
@@ -94,29 +94,29 @@ export class BaseComponent implements OnInit, OnDestroy {
 				this.selfLayout = objectPath.get(cfg, 'self.layout');
 			});
 		});
-		this.unsubscribe.push(subscr);
+		// this.unsubscribe.push(subscr);
 	}
 
 	/**
 	 * On destroy
 	 */
 	ngOnDestroy(): void {
-		this.unsubscribe.forEach(sb => sb.unsubscribe());
+		// this.unsubscribe.forEach(sb => sb.unsubscribe());
 	}
 
 	/**
 	 * NGX Permissions, init roles
 	 */
 	loadRolesWithPermissions() {
-		this.currentUserPermissions$ = this.store.pipe(select(currentUserPermissions));
-		const subscr = this.currentUserPermissions$.subscribe(res => {
-			if (!res || res.length === 0) {
-				return;
-			}
-
-			this.permissionsService.flushPermissions();
-			res.forEach((pm: Permission) => this.permissionsService.addPermission(pm.name));
-		});
-		this.unsubscribe.push(subscr);
+		// this.currentUserPermissions$ = this.store.pipe(select(currentUserPermissions));
+		// const subscr = this.currentUserPermissions$.subscribe(res => {
+		// 	if (!res || res.length === 0) {
+		// 		return;
+		// 	}
+		//
+		// 	this.permissionsService.flushPermissions();
+		// 	res.forEach((pm: Permission) => this.permissionsService.addPermission(pm.name));
+		// });
+		// this.unsubscribe.push(subscr);
 	}
 }

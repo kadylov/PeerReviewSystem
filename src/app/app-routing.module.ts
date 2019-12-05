@@ -14,17 +14,21 @@ import {CompletedReviewComponent} from "./views/pages/admin/completed-review/com
 import {ScorecardComponent} from "./views/pages/admin/scorecard/scorecard.component";
 import {ResultComponent} from "./views/pages/admin/result/result.component";
 import {InProgressComponent} from "./views/pages/admin/in-progress/in-progress.component";
+import {ReviewerComponent} from "./views/pages/reviewer/reviewer.component";
 
 const routes: Routes = [
 	{path: 'auth', loadChildren: () => import('app/views/pages/auth/auth.module').then(m => m.AuthModule)},
 	{path: 'public-page', loadChildren: () => import('app/views/pages/public-page/public-page.module').then(m => m.PublicPageModule)},
-
+	{
+		path: 'reviewer',
+		component: ReviewerComponent
+	},
 	// Public user
 
 	{
 		path: '',
 		component: BaseComponent,
-		canActivate: [AuthGuard],
+		// canActivate: [AuthGuard],
 		children: [
 
 			// {
