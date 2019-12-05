@@ -117,7 +117,7 @@ export class AuthService {
 
 		return this.getAllUsers().pipe(
 			map((result: User[]) => {
-				if (result <= 0) {
+				if (result === null) {
 					return null;
 				}
 
