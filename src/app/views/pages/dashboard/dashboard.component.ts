@@ -14,9 +14,7 @@ import { Widget4Data } from '../../partials/content/widgets/widget4/widget4.comp
 })
 export class DashboardComponent implements OnInit {
 	chartOptions1: SparklineChartOptions;
-<<<<<<< HEAD
 
-=======
 	chartOptions2: SparklineChartOptions;
 	chartOptions3: SparklineChartOptions;
 	chartOptions4: SparklineChartOptions;
@@ -24,7 +22,6 @@ export class DashboardComponent implements OnInit {
 	// widget4_2: Widget4Data;
 	// widget4_3: Widget4Data;
 	// widget4_4: Widget4Data;
->>>>>>> 870233891b04cb39c8c1d2a3a7774b6004170b75
 
 	constructor(private layoutConfigService: LayoutConfigService) {
 	}
@@ -34,11 +31,8 @@ export class DashboardComponent implements OnInit {
 			data: [10, 14, 18, 11, 9, 12, 14, 17, 18, 14],
 			color: this.layoutConfigService.getConfig('colors.state.brand'),
 			border: 3
-		};
+		}
 
-<<<<<<< HEAD
-
-=======
 		// // @ts-ignore
 		// this.widget4_1 = shuffle([
 		// 	{
@@ -186,6 +180,5 @@ export class DashboardComponent implements OnInit {
 		// 		valueColor: 'kt-font-brand'
 		// 	},
 		// ]);
->>>>>>> 870233891b04cb39c8c1d2a3a7774b6004170b75
 	}
 }
