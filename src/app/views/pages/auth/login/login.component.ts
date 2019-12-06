@@ -168,19 +168,19 @@ export class LoginComponent implements OnInit, OnDestroy {
 			.login(authData.username, authData.password)
 			.subscribe(
 				res => {
-
-					if (res.body[0] !=undefined) {
+					console.log(res);
+					if (res.body !== undefined && res.body !== null) {
 						this.user = res.body[0];
 						console.log(res.body);
 						console.log("user fullname: ", this.user.Fullname);
 						console.log("user role: ", this.user.RoleId);
-							if (this.user.RoleId != 3) {
-								// this.router.navigateByUrl(this.returnUrl); // Main page
-								// this.store.dispatch(new Login({authToken: this.user.Username}));
-								this.router.navigateByUrl('/reviewer'); // Main page
-							}else {
-								this.router.navigateByUrl('/dashboard'); // Main page
-							}
+						if (this.user.RoleId != 3) {
+							// this.router.navigateByUrl(this.returnUrl); // Main page
+							// this.store.dispatch(new Login({authToken: this.user.Username}));
+							this.router.navigateByUrl('/reviewer'); // Main page
+						} else {
+							this.router.navigateByUrl('/dashboard'); // Main page
+						}
 					} else {
 						this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
 
@@ -190,11 +190,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 					// this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
 					console.log('There was an error while retrieving Posts !!!' + error);
 				}),
-				takeUntil(this.unsubscribe),
-				finalize(() => {
-					this.loading = false;
-					this.cdr.markForCheck();
-				});
+			takeUntil(this.unsubscribe),
+			finalize(() => {
+				this.loading = false;
+				this.cdr.markForCheck();
+			});
 
 
 		// this.auth
