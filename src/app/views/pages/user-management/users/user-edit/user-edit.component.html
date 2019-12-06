@@ -53,6 +53,17 @@
 									</div>
 									<div class="col-lg-4 kt-margin-bottom-20-mobile">
 										<mat-form-field class="mat-form-field-fluid">
+											<input matInput placeholder="Enter Password" formControlName="password"/>
+											<mat-error>Password is
+												<strong>required</strong>
+											</mat-error>
+											<mat-hint align="start">Please enter
+												<strong>Password</strong>
+											</mat-hint>
+										</mat-form-field>
+									</div>
+									<div class="col-lg-4 kt-margin-bottom-20-mobile">
+										<mat-form-field class="mat-form-field-fluid">
 											<input matInput placeholder="Enter Full Name" formControlName="fullname"/>
 											<mat-error>Full Name is
 												<strong>required</strong>
@@ -63,6 +74,9 @@
 										</mat-form-field>
 									</div>
 
+
+								</div>
+								<div class="form-group kt-form__group row">
 									<div class="col-lg-4 kt-margin-bottom-20-mobile">
 										<mat-form-field class="mat-form-field-fluid">
 											<input type="email" matInput placeholder="Enter Email" formControlName="email"/>
@@ -74,33 +88,32 @@
 											</mat-hint>
 										</mat-form-field>
 									</div>
-								</div>
-								<div class="form-group kt-form__group row">
 									<div class="col-lg-4 kt-margin-bottom-20-mobile">
 										<mat-form-field class="mat-form-field-fluid">
-											<input matInput placeholder="Enter Occupation" formControlName="occupation"/>
+											<input matInput placeholder="Enter Credentials" formControlName="credential"/>
+											<mat-error>Full Name is
+												<strong>required</strong>
+											</mat-error>
 											<mat-hint align="start">Please enter
-												<strong>Occupation</strong>
+												<strong>Credentials</strong>
 											</mat-hint>
 										</mat-form-field>
 									</div>
 									<div class="col-lg-4 kt-margin-bottom-20-mobile">
 										<mat-form-field class="mat-form-field-fluid">
-											<input matInput placeholder="Enter Company Name" formControlName="companyName"/>
+											<input matInput placeholder="Enter Role" formControlName="role"/>
+											<mat-error>Role is
+												<strong>required</strong>
+											</mat-error>
 											<mat-hint align="start">Please enter
-												<strong>Company Name</strong>
+												<strong>Role</strong>
 											</mat-hint>
 										</mat-form-field>
 									</div>
 
-									<div class="col-lg-4 kt-margin-bottom-20-mobile">
-										<mat-form-field class="mat-form-field-fluid">
-											<input matInput placeholder="Enter Phone" formControlName="phone"/>
-											<mat-hint align="start">Please enter
-												<strong>Phone</strong>
-											</mat-hint>
-										</mat-form-field>
-									</div>
+
+
+
 								</div>
 							</div>
 						</form>
@@ -108,24 +121,8 @@
 					<!--end::Form-->
 				</ng-template>
 			</mat-tab>
-			<mat-tab [disabled]="!user || !user.id">
-				<ng-template mat-tab-label>
-					<i class="mat-tab-label-icon fa fa-address-book"></i>
-					User address
-				</ng-template>
-				<ng-template matTabContent>
-					<kt-address [(addressSubject)]="addressSubject"></kt-address>
-				</ng-template>
-			</mat-tab>
-			<mat-tab [disabled]="!user || !user.id">
-				<ng-template mat-tab-label>
-					<i class="mat-tab-label-icon fab fa-facebook"></i>
-					Social Nerworks
-				</ng-template>
-				<ng-template matTabContent>
-					<kt-social-networks [(socialNetworksSubject)]="soicialNetworksSubject"></kt-social-networks>
-				</ng-template>
-			</mat-tab>
+
+
 			<mat-tab *ngIf="user" [disabled]="!user || !user.id">
 				<ng-template mat-tab-label>
 					<i class="mat-tab-label-icon fa fa-unlock"></i>

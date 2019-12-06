@@ -56,7 +56,7 @@ export class AppComponent implements OnInit, OnDestroy {
 		const routerSubscription = this.router.events.subscribe(event => {
 			if (event instanceof NavigationEnd) {
 				// hide splash screen
-				// this.splashScreenService.hide();
+				// this.wsplashScreenService.hide();
 
 				// scroll to top on every route change
 				window.scrollTo(0, 0);

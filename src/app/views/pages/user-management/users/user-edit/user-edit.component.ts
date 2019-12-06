@@ -55,12 +55,12 @@ export class UserEditComponent implements OnInit, OnDestroy {
 	 * @param layoutConfigService: LayoutConfigService
 	 */
 	constructor(private activatedRoute: ActivatedRoute,
-		private router: Router,
-		private userFB: FormBuilder,
-		private subheaderService: SubheaderService,
-		private layoutUtilsService: LayoutUtilsService,
-		private store: Store<AppState>,
-		private layoutConfigService: LayoutConfigService) { }
+				private router: Router,
+				private userFB: FormBuilder,
+				private subheaderService: SubheaderService,
+				private layoutUtilsService: LayoutUtilsService,
+				private store: Store<AppState>,
+				private layoutConfigService: LayoutConfigService) { }
 
 	/**
 	 * @ Lifecycle sequences => https://angular.io/guide/lifecycle-hooks
@@ -172,8 +172,8 @@ export class UserEditComponent implements OnInit, OnDestroy {
 		this.createForm();
 		this.hasFormErrors = false;
 		this.userForm.markAsPristine();
-        this.userForm.markAsUntouched();
-        this.userForm.updateValueAndValidity();
+		this.userForm.markAsUntouched();
+		this.userForm.updateValueAndValidity();
 	}
 
 	/**
@@ -297,3 +297,5 @@ export class UserEditComponent implements OnInit, OnDestroy {
 		this.hasFormErrors = false;
 	}
 }
+
+
