@@ -1,61 +1,62 @@
 <kt-portlet>
-    <kt-portlet-body>
+	<kt-portlet-body>
 
-        <!-- start::FILTERS & GROUP ACTIONS -->
-        <div class="kt-form kt-margin-b-30">
-            <!-- start::FILTERS -->
-            <div class="kt-form__filtration">
-                <div class="row align-items-center">
-                    <div class="col-md-2 kt-margin-bottom-10-mobile">
-                        <!--                        <mat-form-field class="mat-form-field-fluid">-->
-                        <!--                            <input matInput placeholder="Search work" #searchInput placeholder="Search">-->
-                        <!--                        </mat-form-field>-->
+		<!-- start::FILTERS & GROUP ACTIONS -->
+		<div class="kt-form kt-margin-b-30">
+			<!-- start::FILTERS -->
+			<div class="kt-form__filtration">
+				<div class="row align-items-center">
+					<div class="col-md-2 kt-margin-bottom-10-mobile">
+						<!--                        <mat-form-field class="mat-form-field-fluid">-->
+						<!--                            <input matInput placeholder="Search work" #searchInput placeholder="Search">-->
+						<!--                        </mat-form-field>-->
 
-                        <mat-form-field>
-                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
-                        </mat-form-field>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- end::FILTERS -->
+						<mat-form-field>
+							<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+						</mat-form-field>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end::FILTERS -->
 
-        <!--        <div class="mat-elevation-z8">-->
-        <div perfectScrollbar [ngStyle]="{'max-height': '43vh', 'position': 'relative'}"
-             class="mat-table__wrapper mat-table__wrapper--dashboard mb-4">
-            <table mat-table [dataSource]="dataSource" matSort>
+		<!--        <div class="mat-elevation-z8">-->
+		<div perfectScrollbar [ngStyle]="{'max-height': '43vh', 'position': 'relative'}"
+			 class="mat-table__wrapper mat-table__wrapper--dashboard mb-4">
+			<table mat-table [dataSource]="dataSource" matSort>
 
-                <!-- Tag Column -->
-                <ng-container matColumnDef="Tag">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Tag</th>
-                    <td mat-cell *matCellDef="let row"> {{row.Tag}}</td>
-                </ng-container>
+				<!-- Tag Column -->
+				<ng-container matColumnDef="Tag">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header> Tag</th>
+					<td mat-cell *matCellDef="let row"> {{row.Tag}}</td>
+				</ng-container>
 
-                <!-- Progress Title -->
-                <ng-container matColumnDef="Title">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Title</th>
-                    <td mat-cell *matCellDef="let row"> {{row.Title}} </td>
-                </ng-container>
-
-                <!-- AuthorName Column -->
-                <ng-container matColumnDef="AuthorName">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> AuthorName</th>
-                    <td mat-cell *matCellDef="let row"> {{row.AuthorName}} </td>
-                </ng-container>
-
-                <!-- Score Column -->
-                <ng-container matColumnDef="Score">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Score</th>
-                    <td mat-cell *matCellDef="let row"> {{row.Score}} </td>
-                </ng-container>
-
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-                </tr>
-            </table>
+				<!-- Title Title -->
+				<ng-container matColumnDef="Title">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header> Title</th>
+					<td mat-cell *matCellDef="let row"> <a href="{{row.URL}}" target="_blank">{{row.Title}} </a> </td>
+				</ng-container>
 
 
-            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-        </div>
-    </kt-portlet-body>
+				<!-- AuthorName Column -->
+				<ng-container matColumnDef="AuthorName">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header> AuthorName</th>
+					<td mat-cell *matCellDef="let row"> {{row.AuthorName}} </td>
+				</ng-container>
+
+				<!-- Score Column -->
+				<ng-container matColumnDef="Score">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header> Score</th>
+					<td mat-cell *matCellDef="let row"> {{row.Score}} </td>
+				</ng-container>
+
+				<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumns;">
+				</tr>
+			</table>
+
+
+			<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+		</div>
+	</kt-portlet-body>
 </kt-portlet>
