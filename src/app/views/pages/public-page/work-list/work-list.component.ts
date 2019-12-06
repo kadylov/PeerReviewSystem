@@ -15,7 +15,7 @@ import {DataTableWorkModel, DataTableWorkService} from "../../../../core/_base/l
     styleUrls: ['./work-list.component.scss']
 })
 export class WorkListComponent implements OnInit {
-    displayedColumns = ['Tag', 'Title', 'AuthorName', 'Score', 'Summary'];
+    displayedColumns = ['Tag', 'Title', 'AuthorName', 'Score'];
     dataSource: MatTableDataSource<DataTableWorkModel>;
     works: any = [];
 
