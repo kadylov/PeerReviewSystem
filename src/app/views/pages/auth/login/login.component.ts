@@ -196,7 +196,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 			.login(authData.username, authData.password).subscribe(
 			res => {
 
-				if (res.body[0] != undefined) {
+				if (res.body != null) {
 					this.user = res.body[0];
 					console.log(res.body);
 					console.log("user fullname: ", this.user.Fullname);
