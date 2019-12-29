@@ -44,7 +44,6 @@ import {
 	MenuConfigService,
 	MenuHorizontalService,
 	PageConfigService,
-	SplashScreenService,
 	SubheaderService,
 
 
@@ -140,7 +139,6 @@ export function hljsLanguages(): HighlightLanguage[] {
 
 
 
-		SplashScreenService,
 
 		{
 			provide: PERFECT_SCROLLBAR_CONFIG,

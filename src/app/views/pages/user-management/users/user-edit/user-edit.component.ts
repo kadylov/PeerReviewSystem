@@ -222,9 +222,6 @@ export class UserEditComponent implements OnInit, OnDestroy {
 		_user.username = controls['username'].value;
 		_user.email = controls['email'].value;
 		_user.fullname = controls['fullname'].value;
-		_user.occupation = controls['occupation'].value;
-		_user.phone = controls['phone'].value;
-		_user.companyName = controls['companyName'].value;
 		_user.password = this.user.password;
 		return _user;
 	}
