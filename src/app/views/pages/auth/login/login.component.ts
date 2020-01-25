@@ -3,7 +3,7 @@ import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation} from
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 // RxJS
-import {Observable, Subject} from 'rxjs';
+import {Observable, Subject, Subscription} from 'rxjs';
 import {finalize, takeUntil, tap} from 'rxjs/operators';
 // Translate
 import {TranslateService} from '@ngx-translate/core';
@@ -35,6 +35,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 	errors: any = [];
 
 	private unsubscribe: Subject<any>;
+
+	private wSub: Subscription = new Subscription();
 
 
 	private returnUrl: any;
@@ -91,6 +93,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 		// this.unsubscribe.next();
 		// this.unsubscribe.complete();
 		this.loading = false;
+
+		// this.wSub.unsubscribe();
 	}
 
 	/**
@@ -192,16 +196,16 @@ export class LoginComponent implements OnInit, OnDestroy {
 		*
 		* */
 
-		this.auth
+		this.wSub = this.auth
 			.login(authData.username, authData.password).subscribe(
 			res => {
 
 				if (res.body != null) {
 					this.user = res.body[0];
 					console.log(res.body);
-					console.log("user fullname: ", this.user.Fullname);
-					console.log("user role: ", this.user.RoleId);
-					if (this.user.RoleId != 3) {
+					console.log("user fullname: ", this.user.fullname);
+					console.log("user role: ", this.user.role);
+					if (this.user.role != 3) {
 						// this.router.navigateByUrl(this.returnUrl); // Main page
 						// this.store.dispatch(new Login({authToken: this.user.Username}));
 						this.router.navigateByUrl('/reviewer'); // Main page

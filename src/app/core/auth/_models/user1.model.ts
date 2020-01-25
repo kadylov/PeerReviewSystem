@@ -3,11 +3,14 @@ import { Address } from './address.model';
 import { SocialNetworks } from './social-networks.model';
 
 export class User1 {
-	ID: number;
-	Username: string;
-	Password: string;
-	Email: string;
-	Fullname: string;
-	RoleId: number;
+	id: number;
+	username: string;
+	password: string;
+	email: string;
+	fullname: string;
+	accessToken?: string;
+	refreshToken?: string;
+	role: number;
+	credentialID: number;
 
 }
