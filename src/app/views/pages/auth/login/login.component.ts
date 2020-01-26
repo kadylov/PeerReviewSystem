@@ -12,7 +12,7 @@ import {Store} from '@ngrx/store';
 import {AppState} from '../../../../core/reducers';
 // Auth
 import {AuthNoticeService, AuthService, Login} from '../../../../core/auth';
-import {User1} from "../../../../core/auth/_models/user1.model";
+import {User1} from '../../../../core/auth/_models/user1.model';
 
 /**
  * ! Just example => Should be removed in development
@@ -197,30 +197,39 @@ export class LoginComponent implements OnInit, OnDestroy {
 		* */
 
 		this.wSub = this.auth
-			.login(authData.username, authData.password).subscribe(
-			res => {
+			.login(authData.username, authData.password)
+			.subscribe(
+				res => {
 
-				if (res.body != null) {
-					this.user = res.body[0];
-					console.log(res.body);
-					console.log("user fullname: ", this.user.fullname);
-					console.log("user role: ", this.user.role);
+					this.user = res;
 					if (this.user.role != 3) {
 						// this.router.navigateByUrl(this.returnUrl); // Main page
 						// this.store.dispatch(new Login({authToken: this.user.Username}));
-						this.router.navigateByUrl('/reviewer'); // Main page
+						this.router.navigateByUrl('/reviewer'); // Reviewer page
 					} else {
-						this.router.navigateByUrl('/dashboard'); // Main page
+						this.router.navigateByUrl('/dashboard'); // Admin page
 					}
-				} else {
+					// if (res.body != null) {
+					// 	this.user = res.body[0];
+					// 	console.log(res.body);
+					// 	console.log("user fullname: ", this.user.fullname);
+					// 	console.log("user role: ", this.user.role);
+					// 	if (this.user.role != 3) {
+					// 		// this.router.navigateByUrl(this.returnUrl); // Main page
+					// 		// this.store.dispatch(new Login({authToken: this.user.Username}));
+					// 		this.router.navigateByUrl('/reviewer'); // Main page
+					// 	} else {
+					// 		this.router.navigateByUrl('/dashboard'); // Main page
+					// 	}
+					// } else {
+					// 	this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
+					//
+					// }
+				},
+				error => {
 					this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
-
-				}
-			},
-			error => {
-				// this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
-				console.log('There was an error while retrieving Posts !!!' + error);
-			}),
+					console.log('There was an error while retrieving Works !!!' + error);
+				}),
 			takeUntil(this.unsubscribe),
 			finalize(() => {
 				this.loading = false;

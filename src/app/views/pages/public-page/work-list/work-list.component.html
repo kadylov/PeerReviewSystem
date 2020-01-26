@@ -4,19 +4,14 @@
         <!-- start::FILTERS & GROUP ACTIONS -->
         <div class="kt-form kt-margin-b-30">
             <!-- start::FILTERS -->
-            <div class="kt-form__filtration">
-                <div class="row align-items-center">
-                    <div class="col-md-2 kt-margin-bottom-10-mobile">
-                        <!--                        <mat-form-field class="mat-form-field-fluid">-->
-                        <!--                            <input matInput placeholder="Search work" #searchInput placeholder="Search">-->
-                        <!--                        </mat-form-field>-->
+			<div class="row align-items-center">
+				<div class="col-md-2 kt-margin-bottom-10-mobile">
 
-                        <mat-form-field>
-                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
-                        </mat-form-field>
-                    </div>
-                </div>
-            </div>
+					<mat-form-field>
+						<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+					</mat-form-field>
+				</div>
+			</div>
         </div>
         <!-- end::FILTERS -->
 

@@ -1,8 +1,8 @@
 // Angular
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 // RxJS
-import {Observable, of, forkJoin} from 'rxjs';
+import {Observable, of, forkJoin, throwError} from 'rxjs';
 import {map, catchError, mergeMap, tap} from 'rxjs/operators';
 // Lodash
 import {filter, some, find, each} from 'lodash';
@@ -14,13 +14,14 @@ import {QueryParamsModel, QueryResultsModel, HttpUtilsService} from '../../_base
 import {User} from '../_models/user.model';
 import {Permission} from '../_models/permission.model';
 import {Role} from '../_models/role.model';
-import {User1} from "../_models/user1.model";
+import {User1} from '../_models/user1.model';
 
 const API_USERS_URL = 'api/users';
 const API_PERMISSION_URL = 'api/permissions';
 const API_ROLES_URL = 'api/roles';
 
-const API_USER_URL = "http://3.95.8.94/example/index.php";
+const API_USER_URL = 'http://3.95.8.94/example/index.php';
+
 // const API_USER_URL = "http://localhost/index.php";
 
 @Injectable()
@@ -58,13 +59,47 @@ export class AuthService {
 	//
 	// }
 
-	login(username: string, password: string): Observable<HttpResponse<User1>> {
+	// getById(id: string):Observable<Post> {
+	// 	return this.http.get<Post>(`${environment.fbDbUrl}/posts/${id}.json`)
+	// 		.pipe(map((post: Post)=>{
+	// 			return {
+	// 				...post,id,
+	// 				date: new Date(post.date)
+	// 			}
+	// 		}))
+	// }
+
+
+	// addBookWithObservable(book:Book): Observable<Book> {
+	// 	let headers = new Headers({ 'Content-Type': 'application/json' });
+	// 	let options = new RequestOptions({ headers: headers });
+	//
+	//
+	// 	return this.http.post(this.url, book, options)
+	// 		.map(this.extractData)
+	// 		.catch(this.handleErrorObservable);
+	// }
+
+	login(username: string, password: string): Observable<User1> {
 
 		const body = new HttpParams()
-			.set(`userLogin`, "userLogin",).set(`username`, username).set(`password`, password);
+			.set(`userLogin`, 'userLogin',).set(`username`, username).set(`password`, password);
 		const headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
-		return this.http.post<User1>(API_USER_URL, body.toString(), {headers, observe: 'response'});
+		// return this.http.post<User1>(API_USER_URL, body.toString(), {headers});
 
+		return this.http.post<User1>(API_USER_URL, body.toString(), {headers, observe: 'response'})
+			.pipe(
+				map(response => {
+					return response.body[0];
+				}),
+			catchError(error => {
+				return throwError(error);
+			}));
+	}
+
+	extractData(res: Response) {
+		let body = res.json();
+		return body || {};
 	}
 
 
@@ -94,7 +129,7 @@ export class AuthService {
 					return null;
 				}
 
-				const user = find(users, function (item: User) {
+				const user = find(users, function(item: User) {
 					return (item.email.toLowerCase() === email.toLowerCase());
 				});
 
@@ -121,7 +156,7 @@ export class AuthService {
 					return null;
 				}
 
-				const user = find(result, function (item: User) {
+				const user = find(result, function(item: User) {
 					return (item.accessToken === userToken.toString());
 				});
 
@@ -152,7 +187,7 @@ export class AuthService {
 
 	getUser(username: string, password: string): Observable<HttpResponse<User1>> {
 		const body = new HttpParams()
-			.set(`userLogin`, "userLogin",).set(`username`, username).set(`password`, password);
+			.set(`userLogin`, 'userLogin',).set(`username`, username).set(`password`, password);
 		const headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
 		return this.http.post<User1>(API_USER_URL, body.toString(), {headers, observe: 'response'});
 
