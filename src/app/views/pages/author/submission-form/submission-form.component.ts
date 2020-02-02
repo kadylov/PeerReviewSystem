@@ -72,7 +72,7 @@ export class SubmissionFormComponent implements OnInit, OnDestroy {
 	 */
 	ngOnInit() {
 		this.initRegisterForm();
-		// this.titleField.nativeElement.focus();
+		this.titleField.nativeElement.focus();
 	}
 
 	/*
