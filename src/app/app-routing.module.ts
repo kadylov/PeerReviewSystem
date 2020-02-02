@@ -18,7 +18,7 @@ import {ReviewerComponent} from './views/pages/reviewer/reviewer.component';
 
 const routes: Routes = [
 	{path: 'auth', loadChildren: () => import('app/views/pages/auth/auth.module').then(m => m.AuthModule)},
-	{path: 'public-page', loadChildren: () => import('app/views/pages/public-page/public-page.module').then(m => m.PublicPageModule)},
+	{path: 'home', loadChildren: () => import('app/views/pages/public-page/public-page.module').then(m => m.PublicPageModule)},
 	{path: 'reviewer', component: ReviewerComponent},
 
 	{path: 'author', loadChildren: () => import('app/views/pages/author/author.module').then(m => m.AuthorModule)},
@@ -26,7 +26,7 @@ const routes: Routes = [
 
 
 	// Public user
-	{path: '', redirectTo: 'public-page', pathMatch: 'full'},
+	{path: '', redirectTo: 'home', pathMatch: 'full'},
 	{
 		path: '',
 		component: BaseComponent,
@@ -80,8 +80,8 @@ const routes: Routes = [
 			{path: 'error/:type', component: ErrorPageComponent},
 			// {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
 			// {path: '**', redirectTo: 'dashboard', pathMatch: 'full'}
-			{path: '', redirectTo: 'public-page', pathMatch: 'full'},
-			{path: '**', redirectTo: 'public-page', pathMatch: 'full'}
+			{path: '', redirectTo: 'home', pathMatch: 'full'},
+			{path: '**', redirectTo: 'home', pathMatch: 'full'}
 		]
 	},
 
