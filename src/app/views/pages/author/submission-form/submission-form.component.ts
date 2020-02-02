@@ -27,7 +27,8 @@ export class SubmissionFormComponent implements OnInit, OnDestroy {
 	loading = false;
 	errors: any = [];
 
-
+	minDate: Date = new Date(1991, 0, 1);
+	maxDate: Date = new Date(Date.now());
 
 	// Option field
 	tagList = ['Standard', 'Brand Measurement', 'Outcome'];

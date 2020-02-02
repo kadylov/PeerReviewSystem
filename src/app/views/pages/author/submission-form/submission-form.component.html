@@ -26,9 +26,11 @@
 			<div class="form-group">
 				<mat-form-field>
 					<mat-label>Date Written</mat-label>
-					<input matInput [matDatepicker]="dp3" placeholder="MM/dd/YYYY" formControlName="date_written"
+					<input matInput [matDatepicker]="dp3" [min]="minDate" [max]="maxDate" placeholder="MM/dd/YYYY"
+						   formControlName="date_written"
 						   disabled>
 					<mat-datepicker-toggle matSuffix [for]="dp3">
+						<mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
 					</mat-datepicker-toggle>
 					<mat-datepicker #dp3 disabled="false"></mat-datepicker>
 					<mat-error *ngIf="isControlHasError('date_written','required')">
@@ -105,7 +107,7 @@
 				</mat-form-field>
 
 
-<!--				Chip buttons-->
+				<!--				Chip buttons-->
 				<mat-form-field *ngIf="selectedTagList.length>0">
 					<mat-chip-list #chipList>
 						<mat-chip
