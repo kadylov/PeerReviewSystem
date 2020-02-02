@@ -1,31 +1,32 @@
 // Angular
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 // Components
-import { BaseComponent } from './views/theme/base/base.component';
-import { ErrorPageComponent } from './views/theme/content/error-page/error-page.component';
+import {BaseComponent} from './views/theme/base/base.component';
+import {ErrorPageComponent} from './views/theme/content/error-page/error-page.component';
 // Auth
-import { AuthGuard } from './core/auth';
+import {AuthGuard} from './core/auth';
 
 // Admin Parts
-import {IncomingWorkComponent} from "./views/pages/admin/incoming-work/incoming-work.component";
-import {AssignmentComponent} from "./views/pages/admin/assignment/assignment.component";
-import {CompletedReviewComponent} from "./views/pages/admin/completed-review/completed-review.component";
-import {ScorecardComponent} from "./views/pages/admin/scorecard/scorecard.component";
-import {ResultComponent} from "./views/pages/admin/result/result.component";
-import {InProgressComponent} from "./views/pages/admin/in-progress/in-progress.component";
-import {ReviewerComponent} from "./views/pages/reviewer/reviewer.component";
+import {IncomingWorkComponent} from './views/pages/admin/incoming-work/incoming-work.component';
+import {AssignmentComponent} from './views/pages/admin/assignment/assignment.component';
+import {CompletedReviewComponent} from './views/pages/admin/completed-review/completed-review.component';
+import {ScorecardComponent} from './views/pages/admin/scorecard/scorecard.component';
+import {ResultComponent} from './views/pages/admin/result/result.component';
+import {InProgressComponent} from './views/pages/admin/in-progress/in-progress.component';
+import {ReviewerComponent} from './views/pages/reviewer/reviewer.component';
 
 const routes: Routes = [
 	{path: 'auth', loadChildren: () => import('app/views/pages/auth/auth.module').then(m => m.AuthModule)},
 	{path: 'public-page', loadChildren: () => import('app/views/pages/public-page/public-page.module').then(m => m.PublicPageModule)},
-	{
-		path: 'reviewer',
-		component: ReviewerComponent
-	},
+	{path: 'reviewer', component: ReviewerComponent},
+
+	{path: 'author', loadChildren: () => import('app/views/pages/author/author.module').then(m => m.AuthorModule)},
+
+
+
 	// Public user
 	{path: '', redirectTo: 'public-page', pathMatch: 'full'},
-
 	{
 		path: '',
 		component: BaseComponent,

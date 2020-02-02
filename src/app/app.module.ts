@@ -4,7 +4,7 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GestureConfig, MatProgressSpinnerModule } from '@angular/material';
+import {GestureConfig, MatCheckboxModule, MatFormFieldModule, MatProgressSpinnerModule} from '@angular/material';
 import { OverlayModule } from '@angular/cdk/overlay';
 // Angular in memory
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -64,6 +64,7 @@ import * as typescript from 'highlight.js/lib/languages/typescript';
 import * as scss from 'highlight.js/lib/languages/scss';
 import * as xml from 'highlight.js/lib/languages/xml';
 import * as json from 'highlight.js/lib/languages/json';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 // import {PublicPageModule} from "./views/pages/public-page/public-page.module";
@@ -97,7 +98,7 @@ export function hljsLanguages(): HighlightLanguage[] {
 }
 
 @NgModule({
-	declarations: [AppComponent],
+	declarations: [AppComponent,],
 	imports: [
 		BrowserAnimationsModule,
 		BrowserModule,
@@ -120,6 +121,9 @@ export function hljsLanguages(): HighlightLanguage[] {
 		MatProgressSpinnerModule,
 		InlineSVGModule.forRoot(),
 		ThemeModule,
+		MatCheckboxModule,
+		MatFormFieldModule,
+		ReactiveFormsModule,
 
 		// PublicPageModule ////////////////
 

@@ -72,7 +72,7 @@ const routes: Routes = [
 			// multi: true
 		// },
 	],
-	exports: [AuthComponent],
+	exports: [AuthComponent, AuthNoticeComponent],
 	declarations: [
 		AuthComponent,
 		LoginComponent,
