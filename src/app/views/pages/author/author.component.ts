@@ -1,7 +1,7 @@
 // Angular
 import { Component, ElementRef, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 // Layout
-import { LayoutConfigService, TranslationService } from '../../../core/_base/layout';
+import { LayoutConfigService } from '../../../core/_base/layout';
 // Auth
 import { AuthNoticeService } from '../../../core/auth';
 
@@ -23,14 +23,12 @@ export class AuthorComponent implements OnInit {
 	 * @param render
 	 * @param layoutConfigService: LayoutConfigService
 	 * @param authNoticeService: authNoticeService
-	 * @param translationService: TranslationService
 	 */
 	constructor(
 		private el: ElementRef,
 		private render: Renderer2,
 		private layoutConfigService: LayoutConfigService,
 		public authNoticeService: AuthNoticeService,
-		private translationService: TranslationService
 		) {
 	}
 
@@ -42,7 +40,7 @@ export class AuthorComponent implements OnInit {
 	 * On init
 	 */
 	ngOnInit(): void {
-		this.translationService.setLanguage(this.translationService.getSelectedLanguage());
+		// this.translationService.setLanguage(this.translationService.getSelectedLanguage());
 		this.headerLogo = this.layoutConfigService.getLogo();
 
 	}

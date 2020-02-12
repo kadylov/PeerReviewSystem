@@ -5,6 +5,7 @@ import {MatTableDataSource} from '@angular/material/table';
 
 import {DataTableWorkModel, DataTableWorkService} from '../../../../core/_base/layout';
 import {Subscription} from 'rxjs';
+import {delay} from 'rxjs/operators';
 
 
 /**
@@ -24,6 +25,11 @@ export class WorkListComponent implements OnInit, OnDestroy {
 
 	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 	@ViewChild(MatSort, {static: true}) sort: MatSort;
+
+
+	tagList4 = ['Volume', 'Impressions', 'Engagements', 'Share of Voice', 'Click-throughs', 'AVE', 'ROI'];
+	selectable: boolean = false;
+	removable: boolean = false;
 
 	constructor(private workService: DataTableWorkService) {
 		this.dataSource = new MatTableDataSource();

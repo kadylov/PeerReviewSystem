@@ -15,7 +15,7 @@ import {WidgetModule} from "../../partials/content/widgets/widget.module";
 import {PartialsModule} from "../../partials/partials.module";
 import { PublicPageComponent } from './public-page.component';
 
-import {MatInputModule, MatToolbarModule} from '@angular/material';
+import {MatChipsModule, MatInputModule, MatToolbarModule} from '@angular/material';
 
 const routes: Routes = [
 	{
@@ -42,7 +42,8 @@ const routes: Routes = [
         WidgetModule,
         PartialsModule,
         MatInputModule,
-        MatToolbarModule
+        MatToolbarModule,
+        MatChipsModule
     ],
 	exports: [RouterModule],
 	declarations: [WorkListComponent, PublicPageComponent]

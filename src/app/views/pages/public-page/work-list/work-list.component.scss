@@ -9,22 +9,57 @@
 	}
 }
 
+td.mat-cell {
+	padding: 12px 0 16px 0;
+}
 
-//table {
-//	width: 100%;
-//}
-//
-//.mat-form-field {
-//	font-size: 14px;
-//	width: 100%;
-//}
-//
-//td, th {
-//	width: 20%;
-//	//font-size: 18px;
-//
-//}
-//
-//.tagColumn{
-//	width: 5%;
-//}
+.mdc-chip {
+	border-radius: 16px;
+	//background-color: #e0e0e0;
+	background-color: #f2f3f8;
+	color: rgba(21, 21, 21, 0.87);
+	font-family: Poppins, Helvetica, sans-serif;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	font-weight: 400;
+	letter-spacing: 0.0178571429em;
+	text-decoration: inherit;
+	text-transform: inherit;
+	height: 30px;						// height
+	//display: -ms-inline-flexbox;
+	display: inline-flex;
+	position: relative;
+	//-ms-flex-align: start;
+	align-items: center;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0 12px;
+	border-width: 0;
+	outline: none;
+	//cursor: pointer;
+	-webkit-appearance: none;
+}
+.mdc-chip-set { ////
+	padding: 4px;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	margin-left: -7px;
+}
+.mdc-chip {
+	margin: 4px;
+	//margin-left: 0px;
+}
+
+.demo-chip-shaped {
+	border-radius: 4px;
+}
+
+
+// WEBPACK FOOTER //
+// ./src/styles/ChipsCatalog.scss

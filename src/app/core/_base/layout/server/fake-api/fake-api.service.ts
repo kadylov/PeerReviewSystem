@@ -12,6 +12,9 @@ import { ECommerceDataContext } from '../../../../e-commerce';
 import { CarsDb } from './fake-db/cars';
 
 import {WorksDb} from "./fake-db/works";
+import {TagsComponent} from '../../../../../views/pages/author/tag-selections/tags.component';
+import {TagTable} from '../../../../author/_server/tag.table';
+import {TagDb} from './fake-db/tags';
 
 @Injectable()
 export class FakeApiService implements InMemoryDbService {
@@ -45,7 +48,9 @@ export class FakeApiService implements InMemoryDbService {
 			// data-table
 			cars: CarsDb.cars,
 
-			works: WorksDb.works
+			works: WorksDb.works,
+
+			tags: TagDb.tags,
 		};
 		return db;
 	}

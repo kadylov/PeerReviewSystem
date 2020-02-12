@@ -65,6 +65,7 @@ import * as scss from 'highlight.js/lib/languages/scss';
 import * as xml from 'highlight.js/lib/languages/xml';
 import * as json from 'highlight.js/lib/languages/json';
 import {ReactiveFormsModule} from '@angular/forms';
+import {TagService} from './core/author/_services/tag.service';
 
 
 // import {PublicPageModule} from "./views/pages/public-page/public-page.module";
@@ -140,6 +141,10 @@ export function hljsLanguages(): HighlightLanguage[] {
 
 
 		DataTableWorkService,
+
+
+		// tag service
+		TagService,
 
 
 

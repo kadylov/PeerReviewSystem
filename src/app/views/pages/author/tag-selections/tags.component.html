@@ -1,0 +1,56 @@
+<div>
+		<table>
+			<tr>
+				<td *ngFor="let tag of tagLists; let index = index">
+					<mat-form-field *ngIf="index<3">
+						<mat-label>{{tag.name}}</mat-label>
+
+						<mat-select placeholder="{{tag.name}}" formControlName="{{tag.name}}"
+									[(ngModel)]="selecTags" multiple>
+							<mat-select-trigger>
+								{{selecTags ? selecTags[index].tagOptions[0] : ''}}
+								<span *ngIf="selecTags[index].tagOptions?.length > 1"
+									  class="example-additional-selection">
+					                                (+{{selecTags[index].tagOptions.length - 1}} others)
+					                                </span>
+							</mat-select-trigger>
+
+							<mat-option *ngFor="let t of tag.tagOptions" [value]="t"
+							>{{t}}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+<!--					{{selecTags[index].tagOptions}}-->
+<!--					{{selecTags[index].name}}-->
+
+
+				</td>
+			</tr>
+
+		</table>
+
+		<div *ngIf="selecTags.length>0">
+			{{selecTags}}
+		</div>
+	<!--            Chip buttons-->
+<!--	<mat-form-field *ngIf="selecTags.length>0">-->
+<!--		<mat-chip-list>-->
+<!--			<ng-template *ngFor="let list of selecTags; let index=index">-->
+<!--				{{list}}-->
+<!--				<mat-chip-->
+<!--					*ngFor="let tag of list.tagOptions"-->
+
+<!--					[selectable]="selectable"-->
+<!--					[removable]="removable"-->
+<!--					(removed)="remove(tag,list.name)">-->
+
+<!--					{{tag}}-->
+<!--					<mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>-->
+<!--				</mat-chip>-->
+
+<!--			</ng-template>-->
+
+<!--		</mat-chip-list>-->
+<!--	</mat-form-field>-->
+
+</div>

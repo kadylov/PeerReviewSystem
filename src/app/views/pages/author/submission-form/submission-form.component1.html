@@ -1,0 +1,186 @@
+<!--begin::Body-->
+
+<div class="kt-login__body" *ngIf="tags$ | async as tags; else loadingMessage">
+	<!--begin::Signin-->
+	<div class="kt-login__form">
+		<div class="kt-login__title">
+			<h3>Submit Your Work For Review</h3>
+		</div>
+		<kt-auth-notice></kt-auth-notice>
+		<form class="kt-login__form kt-form" [formGroup]="registerForm" autocomplete="off">
+
+			<div class="form-group">
+				<mat-form-field>
+					<mat-label>Title</mat-label>
+					<input matInput type="text" #title placeholder="Title" formControlName="title" autocomplete="off"
+						   [autofocus]="true"/>
+					<mat-error *ngIf="isControlHasError('title','required')">
+						<strong>Required field</strong>
+					</mat-error>
+					<mat-error *ngIf="isControlHasError('title','minlength')">
+						<strong>Minimum Length: 3</strong>
+					</mat-error>
+					<mat-error *ngIf="isControlHasError('title','maxlength')">
+						<strong>Maximum length: 320</strong>
+					</mat-error>
+				</mat-form-field>
+			</div>
+			<div class="form-group">
+				<mat-form-field>
+					<mat-label>Date Written</mat-label>
+					<input matInput [matDatepicker]="dp3" [min]="minDate" [max]="maxDate" placeholder="MM/dd/YYYY"
+						   formControlName="date_written"
+						   disabled>
+					<mat-datepicker-toggle matSuffix [for]="dp3">
+						<mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+					</mat-datepicker-toggle>
+					<mat-datepicker #dp3 disabled="false"></mat-datepicker>
+					<mat-error *ngIf="isControlHasError('date_written','required')">
+						<strong>Required field</strong>
+					</mat-error>
+				</mat-form-field>
+			</div>
+			<div class="form-group">
+				<mat-form-field>
+					<mat-label>URL</mat-label>
+					<input matInput type="text" placeholder="Url" formControlName="url"/>
+					<mat-error *ngIf="isControlHasError('url','required')">
+						<strong>Required field</strong>
+					</mat-error>
+					<mat-error *ngIf="isControlHasError('url','minlength')">
+						<strong> Minimum field length: 3</strong>
+					</mat-error>
+					<mat-error *ngIf="isControlHasError('url','maxlength')">
+						<strong> Maximum field length: 100</strong>
+					</mat-error>
+				</mat-form-field>
+			</div>
+			<!--         Author textfield-->
+			<div class="form-group">
+				<mat-form-field>
+					<mat-label>Author</mat-label>
+					<input matInput type="text" placeholder="Author" formControlName="author"/>
+					<mat-error *ngIf="isControlHasError('author','required')">
+						<strong>Required field</strong>
+					</mat-error>
+					<mat-error *ngIf="isControlHasError('author','minlength')">
+						<strong> Minimum field length: 3</strong>
+					</mat-error>
+					<mat-error *ngIf="isControlHasError('author','maxlength')">
+						<strong> Maximum field length: 100</strong>
+					</mat-error>
+				</mat-form-field>
+			</div>
+			<div class="form-group">
+				<mat-form-field>
+					<mat-label>Email</mat-label>
+					<input matInput type="email" placeholder="Email" formControlName="email" autocomplete="off"/>
+					<mat-error *ngIf="isControlHasError('email','required')">
+						<strong>Required field</strong>
+					</mat-error>
+					<mat-error *ngIf="isControlHasError('email','email')">
+						<strong>Invalid field</strong>
+					</mat-error>
+					<mat-error *ngIf="isControlHasError('email','minlength')">
+						<strong>Minimum field length: 3</strong>
+					</mat-error>
+					<mat-error *ngIf="isControlHasError('email','maxlength')">
+						<strong>Maximum field length: 320</strong>
+					</mat-error>
+				</mat-form-field>
+			</div>
+
+			<!--         Tag option field-->
+			<div class="form-group">
+				<table>
+					<tr>
+						<ng-container *ngFor="let tag of tags; let index=index;">
+							<td *ngIf="index<3">
+<!--								<div>{{index+1}}</div>-->
+
+<!--								{{selectedOptions[tag.title]}}<br>-->
+
+								<mat-form-field>
+
+									<mat-label>{{tag.title | titlecase}}</mat-label>
+									<mat-select
+										placeholder="{{tag.title | titlecase}}"
+										formControlName="tag{{index+1}}"
+										[(ngModel)]="selectedOptions[tag.title]"
+										multiple>
+										<mat-option *ngFor="let selectOption of tag.tagList" [value]="selectOption"
+													(onSelectionChange)="selectionChanged($event, tag.title)"
+										>{{selectOption}}
+										</mat-option>
+									</mat-select>
+
+								</mat-form-field>
+							</td>
+						</ng-container>
+					</tr>
+
+					<tr>
+						<ng-container *ngFor="let tag of tags| slice:3; let index=index;">
+							<td *ngIf="index<3">
+<!--								<div>{{index+4}}</div>-->
+<!--								{{selectedOptions[tag.title]}}<br>-->
+
+								<mat-form-field>
+
+									<mat-label>{{tag.title | titlecase}}</mat-label>
+
+									<mat-select
+										placeholder="{{tag.title | titlecase}}"
+										formControlName="tag{{index+4}}"
+										[(ngModel)]="selectedOptions[tag.title]"
+										multiple>
+										<mat-option *ngFor="let selectOption of tag.tagList" [value]="selectOption"
+													(onSelectionChange)="selectionChanged($event, tag.title)"
+										>{{selectOption}}
+										</mat-option>
+									</mat-select>
+
+								</mat-form-field>
+							</td>
+						</ng-container>
+					</tr>
+				</table>
+			</div>
+
+			<!--							Chip buttons-->
+			<div class="form-group" *ngIf="chips.length">
+				<mat-form-field>
+					<mat-chip-list #chipList>
+						<ng-container *ngFor="let chip of chips">
+							<mat-chip
+								[selectable]="selectable"
+								[removable]="removable"
+								(removed)="remove(chip)">
+								{{chip}}
+								<mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+							</mat-chip>
+						</ng-container>
+
+					</mat-chip-list>
+				</mat-form-field>
+
+			</div>
+			<!--begin::Action-->
+			<div class="kt-login__actions">
+				<button routerLink="/" [disabled]="loading" id="kt_login_signup_cancel"
+						class="btn btn-secondary btn-elevate kt-login__btn-secondary">Back
+				</button>
+				<button (click)="submit()" id="kt_login_signin_submit"
+						class="btn btn-primary btn-elevate kt-login__btn-primary"
+						[ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading}">Submit
+				</button>
+			</div>
+			<!--end::Action-->
+		</form>
+	</div>
+
+</div>
+
+<ng-template #loadingMessage>
+	<p class="text-center">Loading...</p>
+</ng-template>

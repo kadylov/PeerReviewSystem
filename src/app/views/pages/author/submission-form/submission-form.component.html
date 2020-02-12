@@ -90,37 +90,198 @@
 
 			<!--         Tag option field-->
 			<div class="form-group">
-				<mat-form-field>
-					<mat-label>Tag</mat-label>
-					<mat-select placeholder="tags" formControlName="tag" [(ngModel)]="selectedTagList" multiple>
-						<mat-select-trigger>
-							{{registerForm.controls.tag.value ? registerForm.controls.tag.value[0] : ''}}
-							<span *ngIf="registerForm.controls.tag.value?.length > 1"
-								  class="example-additional-selection">
-                          (+{{registerForm.controls.tag.value.length - 1}} others)
-                          </span>
-						</mat-select-trigger>
-						<mat-option *ngFor="let tag of tagList" [value]="tag"
-						>{{tag}}
-						</mat-option>
-					</mat-select>
-				</mat-form-field>
+				<table>
 
-
-				<!--				Chip buttons-->
-				<mat-form-field *ngIf="selectedTagList.length>0">
-					<mat-chip-list #chipList>
-						<mat-chip
-							*ngFor="let tag of selectedTagList"
-							[selectable]="selectable"
-							[removable]="removable"
-							(removed)="remove(tag)">
-							{{tag}}
-							<mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-						</mat-chip>
-					</mat-chip-list>
-				</mat-form-field>
+										<tr>
+											<td>
+												<mat-form-field>
+													<mat-label>Tag</mat-label>
+													<mat-select placeholder="tags" formControlName="tag1" [(ngModel)]="selectedOptions1" multiple>
+														<mat-select-trigger>
+															{{registerForm.controls.tag1.value ? registerForm.controls.tag1.value[0] : ''}}
+															<span *ngIf="registerForm.controls.tag1.value?.length > 1"
+																  class="example-additional-selection">
+					                          (+{{registerForm.controls.tag1.value.length - 1}} others)
+					                          </span>
+														</mat-select-trigger>
+														<mat-option *ngFor="let tag of tagList1" [value]="tag"
+														>{{tag}}
+														</mat-option>
+													</mat-select>
+												</mat-form-field>
+											</td>
+											<td>
+												<mat-form-field>
+													<mat-label>Tag</mat-label>
+													<mat-select placeholder="tags" formControlName="tag2" [(ngModel)]="selectedOptions2" multiple>
+														<mat-select-trigger>
+															{{registerForm.controls.tag2.value ? registerForm.controls.tag2.value[0] : ''}}
+															<span *ngIf="registerForm.controls.tag2.value?.length > 1"
+																  class="example-additional-selection">
+					                          (+{{registerForm.controls.tag2.value.length - 1}} others)
+					                          </span>
+														</mat-select-trigger>
+														<mat-option *ngFor="let tag of tagList2" [value]="tag"
+														>{{tag}}
+														</mat-option>
+													</mat-select>
+												</mat-form-field>
+											</td>
+											<td>
+												<mat-form-field>
+													<mat-label>Tag</mat-label>
+													<mat-select placeholder="tags" formControlName="tag3" [(ngModel)]="selectedOptions3" multiple>
+														<mat-select-trigger>
+															{{registerForm.controls.tag3.value ? registerForm.controls.tag3.value[0] : ''}}
+															<span *ngIf="registerForm.controls.tag3.value?.length > 1"
+																  class="example-additional-selection">
+					                          (+{{registerForm.controls.tag3.value.length - 1}} others)
+					                          </span>
+														</mat-select-trigger>
+														<mat-option *ngFor="let tag of tagList3" [value]="tag"
+														>{{tag}}
+														</mat-option>
+													</mat-select>
+												</mat-form-field>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<mat-form-field>
+													<mat-label>Tag</mat-label>
+													<mat-select placeholder="tags" formControlName="tag4" [(ngModel)]="selectedOptions4" multiple>
+														<mat-select-trigger>
+															{{registerForm.controls.tag4.value ? registerForm.controls.tag4.value[0] : ''}}
+															<span *ngIf="registerForm.controls.tag4.value?.length > 1"
+																  class="example-additional-selection">
+					                          (+{{registerForm.controls.tag4.value.length - 1}} others)
+					                          </span>
+														</mat-select-trigger>
+														<mat-option *ngFor="let tag of tagList4" [value]="tag"
+														>{{tag}}
+														</mat-option>
+													</mat-select>
+												</mat-form-field>
+											</td>
+											<td>
+												<mat-form-field>
+													<mat-label>Tag</mat-label>
+													<mat-select placeholder="tags" formControlName="tag5" [(ngModel)]="selectedOptions5" multiple>
+														<mat-select-trigger>
+															{{registerForm.controls.tag5.value ? registerForm.controls.tag5.value[0] : ''}}
+															<span *ngIf="registerForm.controls.tag5.value?.length > 1"
+																  class="example-additional-selection">
+					                          (+{{registerForm.controls.tag5.value.length - 1}} others)
+					                          </span>
+														</mat-select-trigger>
+														<mat-option *ngFor="let tag of tagList5" [value]="tag"
+														>{{tag}}
+														</mat-option>
+													</mat-select>
+												</mat-form-field>
+											</td>
+											<td>
+												<mat-form-field>
+													<mat-label>Tag</mat-label>
+													<mat-select placeholder="tags" formControlName="tag6" [(ngModel)]="selectedOptions6" multiple>
+														<mat-select-trigger>
+															{{registerForm.controls.tag6.value ? registerForm.controls.tag6.value[0] : ''}}
+															<span *ngIf="registerForm.controls.tag6.value?.length > 1"
+																  class="example-additional-selection">
+					                          (+{{registerForm.controls.tag6.value.length - 1}} others)
+					                          </span>
+														</mat-select-trigger>
+														<mat-option *ngFor="let tag of tagList6" [value]="tag"
+														>{{tag}}
+														</mat-option>
+													</mat-select>
+												</mat-form-field>
+											</td>
+										</tr>
+				</table>
 			</div>
+<!--							Chip buttons-->
+						<div class="form-group">
+							<mat-form-field *ngIf="selectedOptions1.length>0 || selectedOptions1.length>0">
+								<mat-chip-list #chipList>
+									<mat-chip
+										*ngFor="let tag of selectedOptions1"
+										[selectable]="selectable"
+										[removable]="removable"
+										(removed)="remove(tag,'selectedOptions1')">
+										{{tag}}
+										<mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+									</mat-chip>
+								</mat-chip-list>
+							</mat-form-field>
+
+							<mat-form-field *ngIf="selectedOptions2.length>0">
+								<mat-chip-list #chipList>
+									<mat-chip
+										*ngFor="let tag of selectedOptions2"
+										[selectable]="selectable"
+										[removable]="removable"
+										(removed)="remove(tag, 'selectedOptions2')">
+										{{tag}}
+										<mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+									</mat-chip>
+								</mat-chip-list>
+							</mat-form-field>
+
+							<mat-form-field *ngIf="selectedOptions3.length>0">
+								<mat-chip-list #chipList>
+									<mat-chip
+										*ngFor="let tag of selectedOptions3"
+										[selectable]="selectable"
+										[removable]="removable"
+										(removed)="remove(tag,'selectedOptions3')">
+										{{tag}}
+										<mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+									</mat-chip>
+								</mat-chip-list>
+							</mat-form-field>
+
+							<mat-form-field *ngIf="selectedOptions4.length>0">
+								<mat-chip-list #chipList>
+									<mat-chip
+										*ngFor="let tag of selectedOptions4"
+										[selectable]="selectable"
+										[removable]="removable"
+										(removed)="remove(tag,'selectedOptions4')">
+										{{tag}}
+										<mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+									</mat-chip>
+								</mat-chip-list>
+							</mat-form-field>
+
+							<mat-form-field *ngIf="selectedOptions5.length>0">
+								<mat-chip-list #chipList>
+									<mat-chip
+										*ngFor="let tag of selectedOptions5"
+										[selectable]="selectable"
+										[removable]="removable"
+										(removed)="remove(tag,'selectedOptions5')">
+										{{tag}}
+										<mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+									</mat-chip>
+								</mat-chip-list>
+							</mat-form-field>
+
+							<mat-form-field *ngIf="selectedOptions6.length>0">
+								<mat-chip-list #chipList>
+									<mat-chip
+										*ngFor="let tag of selectedOptions6"
+										[selectable]="selectable"
+										[removable]="removable"
+										(removed)="remove(tag,'selectedOptions6')">
+										{{tag}}
+										<mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+									</mat-chip>
+								</mat-chip-list>
+							</mat-form-field>
+
+						</div>
+
 
 			<!--begin::Action-->
 			<div class="kt-login__actions">

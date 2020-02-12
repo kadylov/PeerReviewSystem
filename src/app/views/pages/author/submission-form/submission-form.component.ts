@@ -1,45 +1,49 @@
 // Angular
-import {ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-// NGRX
-import {Store} from '@ngrx/store';
-import {AppState} from '../../../../core/reducers';
-// Auth
-import {AuthNoticeService, AuthService, Register, User} from '../../../../core/auth/';
-import {Observable, Subject} from 'rxjs';
-import {MatAutocomplete, MatAutocompleteSelectedEvent, MatChipInputEvent} from '@angular/material';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {map, startWith} from 'rxjs/operators';
+import {AuthNoticeService} from '../../../../core/auth/';
+import {Observable, of, Subject} from 'rxjs';
+import {TagModel} from '../../../../core/author/_models/tag.model';
+import {TagService} from '../../../../core/author/_services/tag.service';
+import {map, tap} from 'rxjs/operators';
+
+export class SelectedTag {
+	title: string;
+
+}
 
 @Component({
 	selector: 'kt-submission',
-	templateUrl: './submission-form.component.html',
+	templateUrl: './submission-form.component1.html',
 	styleUrls: ['./submission-form.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
 export class SubmissionFormComponent implements OnInit, OnDestroy {
-
 	@ViewChild('title', {static: true}) titleField: ElementRef;
-
-
 	registerForm: FormGroup;
 	loading = false;
 	errors: any = [];
-
-	minDate: Date = new Date(1991, 0, 1);
+	minDate: Date = new Date(100, 0, 1);
 	maxDate: Date = new Date(Date.now());
+	selectedOptions1 = [];
+	// selectedOptions2 = [];
+	// selectedOptions3 = [];
+	// selectedOptions4 = [];
+	// selectedOptions5 = [];
+	// selectedOptions6 = [];
+	// selectedOptions7 = [];
 
-	// Option field
-	tagList = ['Standard', 'Brand Measurement', 'Outcome'];
-	selectedTagList = [];
 
 	private unsubscribe: Subject<any>; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
-
-
 	visible = true;
 	selectable = true;
 	removable = true;
+
+	tags$: Observable<TagModel[]>;
+	// selectedOptions: Map<string, string[]> = new Map<string, string[]>();
+	selectedOptions = [];
+	chips: string[] = [];
 
 	/**
 	 * Component constructor
@@ -55,31 +59,26 @@ export class SubmissionFormComponent implements OnInit, OnDestroy {
 	constructor(
 		private authNoticeService: AuthNoticeService,
 		private router: Router,
-		private auth: AuthService,
-		private store: Store<AppState>,
 		private fb: FormBuilder,
-		private cdr: ChangeDetectorRef
-	)
-	{
-		this.unsubscribe = new Subject();
-
-
+		private tagService: TagService,
+	) {
 
 	}
+
 
 	/**
 	 * On init
 	 */
 	ngOnInit() {
+
+		this.tags$ = this.tagService.getAllTags();
+
 		this.initRegisterForm();
-
-
-		this.titleField.nativeElement.focus();
 	}
 
 	/*
-    * On destroy
-    */
+	 * On destroy
+	 */
 	ngOnDestroy(): void {
 		this.unsubscribe.next();
 		this.unsubscribe.complete();
@@ -116,23 +115,48 @@ export class SubmissionFormComponent implements OnInit, OnDestroy {
 			],
 			email: ['', Validators.compose([
 				Validators.required,
+				Validators.email,
 				Validators.minLength(3),
 				Validators.maxLength(100)
 			])
 			],
-			tag: ['', Validators.compose([
+			tag1: ['', Validators.compose([
+				Validators.required,
+			])
+			],
+			tag2: ['', Validators.compose([
+				Validators.required,
+			])
+			],
+			tag3: ['', Validators.compose([
+				Validators.required,
+			])
+			],
+			tag4: ['', Validators.compose([
+				Validators.required,
+			])
+			],
+			tag5: ['', Validators.compose([
+				Validators.required,
+			])
+			],
+			tag6: ['', Validators.compose([
+				Validators.required,
+			])
+			],
+			tag7: ['', Validators.compose([
 				Validators.required,
 			])
 			],
 		});
 	}
 
+
 	/**
 	 * Form Submit
 	 */
 	submit() {
 		const controls = this.registerForm.controls;
-
 		// check form
 		if (this.registerForm.invalid) {
 			Object.keys(controls).forEach(controlName =>
@@ -140,10 +164,7 @@ export class SubmissionFormComponent implements OnInit, OnDestroy {
 			);
 			return;
 		}
-
-		this.loading = true;
-
-
+		// this.loading = true;
 		// const _user: User = new User();
 		// _user.clear();
 		// _user.email = controls['email'].value;
@@ -152,21 +173,21 @@ export class SubmissionFormComponent implements OnInit, OnDestroy {
 		// _user.password = controls['password'].value;
 		// _user.roles = [];
 		// this.auth.register(_user).pipe(
-		// 	tap(user => {
-		// 		if (user) {
-		// 			this.store.dispatch(new Register({authToken: user.accessToken}));
-		// 			// pass notice message to the login page
-		// 			this.authNoticeService.setNotice(this.translate.instant('AUTH.REGISTER.SUCCESS'), 'success');
-		// 			this.router.navigateByUrl('/auth/login');
-		// 		} else {
-		// 			this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
-		// 		}
-		// 	}),
-		// 	takeUntil(this.unsubscribe),
-		// 	finalize(() => {
-		// 		this.loading = false;
-		// 		this.cdr.markForCheck();
-		// 	})
+		//     tap(user => {
+		//        if (user) {
+		//           this.store.dispatch(new Register({authToken: user.accessToken}));
+		//           // pass notice message to the login page
+		//           this.authNoticeService.setNotice(this.translate.instant('AUTH.REGISTER.SUCCESS'), 'success');
+		//           this.router.navigateByUrl('/auth/login');
+		//        } else {
+		//           this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
+		//        }
+		//     }),
+		//     takeUntil(this.unsubscribe),
+		//     finalize(() => {
+		//        this.loading = false;
+		//        this.cdr.markForCheck();
+		//     })
 		// ).subscribe();
 	}
 
@@ -181,13 +202,51 @@ export class SubmissionFormComponent implements OnInit, OnDestroy {
 		if (!control) {
 			return false;
 		}
-
 		const result = control.hasError(validationType) && (control.dirty || control.touched);
 		return result;
 	}
 
+	remove(title: any, tag?: any): void {
 
-	remove(tag: string): void {
-		this.selectedTagList = this.selectedTagList.filter(t => t !== tag);
+		for (const index in this.selectedOptions) {
+			if (this.selectedOptions[index] !== undefined) {
+				this.selectedOptions[index] = this.selectedOptions[index].filter(f => f !== title);
+
+			}
+		}
+
+		console.log('Del', this.selectedOptions);
+		this.chips = this.chips.filter(c => c !== title);
 	}
+
+
+	selectionChanged(event: any, tagTitle: string) {
+
+		if (event.isUserInput) {
+			const selectedTag: string = event.source.value;
+
+			if (event.source.selected) {
+
+
+				this.chips.push(selectedTag);
+
+				let opts: string[] = this.selectedOptions[tagTitle];
+				console.log('opts', opts);
+
+				if (opts !== undefined) {
+					opts.push(selectedTag);
+
+				} else {
+					opts = [selectedTag];
+				}
+				this.selectedOptions[tagTitle] = opts;
+				console.log('selectedOptions[', tagTitle, '] ', this.selectedOptions);
+
+			} else {
+				this.chips = this.chips.filter(c => c !== selectedTag);
+			}
+		}
+
+	}
+
 }
