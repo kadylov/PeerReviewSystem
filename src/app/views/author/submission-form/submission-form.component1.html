@@ -96,9 +96,9 @@
 					<tr>
 						<ng-container *ngFor="let tag of tags; let index=index;">
 							<td *ngIf="index<3">
-<!--								<div>{{index+1}}</div>-->
+								<!--								<div>{{index+1}}</div>-->
 
-<!--								{{selectedOptions[tag.title]}}<br>-->
+								<!--								{{selectedOptions[tag.title]}}<br>-->
 
 								<mat-form-field>
 
@@ -107,7 +107,15 @@
 										placeholder="{{tag.title | titlecase}}"
 										formControlName="tag{{index+1}}"
 										[(ngModel)]="selectedOptions[tag.title]"
-										multiple>
+										multiple
+									>
+										<mat-select-trigger>
+											{{selectedOptions[tag.title] ? selectedOptions[tag.title][0] : ''}}
+											<span *ngIf="selectedOptions[tag.title]?.length > 1"
+												  class="example-additional-selection">
+                         						 (+{{selectedOptions[tag.title].length - 1}} others)
+                      					    </span>
+										</mat-select-trigger>
 										<mat-option *ngFor="let selectOption of tag.tagList" [value]="selectOption"
 													(onSelectionChange)="selectionChanged($event, tag.title)"
 										>{{selectOption}}
@@ -122,8 +130,8 @@
 					<tr>
 						<ng-container *ngFor="let tag of tags| slice:3; let index=index;">
 							<td *ngIf="index<3">
-<!--								<div>{{index+4}}</div>-->
-<!--								{{selectedOptions[tag.title]}}<br>-->
+								<!--								<div>{{index+4}}</div>-->
+								<!--								{{selectedOptions[tag.title]}}<br>-->
 
 								<mat-form-field>
 
@@ -134,6 +142,13 @@
 										formControlName="tag{{index+4}}"
 										[(ngModel)]="selectedOptions[tag.title]"
 										multiple>
+										<mat-select-trigger>
+											{{selectedOptions[tag.title] ? selectedOptions[tag.title][0] : ''}}
+											<span *ngIf="selectedOptions[tag.title]?.length > 1"
+												  class="example-additional-selection">
+                         						 (+{{selectedOptions[tag.title].length - 1}} others)
+                      					    </span>
+										</mat-select-trigger>
 										<mat-option *ngFor="let selectOption of tag.tagList" [value]="selectOption"
 													(onSelectionChange)="selectionChanged($event, tag.title)"
 										>{{selectOption}}
