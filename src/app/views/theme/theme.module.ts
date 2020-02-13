@@ -37,6 +37,8 @@ import { HtmlClassService } from './html-class.service';
 import { HeaderMobileComponent } from './header/header-mobile/header-mobile.component';
 import { ErrorPageComponent } from './content/error-page/error-page.component';
 import { PermissionEffects, permissionsReducer, RoleEffects, rolesReducer } from '../../core/auth';
+import { ReviewerBaseComponent } from './reviewer-base/reviewer-base.component';
+import {ReviewerPagesModule} from '../reviewer-pages/r_pages.module';
 
 @NgModule({
 	declarations: [
@@ -61,6 +63,8 @@ import { PermissionEffects, permissionsReducer, RoleEffects, rolesReducer } from
 		MenuHorizontalComponent,
 
 		ErrorPageComponent,
+
+		ReviewerBaseComponent,
 	],
 	exports: [
 		BaseComponent,
@@ -96,6 +100,7 @@ import { PermissionEffects, permissionsReducer, RoleEffects, rolesReducer } from
 		StoreModule.forFeature('permissions', permissionsReducer),
 		EffectsModule.forFeature([PermissionEffects, RoleEffects]),
 		PagesModule,
+		ReviewerPagesModule,
 		PartialsModule,
 		CoreModule,
 		PerfectScrollbarModule,

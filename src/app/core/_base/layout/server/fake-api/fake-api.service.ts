@@ -12,7 +12,7 @@ import { ECommerceDataContext } from '../../../../e-commerce';
 import { CarsDb } from './fake-db/cars';
 
 import {WorksDb} from "./fake-db/works";
-import {TagsComponent} from '../../../../../views/pages/author/tag-selections/tags.component';
+import {TagsComponent} from '../../../../../views/author/tag-selections/tags.component';
 import {TagTable} from '../../../../author/_server/tag.table';
 import {TagDb} from './fake-db/tags';
 

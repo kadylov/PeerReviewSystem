@@ -7,7 +7,7 @@ export class MenuConfig {
 					title: 'Dashboards',
 					root: true,
 					alignment: 'left',
-					page: '/dashboard',
+					page: '/admin/dashboard',
 					translate: 'MENU.DASHBOARD',
 				},
 				{
@@ -57,32 +57,32 @@ export class MenuConfig {
 					title: 'Dashboard',
 					root: true,
 					icon: 'flaticon2-architecture-and-city',
-					page: '/dashboard',
+					page: '/admin/dashboard',
 					// translate: 'MENU.DASHBOARD',
 					bullet: 'dot',
 				},
 				{
 					title: 'Incoming Works', // <= Title of the page
 					root: true,
-					page: '/incoming-work', // <= URL
+					page: '/admin/incoming-work', // <= URL
 					icon: 'flaticon-line-graph' // <= Choose the icon class
 				},
 				{
 					title: 'Assignments', // <= Title of the page
 					root: true,
-					page: '/assignment', // <= URL
+					page: '/admin/assignment', // <= URL
 					icon: 'flaticon-line-graph' // <= Choose the icon class
 				},
 				{
 					title: 'In-Progress', // <= Title of the page
 					root: true,
-					page: '/in-progress', // <= URL
+					page: '/admin/in-progress', // <= URL
 					icon: 'flaticon-line-graph' // <= Choose the icon class
 				},
 				{
 					title: 'Completed Reviews', // <= Title of the page
 					root: true,
-					page: '/result', // <= URL
+					page: '/admin/result', // <= URL
 					icon: 'flaticon-line-graph' // <= Choose the icon class
 				},
 				// {
@@ -128,71 +128,14 @@ export class MenuConfig {
 					submenu: [
 						{
 							title: 'Users',
-							page: '/user-management/users'
+							page: '/admin/user-management/users'
 						},
 						{
 							title: 'Roles',
-							page: '/user-management/roles'
+							page: '/admin/user-management/roles'
 						}
 					]
 				},
-				// {section: 'Custom'},
-				// {
-				// 	title: 'Error Pages',
-				// 	root: true,
-				// 	bullet: 'dot',
-				// 	icon: 'flaticon2-list-2',
-				// 	submenu: [
-				// 		{
-				// 			title: 'Error 1',
-				// 			page: '/error/error-v1'
-				// 		},
-				// 		{
-				// 			title: 'Error 2',
-				// 			page: '/error/error-v2'
-				// 		},
-				// 		{
-				// 			title: 'Error 3',
-				// 			page: '/error/error-v3'
-				// 		},
-				// 		{
-				// 			title: 'Error 4',
-				// 			page: '/error/error-v4'
-				// 		},
-				// 		{
-				// 			title: 'Error 5',
-				// 			page: '/error/error-v5'
-				// 		},
-				// 		{
-				// 			title: 'Error 6',
-				// 			page: '/error/error-v6'
-				// 		},
-				// 	]
-				// },
-				// {
-				// 	title: 'Wizard',
-				// 	root: true,
-				// 	bullet: 'dot',
-				// 	icon: 'flaticon2-mail-1',
-				// 	submenu: [
-				// 		{
-				// 			title: 'Wizard 1',
-				// 			page: '/wizard/wizard-1'
-				// 		},
-				// 		{
-				// 			title: 'Wizard 2',
-				// 			page: '/wizard/wizard-2'
-				// 		},
-				// 		{
-				// 			title: 'Wizard 3',
-				// 			page: '/wizard/wizard-3'
-				// 		},
-				// 		{
-				// 			title: 'Wizard 4',
-				// 			page: '/wizard/wizard-4'
-				// 		},
-				// 	]
-				// },
 			]
 		},
 	};

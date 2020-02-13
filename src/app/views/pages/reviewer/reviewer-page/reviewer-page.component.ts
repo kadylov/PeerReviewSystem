@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReviewerPageComponent implements OnInit {
 
+
+
   constructor() { }
 
   ngOnInit() {

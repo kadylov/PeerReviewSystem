@@ -17,15 +17,21 @@ import { InProgressComponent } from './admin/in-progress/in-progress.component';
 import { CompletedReviewComponent } from './admin/completed-review/completed-review.component';
 
 
-import {PublicPageModule} from "./public-page/public-page.module";
-import {ReviewerModule} from "./reviewer/reviewer.module";
+import {PublicPageModule} from "../public-page/public-page.module";
 import {MatFormFieldModule, MatRadioModule} from '@angular/material';
-import {ReviewerComponent} from "./reviewer/reviewer.component";
 
 
 @NgModule({
-	declarations: [IncomingWorkComponent, AssignmentComponent, ScorecardComponent, ResultComponent, InProgressComponent, CompletedReviewComponent,ReviewerComponent],
-	exports: [],
+	declarations: [
+		IncomingWorkComponent,
+		AssignmentComponent,
+		ScorecardComponent,
+		ResultComponent,
+		InProgressComponent,
+		CompletedReviewComponent,
+	],
+	exports: [
+	],
 	imports: [
 		CommonModule,
 		HttpClientModule,
@@ -33,9 +39,7 @@ import {ReviewerComponent} from "./reviewer/reviewer.component";
 		CoreModule,
 		PartialsModule,
 		UserManagementModule,
-
 		PublicPageModule,
-		ReviewerModule,
 		MatRadioModule,
 		MatFormFieldModule,
 	],

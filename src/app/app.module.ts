@@ -129,7 +129,8 @@ export function hljsLanguages(): HighlightLanguage[] {
 		// PublicPageModule ////////////////
 
 	],
-	exports: [],
+	exports: [ThemeModule
+	],
 	providers: [
 		AuthService,
 		LayoutConfigService,

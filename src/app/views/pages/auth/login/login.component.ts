@@ -205,9 +205,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 					if (this.user.role != 3) {
 						// this.router.navigateByUrl(this.returnUrl); // Main page
 						// this.store.dispatch(new Login({authToken: this.user.Username}));
-						this.router.navigateByUrl('/reviewer'); // Reviewer page
+						this.router.navigateByUrl('reviewer/dashboard'); // Reviewer page
 					} else {
-						this.router.navigateByUrl('/dashboard'); // Admin page
+						this.router.navigateByUrl('admin/dashboard'); // Admin page
 					}
 					// if (res.body != null) {
 					// 	this.user = res.body[0];

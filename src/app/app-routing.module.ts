@@ -14,21 +14,53 @@ import {CompletedReviewComponent} from './views/pages/admin/completed-review/com
 import {ScorecardComponent} from './views/pages/admin/scorecard/scorecard.component';
 import {ResultComponent} from './views/pages/admin/result/result.component';
 import {InProgressComponent} from './views/pages/admin/in-progress/in-progress.component';
-import {ReviewerComponent} from './views/pages/reviewer/reviewer.component';
+import {ReviewerBaseComponent} from './views/theme/reviewer-base/reviewer-base.component';
+import {AssignedWorkComponent} from './views/reviewer-pages/assigned-work/assigned-work.component';
 
 const routes: Routes = [
 	{path: 'auth', loadChildren: () => import('app/views/pages/auth/auth.module').then(m => m.AuthModule)},
-	{path: 'home', loadChildren: () => import('app/views/pages/public-page/public-page.module').then(m => m.PublicPageModule)},
-	{path: 'reviewer', component: ReviewerComponent},
+	{path: 'home', loadChildren: () => import('app/views/public-page/public-page.module').then(m => m.PublicPageModule)},
 
-	{path: 'author', loadChildren: () => import('app/views/pages/author/author.module').then(m => m.AuthorModule)},
-
-
+	{path: 'author', loadChildren: () => import('app/views/author/author.module').then(m => m.AuthorModule)},
 
 	// Public user
 	{path: '', redirectTo: 'home', pathMatch: 'full'},
+
+	// Reviewer
 	{
-		path: '',
+		path: 'reviewer',
+		component: ReviewerBaseComponent,
+		// canActivate: [AuthGuard],
+		children: [
+
+			// Reviewer page routing
+			{
+				path: 'dashboard',
+				loadChildren: () => import('app/views/reviewer-pages/dashboard/r_dashboard.module').then(m => m.R_dashboardModule)
+			},
+			{
+				path: 'assignments',
+				component: AssignedWorkComponent
+			},
+			{
+				path: 'error/403',
+				component: ErrorPageComponent,
+				data: {
+					'type': 'error-v6',
+					'code': 403,
+					'title': '403... Access forbidden',
+					'desc': 'Looks like you don\'t have permission to access for requested page.<br> Please, contact administrator'
+				}
+			},
+			{path: 'error/:type', component: ErrorPageComponent},
+			// {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+			// {path: '**', redirectTo: 'dashboard', pathMatch: 'full'}
+			{path: '**', redirectTo: 'home', pathMatch: 'full'}
+		]
+	},
+
+	{
+		path: 'admin',
 		component: BaseComponent,
 		// canActivate: [AuthGuard],
 		children: [
