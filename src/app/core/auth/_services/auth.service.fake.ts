@@ -2,7 +2,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 // RxJS
-import {Observable, of, forkJoin, throwError} from 'rxjs';
+import {Observable, of, forkJoin, throwError, Subject} from 'rxjs';
 import {map, catchError, mergeMap, tap} from 'rxjs/operators';
 // Lodash
 import {filter, some, find, each} from 'lodash';
@@ -15,6 +15,9 @@ import {User} from '../_models/user.model';
 import {Permission} from '../_models/permission.model';
 import {Role} from '../_models/role.model';
 import {User1} from '../_models/user1.model';
+import {MenuConfig} from '../../_config/menu.config';
+import {ReviewerMenuConfig} from '../../_config/reviewer_menu.config';
+import {ReviewerPageConfig} from '../../_config/reviewer-page.config';
 
 const API_USERS_URL = 'api/users';
 const API_PERMISSION_URL = 'api/permissions';
@@ -29,56 +32,12 @@ export class AuthService {
 
 	private user: User1;
 
+	private subject: Subject<any> = new Subject<any>();
+
 	constructor(private http: HttpClient,
-				private httpUtils: HttpUtilsService) {
+				private httpUtils: HttpUtilsService,
+				) {
 	}
-
-	// Authentication/Authorization
-	// login(email: string, password: string): Observable<User> {
-	//     if (!email || !password) {
-	//         return of(null);
-	//     }
-	//     return  this.getAllUsers().pipe(
-	//         map((result: User[]) => {
-	//             if (result.length <= 0) {
-	//                 return null;
-	//             }
-	//
-	//             const user = find(result, function(item: User) {
-	//                 return (item.email.toLowerCase() === email.toLowerCase() && item.password === password);
-	//             });
-	//
-	//             if (!user) {
-	//                 return null;
-	//             }
-	//
-	//             user.password = undefined;
-	//             return user;
-	//         })
-	//     );
-	//
-	// }
-
-	// getById(id: string):Observable<Post> {
-	// 	return this.http.get<Post>(`${environment.fbDbUrl}/posts/${id}.json`)
-	// 		.pipe(map((post: Post)=>{
-	// 			return {
-	// 				...post,id,
-	// 				date: new Date(post.date)
-	// 			}
-	// 		}))
-	// }
-
-
-	// addBookWithObservable(book:Book): Observable<Book> {
-	// 	let headers = new Headers({ 'Content-Type': 'application/json' });
-	// 	let options = new RequestOptions({ headers: headers });
-	//
-	//
-	// 	return this.http.post(this.url, book, options)
-	// 		.map(this.extractData)
-	// 		.catch(this.handleErrorObservable);
-	// }
 
 	login(username: string, password: string): Observable<User1> {
 
@@ -92,9 +51,9 @@ export class AuthService {
 				map(response => {
 					return response.body[0];
 				}),
-			catchError(error => {
-				return throwError(error);
-			}));
+				catchError(error => {
+					return throwError(error);
+				}));
 	}
 
 	extractData(res: Response) {
@@ -324,6 +283,11 @@ export class AuthService {
 				return of(result);
 			})
 		);
+	}
+
+
+	getUserMenuConfig(): Observable<any> {
+		return this.subject.asObservable();
 	}
 
 	// Check Role Before deletion

@@ -30,7 +30,7 @@ import { AppComponent } from './app.component';
 // Modules
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
-import { ThemeModule } from "./views/theme/theme.module";
+// import { ThemeModule } from "./views/theme/theme.module";
 // Partials
 import { PartialsModule } from './views/partials/partials.module';
 // Layout Services
@@ -52,7 +52,7 @@ import {
 
 } from './core/_base/layout';
 // Auth
-import { AuthModule } from './views/pages/auth/auth.module';
+import { AuthModule } from './views/auth/auth.module';
 import { AuthService } from './core/auth';
 // CRUD
 import { HttpUtilsService, LayoutUtilsService, TypesUtilsService } from './core/_base/crud';
@@ -65,11 +65,8 @@ import * as scss from 'highlight.js/lib/languages/scss';
 import * as xml from 'highlight.js/lib/languages/xml';
 import * as json from 'highlight.js/lib/languages/json';
 import {ReactiveFormsModule} from '@angular/forms';
-import {TagService} from './core/author/_services/tag.service';
+import {DeleteEntityDialogComponent} from './views/partials/content/crud';
 
-
-// import {PublicPageModule} from "./views/pages/public-page/public-page.module";
-////////////////////////////////////////////////////
 
 
 // tslint:disable-next-line:class-name
@@ -99,7 +96,7 @@ export function hljsLanguages(): HighlightLanguage[] {
 }
 
 @NgModule({
-	declarations: [AppComponent,],
+	declarations: [AppComponent],
 	imports: [
 		BrowserAnimationsModule,
 		BrowserModule,
@@ -117,11 +114,11 @@ export function hljsLanguages(): HighlightLanguage[] {
 		EffectsModule.forRoot([]),
 		StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
 		StoreDevtoolsModule.instrument(),
-		AuthModule.forRoot(),
+		// AuthModule.forRoot(),
 		TranslateModule.forRoot(),
 		MatProgressSpinnerModule,
 		InlineSVGModule.forRoot(),
-		ThemeModule,
+		// ThemeModule,
 		MatCheckboxModule,
 		MatFormFieldModule,
 		ReactiveFormsModule,
@@ -129,7 +126,7 @@ export function hljsLanguages(): HighlightLanguage[] {
 		// PublicPageModule ////////////////
 
 	],
-	exports: [ThemeModule
+	exports: [
 	],
 	providers: [
 		AuthService,
@@ -142,13 +139,6 @@ export function hljsLanguages(): HighlightLanguage[] {
 
 
 		DataTableWorkService,
-
-
-		// tag service
-		TagService,
-
-
-
 
 		{
 			provide: PERFECT_SCROLLBAR_CONFIG,
@@ -169,9 +159,9 @@ export function hljsLanguages(): HighlightLanguage[] {
 			useValue: {languages: hljsLanguages}
 		},
 		// template services
-		SubheaderService,
-		MenuHorizontalService,
-		MenuAsideService,
+		// SubheaderService,
+		// MenuHorizontalService,
+		// MenuAsideService,
 		HttpUtilsService,
 		TypesUtilsService,
 		LayoutUtilsService,

@@ -1,28 +1,21 @@
 // Angular
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Component, OnInit, OnDestroy, Input, EventEmitter} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 // RxJS
-import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
+import {BehaviorSubject, Observable, of, Subscription} from 'rxjs';
 // NGRX
-import { Store, select } from '@ngrx/store';
-import { Update } from '@ngrx/entity';
-import { AppState } from '../../../../../core/reducers';
+import {Update} from '@ngrx/entity';
 // Layout
-import { SubheaderService, LayoutConfigService } from '../../../../../core/_base/layout';
-import { LayoutUtilsService, MessageType } from '../../../../../core/_base/crud';
+import {SubheaderService, LayoutConfigService} from '../../../../../core/_base/layout';
+import {LayoutUtilsService, MessageType} from '../../../../../core/_base/crud';
+import {UserManagementService} from '../../service/user-management.service';
+
 // Services and Models
 import {
 	User,
-	UserUpdated,
-	Address,
-	SocialNetworks,
-	selectHasUsersInStore,
-	selectUserById,
-	UserOnServerCreated,
-	selectLastCreatedUserId,
-	selectUsersActionLoading
 } from '../../../../../core/auth';
+import {User1} from '../../../../../core/auth/_models/user1.model';
 
 @Component({
 	selector: 'kt-user-edit',
@@ -30,18 +23,25 @@ import {
 })
 export class UserEditComponent implements OnInit, OnDestroy {
 	// Public properties
-	user: User;
+	user: User1;
 	userId$: Observable<number>;
-	oldUser: User;
+	oldUser: User1;
 	selectedTab: number = 0;
 	loading$: Observable<boolean>;
-	rolesSubject = new BehaviorSubject<number[]>([]);
-	addressSubject = new BehaviorSubject<Address>(new Address());
-	soicialNetworksSubject = new BehaviorSubject<SocialNetworks>(new SocialNetworks());
+	rolesSubject = new BehaviorSubject<number>(0);
 	userForm: FormGroup;
 	hasFormErrors: boolean = false;
+
+	// credentialsIdForAdding = "Academic";
+	credentialsIdForAdding: number;
+
 	// Private properties
 	private subscriptions: Subscription[] = [];
+
+	private mainUrl = '/admin/user-management/users';
+
+	// @Input() userToEdit;
+
 
 	/**
 	 * Component constructor
@@ -51,51 +51,49 @@ export class UserEditComponent implements OnInit, OnDestroy {
 	 * @param userFB: FormBuilder
 	 * @param subheaderService: SubheaderService
 	 * @param layoutUtilsService: LayoutUtilsService
-	 * @param store: Store<AppState>
 	 * @param layoutConfigService: LayoutConfigService
+	 * @param userService
 	 */
 	constructor(private activatedRoute: ActivatedRoute,
 				private router: Router,
 				private userFB: FormBuilder,
 				private subheaderService: SubheaderService,
 				private layoutUtilsService: LayoutUtilsService,
-				private store: Store<AppState>,
-				private layoutConfigService: LayoutConfigService) { }
+				private layoutConfigService: LayoutConfigService,
+				private userService: UserManagementService) {
+	}
 
-	/**
-	 * @ Lifecycle sequences => https://angular.io/guide/lifecycle-hooks
-	 */
 
 	/**
 	 * On init
 	 */
 	ngOnInit() {
-		this.loading$ = this.store.pipe(select(selectUsersActionLoading));
-
-		const routeSubscription =  this.activatedRoute.params.subscribe(params => {
+		const routeSubscription = this.activatedRoute.params.subscribe(params => {
 			const id = params['id'];
-			if (id && id > 0) {
-				this.store.pipe(select(selectUserById(id))).subscribe(res => {
-					if (res) {
-						this.user = res;
-						this.rolesSubject.next(this.user.roles);
-						this.addressSubject.next(this.user.address);
-						this.soicialNetworksSubject.next(this.user.socialNetworks);
-						this.oldUser = Object.assign({}, this.user);
-						this.initUser();
-					}
-				});
+			console.log('user-edit ngOnInit id', id);
+			if (id && id >= 0) {
+				this.user = this.userService.getUser();
+				if (this.user !== undefined) {
+					this.credentialsIdForAdding = this.user.credentialID;
+					this.rolesSubject.next(this.user.role);
+					this.oldUser = Object.assign({}, this.user);
+					this.initUser();
+				}
+				else{
+					this.router.navigateByUrl('admin/user-management/users');
+				}
+
+
 			} else {
-				this.user = new User();
+				this.user = new User1();
 				this.user.clear();
-				this.rolesSubject.next(this.user.roles);
-				this.addressSubject.next(this.user.address);
-				this.soicialNetworksSubject.next(this.user.socialNetworks);
+				// this.rolesSubject.next(this.user.role);
 				this.oldUser = Object.assign({}, this.user);
 				this.initUser();
 			}
 		});
 		this.subscriptions.push(routeSubscription);
+
 	}
 
 	ngOnDestroy() {
@@ -106,21 +104,23 @@ export class UserEditComponent implements OnInit, OnDestroy {
 	 * Init user
 	 */
 	initUser() {
+		console.log('initUser with id', this.user.id);
+
 		this.createForm();
 		if (!this.user.id) {
 			this.subheaderService.setTitle('Create user');
 			this.subheaderService.setBreadcrumbs([
-				{ title: 'User Management', page: `user-management` },
-				{ title: 'Users',  page: `user-management/users` },
-				{ title: 'Create user', page: `user-management/users/add` }
+				{title: 'User Management', page: `user-management`},
+				{title: 'Users', page: `user-management/users`},
+				{title: 'Create user', page: `user-management/users/add`}
 			]);
 			return;
 		}
 		this.subheaderService.setTitle('Edit user');
 		this.subheaderService.setBreadcrumbs([
-			{ title: 'User Management', page: `user-management` },
-			{ title: 'Users',  page: `user-management/users` },
-			{ title: 'Edit user', page: `user-management/users/edit`, queryParams: { id: this.user.id } }
+			{title: 'User Management', page: `user-management`},
+			{title: 'Users', page: `user-management/users`},
+			{title: 'Edit user', page: `user-management/users/edit`, queryParams: {id: this.user.id}}
 		]);
 	}
 
@@ -131,10 +131,11 @@ export class UserEditComponent implements OnInit, OnDestroy {
 		this.userForm = this.userFB.group({
 			username: [this.user.username, Validators.required],
 			fullname: [this.user.fullname, Validators.required],
+			password: [this.user.password, Validators.required],
+			role: [this.user.role, Validators.required],
 			email: [this.user.email, Validators.email],
-			phone: [this.user.phone],
-			companyName: [this.user.companyName],
-			occupation: [this.user.occupation]
+			credential: [this.user.credentialID, Validators.required]
+
 		});
 	}
 
@@ -144,7 +145,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
 	 */
 	goBackWithId() {
 		const url = `/user-management/users`;
-		this.router.navigateByUrl(url, { relativeTo: this.activatedRoute });
+		this.router.navigateByUrl('/user-management/users');
 	}
 
 	/**
@@ -155,13 +156,18 @@ export class UserEditComponent implements OnInit, OnDestroy {
 	 */
 	refreshUser(isNew: boolean = false, id = 0) {
 		let url = this.router.url;
+		url = `/admin/user-management/users/`;
+
 		if (!isNew) {
-			this.router.navigate([url], { relativeTo: this.activatedRoute });
+			this.router.navigate([url], {relativeTo: this.activatedRoute});
+			// this.router.navigateByUrl('admin/user-management/users/');
 			return;
 		}
 
-		url = `/user-management/users/edit/${id}`;
-		this.router.navigateByUrl(url, { relativeTo: this.activatedRoute });
+		// url = `/user-management/users/edit/${id}`;
+		url = `/admin/user-management/users/`;
+		this.router.navigateByUrl(url, {relativeTo: this.activatedRoute});
+		return;
 	}
 
 	/**
@@ -197,7 +203,9 @@ export class UserEditComponent implements OnInit, OnDestroy {
 
 		const editedUser = this.prepareUser();
 
-		if (editedUser.id > 0) {
+		console.log('onSubmit user', editedUser);
+
+		if (editedUser.id >= 0) {
 			this.updateUser(editedUser, withBack);
 			return;
 		}
@@ -208,21 +216,21 @@ export class UserEditComponent implements OnInit, OnDestroy {
 	/**
 	 * Returns prepared data for save
 	 */
-	prepareUser(): User {
+	prepareUser(): User1 {
 		const controls = this.userForm.controls;
-		const _user = new User();
+		const _user = new User1();
 		_user.clear();
-		_user.roles = this.rolesSubject.value;
-		_user.address = this.addressSubject.value;
-		_user.socialNetworks = this.soicialNetworksSubject.value;
 		_user.accessToken = this.user.accessToken;
 		_user.refreshToken = this.user.refreshToken;
-		_user.pic = this.user.pic;
 		_user.id = this.user.id;
 		_user.username = controls['username'].value;
 		_user.email = controls['email'].value;
 		_user.fullname = controls['fullname'].value;
-		_user.password = this.user.password;
+		_user.password = controls['password'].value;
+		_user.role = controls['role'].value;
+
+		_user.credentialID = this.credentialsIdForAdding;
+		// _user.role = this.user.role;
 		return _user;
 	}
 
@@ -232,20 +240,18 @@ export class UserEditComponent implements OnInit, OnDestroy {
 	 * @param _user: User
 	 * @param withBack: boolean
 	 */
-	addUser(_user: User, withBack: boolean = false) {
-		this.store.dispatch(new UserOnServerCreated({ user: _user }));
-		const addSubscription = this.store.pipe(select(selectLastCreatedUserId)).subscribe(newId => {
-			const message = `New user successfully has been added.`;
-			this.layoutUtilsService.showActionNotification(message, MessageType.Create, 5000, true, true);
-			if (newId) {
-				if (withBack) {
-					this.goBackWithId();
-				} else {
-					this.refreshUser(true, newId);
-				}
-			}
+	addUser(_user: User1, withBack: boolean = false) {
+
+		this.userService.createUser(_user).subscribe(res => {
+			console.log('Response from createUser ', res);
+		}, error => {
+			console.log(error);
 		});
-		this.subscriptions.push(addSubscription);
+
+		const message = `New user has been created successfully.`;
+		this.layoutUtilsService.showActionNotification(message, MessageType.Create, 5000, true, true);
+
+		this.router.navigateByUrl(this.mainUrl);
 	}
 
 	/**
@@ -254,22 +260,19 @@ export class UserEditComponent implements OnInit, OnDestroy {
 	 * @param _user: User
 	 * @param withBack: boolean
 	 */
-	updateUser(_user: User, withBack: boolean = false) {
-		// Update User
-		// tslint:disable-next-line:prefer-const
+	updateUser(_user: User1, withBack: boolean = false) {
+		const subsc = this.userService.update(_user).subscribe(res => {
+			console.log('User-Edit updateUser', res);
 
-		const updatedUser: Update<User> = {
-			id: _user.id,
-			changes: _user
-		};
-		this.store.dispatch(new UserUpdated( { partialUser: updatedUser, user: _user }));
-		const message = `User successfully has been saved.`;
-		this.layoutUtilsService.showActionNotification(message, MessageType.Update, 5000, true, true);
-		if (withBack) {
-			this.goBackWithId();
-		} else {
-			this.refreshUser(false);
-		}
+			const message = `User has been updated successfully.`;
+			this.layoutUtilsService.showActionNotification(message, MessageType.Update, 3000, true, true);
+			this.router.navigateByUrl('admin/user-management/users');
+		}, error => {
+			console.log(error);
+		});
+
+		this.subscriptions.push(subsc);
+
 	}
 
 	/**
@@ -294,5 +297,4 @@ export class UserEditComponent implements OnInit, OnDestroy {
 		this.hasFormErrors = false;
 	}
 }
-
 

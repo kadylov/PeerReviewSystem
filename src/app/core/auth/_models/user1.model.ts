@@ -1,7 +1,3 @@
-import { BaseModel } from '../../_base/crud';
-import { Address } from './address.model';
-import { SocialNetworks } from './social-networks.model';
-
 export class User1 {
 	id: number;
 	username: string;
@@ -13,4 +9,14 @@ export class User1 {
 	role: number;
 	credentialID: number;
 
+	clear(): void {
+		this.id = undefined;
+		this.username = '';
+		this.password = '';
+		this.email = '';
+		this.role = undefined;
+		this.fullname = '';
+		this.accessToken = '';
+		this.refreshToken = '';
+	}
 }

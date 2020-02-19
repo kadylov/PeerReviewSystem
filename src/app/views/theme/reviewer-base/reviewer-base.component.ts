@@ -1,21 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import {LayoutConfigService, MenuConfigService, PageConfigService} from '../../../core/_base/layout';
-import {HtmlClassService} from '../html-class.service';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../../core/reducers';
-import {NgxPermissionsService} from 'ngx-permissions';
-import {LayoutConfig} from '../../../core/_config/layout.config';
+// Angular
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+// RxJS
+import { Observable, Subscription } from 'rxjs';
+// Object-Path
+import * as objectPath from 'object-path';
+// Layout
+import { LayoutConfigService, MenuConfigService, PageConfigService } from '../../../core/_base/layout';
+import { HtmlClassService } from '../html-class.service';
+import { LayoutConfig } from '../../../core/_config/layout.config';
+import { MenuConfig } from '../../../core/_config/menu.config';
+import { PageConfig } from '../../../core/_config/page.config';
+// User permissions
+import { NgxPermissionsService } from 'ngx-permissions';
+import { currentUserPermissions, Permission } from '../../../core/auth';
+import { select, Store } from '@ngrx/store';
+import { AppState } from '../../../core/reducers';
+import {ReviewerLayoutConfig} from '../../../core/_config/reviewer-layout.config';
 import {ReviewerMenuConfig} from '../../../core/_config/reviewer_menu.config';
 import {ReviewerPageConfig} from '../../../core/_config/reviewer-page.config';
-import * as objectPath from 'object-path';
 
 @Component({
-  selector: 'kt-reviewer-base',
-  templateUrl: '../base/base.component.html',
-  styleUrls: ['../base/base.component.scss']
+	selector: 'kt-rbase',
+	templateUrl: './reviewer-base.component.html',
+	styleUrls: ['./reviewer-base.component.scss'],
+	encapsulation: ViewEncapsulation.None
 })
-export class ReviewerBaseComponent implements OnInit {
-
+export class ReviewerBaseComponent implements OnInit, OnDestroy {
+	// Public variables
 	selfLayout: string;
 	asideDisplay: boolean;
 	asideSecondary: boolean;
@@ -24,19 +35,30 @@ export class ReviewerBaseComponent implements OnInit {
 	fitTop: boolean;
 	fluid: boolean;
 
+	// Private properties
+	private unsubscribe: Subscription[] = []; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
+	private currentUserPermissions$: Observable<Permission[]>;
+
+
+	/**
+	 * Component constructor
+	 *
+	 * @param layoutConfigService: LayoutConfigService
+	 * @param menuConfigService: MenuConfifService
+	 * @param pageConfigService: PageConfigService
+	 * @param htmlClassService: HtmlClassService
+	 */
 	constructor(
 		private layoutConfigService: LayoutConfigService,
 		private menuConfigService: MenuConfigService,
 		private pageConfigService: PageConfigService,
 		private htmlClassService: HtmlClassService,
-		private store: Store<AppState>,
-		private permissionsService: NgxPermissionsService) {
-		this.loadRolesWithPermissions();
+	) {
 
 		// register configs by demos
-		this.layoutConfigService.loadConfigs(new LayoutConfig().configs);
 		this.menuConfigService.loadConfigs(new ReviewerMenuConfig().configs);
 		this.pageConfigService.loadConfigs(new ReviewerPageConfig().configs);
+		this.layoutConfigService.loadConfigs(new ReviewerLayoutConfig().configs);
 
 		// setup element classes
 		this.htmlClassService.setConfig(this.layoutConfigService.getConfig());
@@ -46,12 +68,19 @@ export class ReviewerBaseComponent implements OnInit {
 			document.body.className = '';
 			this.htmlClassService.setConfig(layoutConfig);
 		});
-		// this.unsubscribe.push(subscr);
+		this.unsubscribe.push(subscr);
 	}
 
+	/**
+	 * @ Lifecycle sequences => https://angular.io/guide/lifecycle-hooks
+	 */
 
-
+	/**
+	 * On init
+	 */
 	ngOnInit(): void {
+
+
 		const config = this.layoutConfigService.getConfig();
 		this.selfLayout = objectPath.get(config, 'self.layout');
 		this.asideDisplay = objectPath.get(config, 'aside.self.display');
@@ -66,15 +95,17 @@ export class ReviewerBaseComponent implements OnInit {
 				this.selfLayout = objectPath.get(cfg, 'self.layout');
 			});
 		});
+		this.unsubscribe.push(subscr);
 	}
 
-
+	/**
+	 * On destroy
+	 */
 	ngOnDestroy(): void {
+		this.unsubscribe.forEach(sb => sb.unsubscribe());
 	}
 
-
-	loadRolesWithPermissions() {
-
-	}
-
+	/**
+	 * NGX Permissions, init roles
+	 */
 }

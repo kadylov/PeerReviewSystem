@@ -13,7 +13,7 @@ import { PartialsModule } from '../../partials/partials.module';
 // Services
 import { HttpUtilsService, TypesUtilsService, InterceptService, LayoutUtilsService} from '../../../core/_base/crud';
 // Shared
-import { ActionNotificationComponent } from '../../partials/content/crud';
+import {ActionNotificationComponent} from '../../partials/content/crud';
 // Components
 import { UserManagementComponent } from './user-management.component';
 import { UsersListComponent } from './users/users-list/users-list.component';
@@ -22,8 +22,6 @@ import { RolesListComponent } from './roles/roles-list/roles-list.component';
 import { RoleEditDialogComponent } from './roles/role-edit/role-edit.dialog.component';
 import { UserRolesListComponent } from './users/_subs/user-roles/user-roles-list.component';
 import { ChangePasswordComponent } from './users/_subs/change-password/change-password.component';
-import { AddressComponent } from './users/_subs/address/address.component';
-import { SocialNetworksComponent } from './users/_subs/social-networks/social-networks.component';
 
 // Material
 import {
@@ -54,6 +52,7 @@ import {
 	usersReducer,
 	UserEffects
 } from '../../../core/auth';
+import {UserManagementService} from './service/user-management.service';
 
 const routes: Routes = [
 	{
@@ -148,7 +147,8 @@ const routes: Routes = [
 		},
 		HttpUtilsService,
 		TypesUtilsService,
-		LayoutUtilsService
+		LayoutUtilsService,
+		UserManagementService
 	],
 	entryComponents: [
 		ActionNotificationComponent,
@@ -162,8 +162,6 @@ const routes: Routes = [
 		RoleEditDialogComponent,
 		UserRolesListComponent,
 		ChangePasswordComponent,
-		AddressComponent,
-		SocialNetworksComponent
 	]
 })
 export class UserManagementModule {}

@@ -19,7 +19,75 @@ import { CompletedReviewComponent } from './admin/completed-review/completed-rev
 
 import {PublicPageModule} from "../public-page/public-page.module";
 import {MatFormFieldModule, MatRadioModule} from '@angular/material';
+import {RouterModule, Routes} from '@angular/router';
+import {BaseComponent} from '../theme/base/base.component';
+import {ErrorPageComponent} from '../theme/content/error-page/error-page.component';
+import {ThemeModule} from '../theme/theme.module';
 
+const routes:Routes=[
+	{
+		path: '',
+		component: BaseComponent,
+		children: [
+
+			{
+				path: '',
+				redirectTo: 'dashboard',
+				pathMatch: 'full'
+			},
+
+			// Admin page routing
+			{
+				path: 'incoming-work',
+				component: IncomingWorkComponent
+			},
+			{
+				path: 'assignment',
+				component: AssignmentComponent
+			},
+			{
+				path: 'scorecard',
+				component: ScorecardComponent
+			},
+			{
+				path: 'result',
+				component: ResultComponent
+			},
+			{
+				path: 'in-progress',
+				component: InProgressComponent
+			},
+			{
+				path: 'completed-review',
+				component: CompletedReviewComponent
+			},
+
+			{
+				path: 'dashboard',
+				loadChildren: () => import('app/views/pages/dashboard/dashboard.module').then(m => m.DashboardModule)
+			},
+			{
+				path: 'user-management',
+				loadChildren: () => import('app/views/pages/user-management/user-management.module').then(m => m.UserManagementModule)
+			},
+			{
+				path: 'error/403',
+				component: ErrorPageComponent,
+				data: {
+					'type': 'error-v6',
+					'code': 403,
+					'title': '403... Access forbidden',
+					'desc': 'Looks like you don\'t have permission to access for requested page.<br> Please, contact administrator'
+				}
+			},
+			{path: 'error/:type', component: ErrorPageComponent},
+			// {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+			// {path: '**', redirectTo: 'dashboard', pathMatch: 'full'}
+			{path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+			{path: '**', redirectTo: 'dashboard', pathMatch: 'full'}
+		]
+	},
+]
 
 @NgModule({
 	declarations: [
@@ -34,6 +102,7 @@ import {MatFormFieldModule, MatRadioModule} from '@angular/material';
 	],
 	imports: [
 		CommonModule,
+		RouterModule.forChild(routes),  //////
 		HttpClientModule,
 		FormsModule,
 		CoreModule,
@@ -42,6 +111,7 @@ import {MatFormFieldModule, MatRadioModule} from '@angular/material';
 		PublicPageModule,
 		MatRadioModule,
 		MatFormFieldModule,
+		ThemeModule
 	],
 	providers: []
 })

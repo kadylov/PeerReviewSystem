@@ -21,7 +21,7 @@ import {locale as frLang} from './core/_config/i18n/fr';
 })
 export class AppComponent implements OnInit, OnDestroy {
 	// Public properties
-	title = 'Metronic';
+	title = 'PRS';
 	loader: boolean;
 	private unsubscribe: Subscription[] = []; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
 
@@ -40,6 +40,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
 		// register translations
 		this.translationService.loadTranslations(enLang, chLang, esLang, jpLang, deLang, frLang);
+
 	}
 
 	/**

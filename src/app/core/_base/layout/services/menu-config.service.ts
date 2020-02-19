@@ -1,14 +1,17 @@
 // Angular
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 // RxJS
-import { Subject } from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 
 @Injectable()
 export class MenuConfigService {
 	// Public properties
 	onConfigUpdated$: Subject<any>;
+
+	onConfigUpdated1$: Subject<any>;
 	// Private properties
 	private menuConfig: any;
+	private menuConfig1: any;
 
 	/**
 	 * Service Constructor
@@ -16,6 +19,8 @@ export class MenuConfigService {
 	constructor() {
 		// register on config changed event and set default config
 		this.onConfigUpdated$ = new Subject();
+		this.onConfigUpdated1$ = new Subject();
+
 	}
 
 	/**
@@ -33,5 +38,18 @@ export class MenuConfigService {
 	loadConfigs(config: any) {
 		this.menuConfig = config;
 		this.onConfigUpdated$.next(this.menuConfig);
+	}
+
+	/**
+	 * Update config
+	 *
+	 * @param config: any
+	 */
+	updateConfigs1(config: any) {
+		this.onConfigUpdated1$.next("admin");
+	}
+
+	getConfig():Observable<any> {
+		return this.onConfigUpdated1$.asObservable();
 	}
 }

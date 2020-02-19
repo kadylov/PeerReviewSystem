@@ -17,7 +17,7 @@ import {delay} from 'rxjs/operators';
 	styleUrls: ['./work-list.component.scss']
 })
 export class WorkListComponent implements OnInit, OnDestroy {
-	displayedColumns = ['Tag', 'Title', 'AuthorName', 'Score'];
+	displayedColumns = ['Category', 'Title', 'Author Name', 'Score'];
 	dataSource: MatTableDataSource<DataTableWorkModel>;
 	works: any = [];
 

@@ -32,13 +32,14 @@ import { TopbarComponent } from './header/topbar/topbar.component';
 import { MenuHorizontalComponent } from './header/menu-horizontal/menu-horizontal.component';
 import { PartialsModule } from '../partials/partials.module';
 import { BaseComponent } from './base/base.component';
-import { PagesModule } from '../pages/pages.module';
+// import { PagesModule } from '../pages/pages.module';
 import { HtmlClassService } from './html-class.service';
 import { HeaderMobileComponent } from './header/header-mobile/header-mobile.component';
 import { ErrorPageComponent } from './content/error-page/error-page.component';
 import { PermissionEffects, permissionsReducer, RoleEffects, rolesReducer } from '../../core/auth';
 import { ReviewerBaseComponent } from './reviewer-base/reviewer-base.component';
-import {ReviewerPagesModule} from '../reviewer-pages/r_pages.module';
+import {MenuAsideService, MenuHorizontalService, SubheaderService} from '../../core/_base/layout';
+// import {ReviewerPagesModule} from '../reviewer-pages/r_pages.module';
 
 @NgModule({
 	declarations: [
@@ -91,16 +92,20 @@ import {ReviewerPagesModule} from '../reviewer-pages/r_pages.module';
 	],
 	providers: [
 		HtmlClassService,
+
+		SubheaderService,
+		MenuHorizontalService,
+		MenuAsideService,
 	],
 	imports: [
 		CommonModule,
 		RouterModule,
 		NgxPermissionsModule.forChild(),
-		StoreModule.forFeature('roles', rolesReducer),
-		StoreModule.forFeature('permissions', permissionsReducer),
-		EffectsModule.forFeature([PermissionEffects, RoleEffects]),
-		PagesModule,
-		ReviewerPagesModule,
+		// StoreModule.forFeature('roles', rolesReducer),
+		// StoreModule.forFeature('permissions', permissionsReducer),
+		// EffectsModule.forFeature([PermissionEffects, RoleEffects]),
+		// PagesModule,
+		// ReviewerPagesModule,
 		PartialsModule,
 		CoreModule,
 		PerfectScrollbarModule,

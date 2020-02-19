@@ -42,7 +42,7 @@
 			</div>
 			<div class="form-group">
 				<mat-form-field>
-					<mat-label>URL</mat-label>
+					<mat-label>URL of Your Work</mat-label>
 					<input matInput type="text" placeholder="Url" formControlName="url"/>
 					<mat-error *ngIf="isControlHasError('url','required')">
 						<strong>Required field</strong>
@@ -58,8 +58,8 @@
 			<!--         Author textfield-->
 			<div class="form-group">
 				<mat-form-field>
-					<mat-label>Author</mat-label>
-					<input matInput type="text" placeholder="Author" formControlName="author"/>
+					<mat-label>Author(s)</mat-label>
+					<input matInput type="text" placeholder="Author(s)" formControlName="author"/>
 					<mat-error *ngIf="isControlHasError('author','required')">
 						<strong>Required field</strong>
 					</mat-error>
@@ -95,13 +95,8 @@
 				<table>
 					<tr>
 						<ng-container *ngFor="let tag of tags; let index=index;">
-							<td *ngIf="index<3">
-								<!--								<div>{{index+1}}</div>-->
-
-								<!--								{{selectedOptions[tag.title]}}<br>-->
-
-								<mat-form-field>
-
+							<td *ngIf="index<3 ">
+								<mat-form-field *ngIf="tag.isMultiple=='true'">
 									<mat-label>{{tag.title | titlecase}}</mat-label>
 									<mat-select
 										placeholder="{{tag.title | titlecase}}"
@@ -110,12 +105,14 @@
 										multiple
 									>
 										<mat-select-trigger>
+
 											{{selectedOptions[tag.title] ? selectedOptions[tag.title][0] : ''}}
 											<span *ngIf="selectedOptions[tag.title]?.length > 1"
 												  class="example-additional-selection">
                          						 (+{{selectedOptions[tag.title].length - 1}} others)
                       					    </span>
 										</mat-select-trigger>
+
 										<mat-option *ngFor="let selectOption of tag.tagList" [value]="selectOption"
 													(onSelectionChange)="selectionChanged($event, tag.title)"
 										>{{selectOption}}
@@ -123,32 +120,49 @@
 									</mat-select>
 
 								</mat-form-field>
+
+								<mat-form-field *ngIf="tag.isMultiple=='false'">
+									<mat-label>{{tag.title | titlecase}}</mat-label>
+									<mat-select
+										placeholder="{{tag.title | titlecase}}"
+										formControlName="tag{{index+1}}"
+										[(ngModel)]="singleSelected[tag.title]"
+									>
+										<mat-option>None</mat-option>
+										<mat-option *ngFor="let selectOption of tag.tagList" [value]="selectOption"
+													(onSelectionChange)="singleSelectionChanged($event, tag.title)"
+										>{{selectOption}}
+										</mat-option>
+									</mat-select>
+
+								</mat-form-field>
+
+<!--								<div *ngIf="singleSelected">Seleced: {{ singleSelected[tag.title] }}</div>-->
+
 							</td>
 						</ng-container>
 					</tr>
 
 					<tr>
 						<ng-container *ngFor="let tag of tags| slice:3; let index=index;">
-							<td *ngIf="index<3">
-								<!--								<div>{{index+4}}</div>-->
-								<!--								{{selectedOptions[tag.title]}}<br>-->
-
-								<mat-form-field>
-
+							<td *ngIf="index<3 ">
+								<mat-form-field *ngIf="tag.isMultiple=='true'">
 									<mat-label>{{tag.title | titlecase}}</mat-label>
-
 									<mat-select
 										placeholder="{{tag.title | titlecase}}"
 										formControlName="tag{{index+4}}"
 										[(ngModel)]="selectedOptions[tag.title]"
-										multiple>
+										multiple
+									>
 										<mat-select-trigger>
+
 											{{selectedOptions[tag.title] ? selectedOptions[tag.title][0] : ''}}
 											<span *ngIf="selectedOptions[tag.title]?.length > 1"
 												  class="example-additional-selection">
                          						 (+{{selectedOptions[tag.title].length - 1}} others)
                       					    </span>
 										</mat-select-trigger>
+
 										<mat-option *ngFor="let selectOption of tag.tagList" [value]="selectOption"
 													(onSelectionChange)="selectionChanged($event, tag.title)"
 										>{{selectOption}}
@@ -156,9 +170,61 @@
 									</mat-select>
 
 								</mat-form-field>
+
+								<mat-form-field *ngIf="tag.isMultiple=='false'">
+									<mat-label>{{tag.title | titlecase}}</mat-label>
+									<mat-select
+										placeholder="{{tag.title | titlecase}}"
+										formControlName="tag{{index+4}}"
+										[(ngModel)]="singleSelected[tag.title]"
+									>
+										<mat-option>None</mat-option>
+										<mat-option *ngFor="let selectOption of tag.tagList" [value]="selectOption"
+													(onSelectionChange)="singleSelectionChanged($event, tag.title)"
+										>{{selectOption}}
+										</mat-option>
+									</mat-select>
+
+								</mat-form-field>
+
+<!--								<div *ngIf="singleSelected">Seleced: {{ singleSelected[tag.title] }}</div>-->
+
 							</td>
 						</ng-container>
 					</tr>
+
+					<!--					<tr>-->
+					<!--						<ng-container *ngFor="let tag of tags| slice:3; let index=index;">-->
+					<!--							<td *ngIf="index<3">-->
+					<!--								&lt;!&ndash;								<div>{{index+4}}</div>&ndash;&gt;-->
+					<!--								&lt;!&ndash;								{{selectedOptions[tag.title]}}<br>&ndash;&gt;-->
+
+					<!--								<mat-form-field>-->
+
+					<!--									<mat-label>{{tag.title | titlecase}}</mat-label>-->
+
+					<!--									<mat-select-->
+					<!--										placeholder="{{tag.title | titlecase}}"-->
+					<!--										formControlName="tag{{index+4}}"-->
+					<!--										[(ngModel)]="selectedOptions[tag.title]"-->
+					<!--										multiple>-->
+					<!--										<mat-select-trigger *ngIf="tag.isMultiple">-->
+					<!--											{{selectedOptions[tag.title] ? selectedOptions[tag.title][0] : ''}}-->
+					<!--											<span *ngIf="selectedOptions[tag.title]?.length > 1"-->
+					<!--												  class="example-additional-selection">-->
+					<!--                         						 (+{{selectedOptions[tag.title].length - 1}} others)-->
+					<!--                      					    </span>-->
+					<!--										</mat-select-trigger>-->
+					<!--										<mat-option *ngFor="let selectOption of tag.tagList" [value]="selectOption"-->
+					<!--													(onSelectionChange)="selectionChanged($event, tag.title)"-->
+					<!--										>{{selectOption}}-->
+					<!--										</mat-option>-->
+					<!--									</mat-select>-->
+
+					<!--								</mat-form-field>-->
+					<!--							</td>-->
+					<!--						</ng-container>-->
+					<!--					</tr>-->
 				</table>
 			</div>
 
@@ -198,4 +264,8 @@
 
 <ng-template #loadingMessage>
 	<p class="text-center">Loading...</p>
+</ng-template>
+
+<ng-template #multiple>
+
 </ng-template>

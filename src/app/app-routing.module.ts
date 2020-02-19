@@ -14,108 +14,118 @@ import {CompletedReviewComponent} from './views/pages/admin/completed-review/com
 import {ScorecardComponent} from './views/pages/admin/scorecard/scorecard.component';
 import {ResultComponent} from './views/pages/admin/result/result.component';
 import {InProgressComponent} from './views/pages/admin/in-progress/in-progress.component';
-import {ReviewerBaseComponent} from './views/theme/reviewer-base/reviewer-base.component';
 import {AssignedWorkComponent} from './views/reviewer-pages/assigned-work/assigned-work.component';
+import {AuthComponent} from './views/auth/auth.component';
+import {SubmissionFormComponent} from './views/author/submission-form/submission-form.component';
+import {ReviewerBaseComponent} from './views/theme/reviewer-base/reviewer-base.component';
+import {ReviewComponent} from './views/reviewer-pages/reviews/review.component';
 
 const routes: Routes = [
-	{path: 'auth', loadChildren: () => import('app/views/pages/auth/auth.module').then(m => m.AuthModule)},
+	{path: 'auth', loadChildren: () => import('app/views/auth/auth.module').then(m => m.AuthModule)},
 	{path: 'home', loadChildren: () => import('app/views/public-page/public-page.module').then(m => m.PublicPageModule)},
-
 	{path: 'author', loadChildren: () => import('app/views/author/author.module').then(m => m.AuthorModule)},
+
+	{path: 'reviewer', loadChildren: () => import('app/views/reviewer-pages/r_pages.module').then(m => m.ReviewerPagesModule)},
+	{path: 'admin', loadChildren: () => import('app/views/pages/pages.module').then(m => m.PagesModule)},
 
 	// Public user
 	{path: '', redirectTo: 'home', pathMatch: 'full'},
 
-	// Reviewer
-	{
-		path: 'reviewer',
-		component: ReviewerBaseComponent,
-		// canActivate: [AuthGuard],
-		children: [
+	// Reviewer Dashboard
+	// {
+	// 	path: 'reviewer',
+	// 	component: BaseComponent,
+	// 	// canActivate: [AuthGuard],
+	// 	children: [
+	//
+	// 		// Reviewer page routing
+	//
+	// 		{
+	// 			path: 'dashboard',
+	// 			loadChildren: () => import('app/views/reviewer-pages/dashboard/r_dashboard.module').then(m => m.R_dashboardModule)
+	// 		},
+	// 		{
+	// 			path: 'assignments',
+	// 			component: AssignedWorkComponent
+	// 		},
+	// 		{
+	// 			path: 'reviews',
+	// 			component: ReviewComponent
+	// 		},
+	// 		{
+	// 			path: 'error/403',
+	// 			component: ErrorPageComponent,
+	// 			data: {
+	// 				'type': 'error-v6',
+	// 				'code': 403,
+	// 				'title': '403... Access forbidden',
+	// 				'desc': 'Looks like you don\'t have permission to access for requested page.<br> Please, contact administrator'
+	// 			}
+	// 		},
+	// 		{path: 'error/:type', component: ErrorPageComponent},
+	// 		// {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+	// 		// {path: '**', redirectTo: 'dashboard', pathMatch: 'full'}
+	// 		{path: '**', redirectTo: 'home', pathMatch: 'full'}
+	// 	]
+	// },
 
-			// Reviewer page routing
-			{
-				path: 'dashboard',
-				loadChildren: () => import('app/views/reviewer-pages/dashboard/r_dashboard.module').then(m => m.R_dashboardModule)
-			},
-			{
-				path: 'assignments',
-				component: AssignedWorkComponent
-			},
-			{
-				path: 'error/403',
-				component: ErrorPageComponent,
-				data: {
-					'type': 'error-v6',
-					'code': 403,
-					'title': '403... Access forbidden',
-					'desc': 'Looks like you don\'t have permission to access for requested page.<br> Please, contact administrator'
-				}
-			},
-			{path: 'error/:type', component: ErrorPageComponent},
-			// {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-			// {path: '**', redirectTo: 'dashboard', pathMatch: 'full'}
-			{path: '**', redirectTo: 'home', pathMatch: 'full'}
-		]
-	},
-
-	{
-		path: 'admin',
-		component: BaseComponent,
-		// canActivate: [AuthGuard],
-		children: [
-
-			// Admin page routing
-			{
-				path: 'incoming-work',
-				component: IncomingWorkComponent
-			},
-			{
-				path: 'assignment',
-				component: AssignmentComponent
-			},
-			{
-				path: 'scorecard',
-				component: ScorecardComponent
-			},
-			{
-				path: 'result',
-				component: ResultComponent
-			},
-			{
-				path: 'in-progress',
-				component: InProgressComponent
-			},
-			{
-				path: 'completed-review',
-				component: CompletedReviewComponent
-			},
-
-			{
-				path: 'dashboard',
-				loadChildren: () => import('app/views/pages/dashboard/dashboard.module').then(m => m.DashboardModule)
-			},
-			{
-				path: 'user-management',
-				loadChildren: () => import('app/views/pages/user-management/user-management.module').then(m => m.UserManagementModule)
-			},
-			{
-				path: 'error/403',
-				component: ErrorPageComponent,
-				data: {
-					'type': 'error-v6',
-					'code': 403,
-					'title': '403... Access forbidden',
-					'desc': 'Looks like you don\'t have permission to access for requested page.<br> Please, contact administrator'
-				}
-			},
-			{path: 'error/:type', component: ErrorPageComponent},
-			// {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-			// {path: '**', redirectTo: 'dashboard', pathMatch: 'full'}
-			{path: '', redirectTo: 'home', pathMatch: 'full'},
-			{path: '**', redirectTo: 'home', pathMatch: 'full'}
-		]
-	},
+	// {
+	// 	path: 'admin',
+	// 	component: BaseComponent,
+	// 	// canActivate: [AuthGuard],
+	// 	children: [
+	//
+	// 		// Admin page routing
+	// 		{
+	// 			path: 'incoming-work',
+	// 			component: IncomingWorkComponent
+	// 		},
+	// 		{
+	// 			path: 'assignment',
+	// 			component: AssignmentComponent
+	// 		},
+	// 		{
+	// 			path: 'scorecard',
+	// 			component: ScorecardComponent
+	// 		},
+	// 		{
+	// 			path: 'result',
+	// 			component: ResultComponent
+	// 		},
+	// 		{
+	// 			path: 'in-progress',
+	// 			component: InProgressComponent
+	// 		},
+	// 		{
+	// 			path: 'completed-review',
+	// 			component: CompletedReviewComponent
+	// 		},
+	//
+	// 		{
+	// 			path: 'dashboard',
+	// 			loadChildren: () => import('app/views/pages/dashboard/dashboard.module').then(m => m.DashboardModule)
+	// 		},
+	// 		{
+	// 			path: 'user-management',
+	// 			loadChildren: () => import('app/views/pages/user-management/user-management.module').then(m => m.UserManagementModule)
+	// 		},
+	// 		{
+	// 			path: 'error/403',
+	// 			component: ErrorPageComponent,
+	// 			data: {
+	// 				'type': 'error-v6',
+	// 				'code': 403,
+	// 				'title': '403... Access forbidden',
+	// 				'desc': 'Looks like you don\'t have permission to access for requested page.<br> Please, contact administrator'
+	// 			}
+	// 		},
+	// 		{path: 'error/:type', component: ErrorPageComponent},
+	// 		// {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+	// 		// {path: '**', redirectTo: 'dashboard', pathMatch: 'full'}
+	// 		{path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+	// 		{path: '**', redirectTo: 'dashboard', pathMatch: 'full'}
+	// 	]
+	// },
 
 ];
 

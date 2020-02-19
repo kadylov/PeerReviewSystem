@@ -4,7 +4,7 @@ export class ReviewerMenuConfig {
 			self: {},
 			items: [
 				{
-					title: 'Dashboards',
+					title: 'Dashboards2',
 					root: true,
 					alignment: 'left',
 					page: '/reviewer/dashboard',
@@ -12,15 +12,14 @@ export class ReviewerMenuConfig {
 				},
 
 				{
-					title: 'Assignments',
+					title: 'Assignments2',
 					root: true,
 					alignment: 'left',
 					page: '/reviewer/assignments',
-					translate: 'MENU.DASHBOARD',
 				},
 
 				{
-					title: 'Reviews',
+					title: 'Reviews2',
 					root: true,
 					alignment: 'left',
 					page: '/reviewer/reviews',
@@ -32,7 +31,7 @@ export class ReviewerMenuConfig {
 			self: {},
 			items: [
 				{
-					title: 'Dashboard',
+					title: 'Dashboard2',
 					root: true,
 					icon: 'flaticon2-architecture-and-city',
 					page: '/reviewer/dashboard',
@@ -40,9 +39,15 @@ export class ReviewerMenuConfig {
 					bullet: 'dot',
 				},
 				{
-					title: 'Assignments', // <= Title of the page
+					title: 'Assignments2', // <= Title of the page
 					root: true,
 					page: '/reviewer/assignments', // <= URL
+					icon: 'flaticon-line-graph' // <= Choose the icon class
+				},
+				{
+					title: 'Reviews2', // <= Title of the page
+					root: true,
+					page: '/reviewer/reviews', // <= URL
 					icon: 'flaticon-line-graph' // <= Choose the icon class
 				},
 			]

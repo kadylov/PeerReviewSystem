@@ -15,7 +15,7 @@ import {WidgetModule} from "../partials/content/widgets/widget.module";
 import {PartialsModule} from "../partials/partials.module";
 import { PublicPageComponent } from './public-page.component';
 
-import {MatChipsModule, MatInputModule, MatToolbarModule} from '@angular/material';
+import {MatButtonModule, MatChipsModule, MatInputModule, MatToolbarModule} from '@angular/material';
 
 const routes: Routes = [
 	{
@@ -27,24 +27,25 @@ const routes: Routes = [
 
 
 @NgModule({
-    imports: [
-        CommonModule,
-        RouterModule.forChild(routes),
-        MatPaginatorModule,
-        MatProgressSpinnerModule,
-        PortletModule,
-        MatFormFieldModule,
-        MatTableModule,
-        MatIconModule,
-        MatCheckboxModule,
-        MatSortModule,
-        MatCardModule,
-        WidgetModule,
-        PartialsModule,
-        MatInputModule,
-        MatToolbarModule,
-        MatChipsModule
-    ],
+	imports: [
+		CommonModule,
+		RouterModule.forChild(routes),
+		MatPaginatorModule,
+		MatProgressSpinnerModule,
+		PortletModule,
+		MatFormFieldModule,
+		MatTableModule,
+		MatIconModule,
+		MatCheckboxModule,
+		MatSortModule,
+		MatCardModule,
+		WidgetModule,
+		PartialsModule,
+		MatInputModule,
+		MatToolbarModule,
+		MatChipsModule,
+		MatButtonModule
+	],
 	exports: [RouterModule],
 	declarations: [WorkListComponent, PublicPageComponent]
 

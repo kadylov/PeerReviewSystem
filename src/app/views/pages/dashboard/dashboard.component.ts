@@ -1,11 +1,13 @@
 // Angular
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 // Lodash
-import { shuffle } from 'lodash';
+import {shuffle} from 'lodash';
 // Services
 // Widgets model
-import { LayoutConfigService, SparklineChartOptions } from '../../../core/_base/layout';
-import { Widget4Data } from '../../partials/content/widgets/widget4/widget4.component';
+import {LayoutConfigService, MenuConfigService, PageConfigService, SparklineChartOptions} from '../../../core/_base/layout';
+import {Widget4Data} from '../../partials/content/widgets/widget4/widget4.component';
+import {MenuConfig} from '../../../core/_config/menu.config';
+import {PageConfig} from '../../../core/_config/page.config';
 
 @Component({
 	selector: 'kt-dashboard',
@@ -22,10 +24,18 @@ export class DashboardComponent implements OnInit {
 	widget4_3: Widget4Data;
 	widget4_4: Widget4Data;
 
-	constructor(private layoutConfigService: LayoutConfigService) {
+	constructor(private layoutConfigService: LayoutConfigService,
+				private menuConfigService: MenuConfigService,
+				private pageConfigService: PageConfigService,) {
+
 	}
 
 	ngOnInit(): void {
+
+		this.menuConfigService.loadConfigs(new MenuConfig().configs);
+		this.pageConfigService.loadConfigs(new PageConfig().configs);
+
+
 		this.chartOptions1 = {
 			data: [10, 14, 18, 11, 9, 12, 14, 17, 18, 14],
 			color: this.layoutConfigService.getConfig('colors.state.brand'),

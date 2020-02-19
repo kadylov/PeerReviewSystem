@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 // RxJS
-import { Subject } from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 // Object-Path
 import * as objectPath from 'object-path';
 // Lodash
@@ -12,7 +12,10 @@ import { merge } from 'lodash';
 export class PageConfigService {
 	// Public properties
 	onConfigUpdated$: Subject<any>;
+	onConfigUpdated1$: Subject<any>;
+
 	pageConfig: any;
+	pageConfig1: any;
 
 	/**
 	 * Service Constructor
@@ -22,6 +25,7 @@ export class PageConfigService {
 	constructor(private router: Router) {
 		// register on config changed event and set default config
 		this.onConfigUpdated$ = new Subject();
+		this.onConfigUpdated1$ = new Subject();
 	}
 
 	/**
@@ -88,5 +92,19 @@ export class PageConfigService {
 		}
 
 		return finalUrl;
+	}
+
+	/**
+	 * Update confgis
+	 *
+	 * @param config: any
+	 */
+	updateConfigs1(config: any) {
+		this.pageConfig1 = config;
+		this.onConfigUpdated1$.next(this.pageConfig1);
+	}
+
+	getConfig():Observable<any> {
+		return this.onConfigUpdated1$.asObservable();
 	}
 }

@@ -19,6 +19,7 @@ import { SubmissionFormComponent } from './submission-form/submission-form.compo
 import { AuthNoticeComponent } from './auth-notice/auth-notice.component';
 import {NgbTabsetModule} from '@ng-bootstrap/ng-bootstrap';
 import {TagsComponent} from './tag-selections/tags.component';
+import {TagService} from '../../core/author/_services/tag.service';
 // Auth
 
 const routes: Routes = [
@@ -36,7 +37,7 @@ const routes: Routes = [
 				component: SubmissionFormComponent,
 				// component: TagsComponent,
 
-				data: {returnUrl: window.location.pathname}
+				// data: {returnUrl: window.location.pathname}
 			},
 
 			{
@@ -70,6 +71,7 @@ const routes: Routes = [
 		MatSliderModule,
 	],
 	providers: [
+		TagService
 	],
 	exports: [AuthorComponent, AuthNoticeComponent],
 	declarations: [

@@ -11,6 +11,8 @@
 
 td.mat-cell {
 	padding: 12px 0 16px 0;
+	font-size: 18px;
+
 }
 
 .mdc-chip {
@@ -27,7 +29,7 @@ td.mat-cell {
 	letter-spacing: 0.0178571429em;
 	text-decoration: inherit;
 	text-transform: inherit;
-	height: 30px;						// height
+	height: 25px;						// height
 	//display: -ms-inline-flexbox;
 	display: inline-flex;
 	position: relative;
@@ -61,6 +63,8 @@ td.mat-cell {
 	border-radius: 4px;
 }
 
-
+.fontSize{
+	font-size: 55px;
+}
 // WEBPACK FOOTER //
 // ./src/styles/ChipsCatalog.scss

@@ -6,7 +6,6 @@ import {AuthNoticeService} from '../../../core/auth';
 import {Observable, of, Subject, Subscription} from 'rxjs';
 import {TagModel} from '../../../core/author/_models/tag.model';
 import {TagService} from '../../../core/author/_services/tag.service';
-import {map, tap} from 'rxjs/operators';
 
 export class SelectedTag {
 	title: string;
@@ -29,6 +28,7 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 	minDate: Date = new Date(100, 0, 1);
 	maxDate: Date = new Date(Date.now());
 
+	single: boolean = false;
 
 	private unsubscribe: Subject<any>; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
 	private tagSub: Subscription;
@@ -40,6 +40,7 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 	tags$: Observable<TagModel[]>;
 	selectedOptions = [];
 	chips: string[] = [];
+	singleSelected = [];
 
 	/**
 	 * Component constructor
@@ -228,6 +229,8 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 
 	remove(title: any, tag?: any): void {
 
+		this.chips = this.chips.filter(c => c !== title);
+
 		for (const index in this.selectedOptions) {
 			if (this.selectedOptions[index] !== undefined) {
 				this.selectedOptions[index] = this.selectedOptions[index].filter(f => f !== title);
@@ -235,8 +238,19 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 			}
 		}
 
-		// console.log('Del', this.selectedOptions);
-		this.chips = this.chips.filter(c => c !== title);
+
+		// loop through the single selected array
+		for (const index in this.singleSelected) {
+			if (this.singleSelected[index] !== undefined) {
+				this.singleSelected[index] = undefined;
+
+			}
+		}
+
+		if (this.singleSelected['main'] !== undefined) {
+			console.log('SSSS ', this.singleSelected['main']);
+			this.singleSelected['main'] = undefined;
+		}
 	}
 
 
@@ -260,7 +274,7 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 					opts = [selectedTag];
 				}
 				this.selectedOptions[tagTitle] = opts;
-				console.log('selectedOptions[', tagTitle, '] ', this.selectedOptions);
+				// console.log('selectedOptions[', tagTitle, '] ', this.selectedOptions);
 
 			} else {
 				this.chips = this.chips.filter(c => c !== selectedTag);
@@ -269,4 +283,17 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 
 	}
 
+	singleSelectionChanged(event: any, title: string) {
+		if (event.isUserInput) {
+			const selectedTag: string = event.source.value;
+
+			if (event.source.selected) {
+				this.chips.push(selectedTag);
+				this.singleSelected[title] = selectedTag;
+				console.log('SingleSelected ', this.singleSelected[title]);
+			} else {
+				this.chips = this.chips.filter(c => c !== selectedTag);
+			}
+		}
+	}
 }
