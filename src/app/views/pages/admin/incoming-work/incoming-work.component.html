@@ -46,22 +46,24 @@
 				</div>
 			</div>
 			<div class="kt-portlet__body">
-				<div class="kt-radio-list">
-					<mat-radio-group>
-						<mat-radio-button value="m">Approved</mat-radio-button>
-						<mat-radio-button value="f">Denied</mat-radio-button>
-					</mat-radio-group>
-					<p></p>
-					<label for="">Comments: </label>
-					<br>
-					<mat-form-field>
-						<textarea matInput placeholder="Textarea" width=100%></textarea>
-					</mat-form-field>
-					<p></p>
-					<div class="button-row">
-						<button mat-raised-button color="primary">Submit</button>
-						<button mat-raised-button color="accent">Cancel</button>
-					</div>
+				<div>
+				<mat-radio-group>
+					<mat-radio-button value="1">Approve</mat-radio-button>
+					<mat-radio-button value="2">Deny</mat-radio-button>
+				</mat-radio-group>
+				</div>
+				<br>
+
+				<div class="button-row">
+					<a href="javascript:;" class="btn btn-primary kt-margin-r-10" color="primary" (click)="onSumbit(false)"
+					   mat-raised-button matTooltip="Submit & Continue">
+						<span class="kt-hidden-mobile">Submit</span>
+					</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a [routerLink]="['../Dashboard']" class="btn btn-secondary kt-margin-r-10" mat-raised-button
+					   matTooltip="Back to the users list">
+						<span class="kt-hidden-mobile">Cancel</span>
+					</a>
 				</div>
 			</div>
 		</div>
