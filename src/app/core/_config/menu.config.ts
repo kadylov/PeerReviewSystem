@@ -130,10 +130,10 @@ export class MenuConfig {
 							title: 'Users',
 							page: '/admin/user-management/users'
 						},
-						{
-							title: 'Roles',
-							page: '/admin/user-management/roles'
-						}
+						// {
+						// 	title: 'Roles',
+						// 	page: '/admin/user-management/roles'
+						// }
 					]
 				},
 			]

@@ -19,6 +19,8 @@ import {AuthComponent} from './views/auth/auth.component';
 import {SubmissionFormComponent} from './views/author/submission-form/submission-form.component';
 import {ReviewerBaseComponent} from './views/theme/reviewer-base/reviewer-base.component';
 import {ReviewComponent} from './views/reviewer-pages/reviews/review.component';
+import {AboutComponent} from './views/about-page/about.component';
+import {ContactComponent} from './views/contact-page/contact.component';
 
 const routes: Routes = [
 	{path: 'auth', loadChildren: () => import('app/views/auth/auth.module').then(m => m.AuthModule)},
@@ -27,6 +29,9 @@ const routes: Routes = [
 
 	{path: 'reviewer', loadChildren: () => import('app/views/reviewer-pages/r_pages.module').then(m => m.ReviewerPagesModule)},
 	{path: 'admin', loadChildren: () => import('app/views/pages/pages.module').then(m => m.PagesModule)},
+
+	{path:'about', component: AboutComponent},
+	{path:'contact', component: ContactComponent},
 
 	// Public user
 	{path: '', redirectTo: 'home', pathMatch: 'full'},

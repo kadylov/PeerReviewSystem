@@ -45,9 +45,10 @@
 			</div>
 			<!--begin::Action-->
 			<div class="kt-login__actions">
-				<a href="javascript:;" routerLink="/auth/forgot-password" class="kt-link kt-login__link-forgot">
-					Forgot Password
-				</a>
+<!--				<a href="javascript:;" routerLink="/auth/forgot-password" class="kt-link kt-login__link-forgot">-->
+<!--					Forgot Password-->
+<!--				</a>-->
+				<button routerLink="/" [disabled]="loading" id="kt_login_signup_cancel" class="btn btn-secondary btn-elevate kt-login__btn-secondary">Back</button>
 				<button (click)="submit()"
 						id="kt_login_signin_submit"
 						class="btn btn-primary btn-elevate kt-login__btn-primary">Submit</button>

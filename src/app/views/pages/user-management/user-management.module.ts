@@ -18,8 +18,8 @@ import {ActionNotificationComponent} from '../../partials/content/crud';
 import { UserManagementComponent } from './user-management.component';
 import { UsersListComponent } from './users/users-list/users-list.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
-import { RolesListComponent } from './roles/roles-list/roles-list.component';
-import { RoleEditDialogComponent } from './roles/role-edit/role-edit.dialog.component';
+// import { RolesListComponent } from './roles/roles-list/roles-list.component';
+// import { RoleEditDialogComponent } from './roles/role-edit/role-edit.dialog.component';
 import { UserRolesListComponent } from './users/_subs/user-roles/user-roles-list.component';
 import { ChangePasswordComponent } from './users/_subs/change-password/change-password.component';
 
@@ -46,13 +46,14 @@ import {
 	MatAutocompleteModule,
 	MAT_DIALOG_DEFAULT_OPTIONS,
 	MatSnackBarModule,
-	MatTooltipModule
+	MatTooltipModule, MatSlideToggleModule
 } from '@angular/material';
 import {
 	usersReducer,
 	UserEffects
 } from '../../../core/auth';
 import {UserManagementService} from './service/user-management.service';
+import {RoleCredentialService} from './service/role-credential.service';
 
 const routes: Routes = [
 	{
@@ -61,13 +62,13 @@ const routes: Routes = [
 		children: [
 			{
 				path: '',
-				redirectTo: 'roles',
+				redirectTo: 'users',
 				pathMatch: 'full'
 			},
-			{
-				path: 'roles',
-				component: RolesListComponent
-			},
+			// {
+			// 	path: 'roles',
+			// 	component: RolesListComponent
+			// },
 			{
 				path: 'users',
 				component: UsersListComponent
@@ -103,14 +104,14 @@ const routes: Routes = [
 		PartialsModule,
 		RouterModule.forChild(routes),
 		StoreModule.forFeature('users', usersReducer),
-        EffectsModule.forFeature([UserEffects]),
+		EffectsModule.forFeature([UserEffects]),
 		FormsModule,
 		ReactiveFormsModule,
 		TranslateModule.forChild(),
 		MatButtonModule,
 		MatMenuModule,
 		MatSelectModule,
-        MatInputModule,
+		MatInputModule,
 		MatTableModule,
 		MatAutocompleteModule,
 		MatRadioModule,
@@ -127,7 +128,8 @@ const routes: Routes = [
 		MatExpansionModule,
 		MatTabsModule,
 		MatTooltipModule,
-		MatDialogModule
+		MatDialogModule,
+		MatSlideToggleModule
 	],
 	providers: [
 		InterceptService,
@@ -148,19 +150,20 @@ const routes: Routes = [
 		HttpUtilsService,
 		TypesUtilsService,
 		LayoutUtilsService,
-		UserManagementService
+		UserManagementService,
+		RoleCredentialService,
 	],
 	entryComponents: [
 		ActionNotificationComponent,
-		RoleEditDialogComponent
+		// RoleEditDialogComponent
 	],
 	declarations: [
 		UserManagementComponent,
 		UsersListComponent,
 		UserEditComponent,
-		RolesListComponent,
-		RoleEditDialogComponent,
-		UserRolesListComponent,
+		// RolesListComponent,
+		// RoleEditDialogComponent,
+		// UserRolesListComponent,
 		ChangePasswordComponent,
 	]
 })

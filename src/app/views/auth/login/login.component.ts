@@ -159,15 +159,19 @@ export class LoginComponent implements OnInit, OnDestroy {
 				res => {
 
 					this.user = res;
-					if (this.user.role != 3) {
+					console.log('User login ', this.user = res);
 
+					if (this.user.isActive == 0) {
+						this.authNoticeService.setNotice('Error, you account has been deactivated', 'danger');
+						return;
+					}
+
+					if (this.user.roleId != 3) {
 						// this.router.navigateByUrl('reviewer/dashboard'); // Reviewer page
 						this.router.navigate(['reviewer/dashboard']); // Reviewer page
 
 
 					} else {
-
-
 						this.router.navigate(['admin/dashboard']); // Reviewer page
 
 					}
@@ -178,7 +182,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 				},
 				error => {
 					this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
-					console.log('There was an error while retrieving Works !!!' + error);
+					console.log('There was an error while retrieving User !!!' + error);
 				}),
 			takeUntil(this.unsubscribe),
 			finalize(() => {
@@ -186,52 +190,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 				// this.cdr.markForCheck();
 			});
 
-		// (user => {
-		// 	if (user) {
-		// 		// this.store.dispatch(new Login({authToken: user.Email}));
-		// 		console.log(user);
-		// 		// if user is not admin, redirect to reviewer page
-		// 		this.loading = false;
-		//
-		// 		// if (user.RoleId != 3) {
-		// 		// 	this.router.navigateByUrl("/reviewer"); // Main page
-		// 		// } else
-		// 		// 	this.router.navigateByUrl("/dashboard"); // Main page
-		//
-		//
-		// 	} else {
-		// 		this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
-		// 	}
-
-		// this.loading = false;
-		// this.cdr.markForCheck();
-
-
-		// 	takeUntil(this.unsubscribe),
-		// 		finalize(() => {
-		// 			this.loading = false;
-		// 			this.cdr.markForCheck();
-		// 		})
-		// }));
-
-
-		// 		if (user) {
-		// 			this.store.dispatch(new Login({authToken: user.Email}));
-		// 			this.router.navigateByUrl(this.returnUrl); // Main page
-		// 		} else {
-		// 			this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
-		// 		}
-		//
-		// 		takeUntil(this.unsubscribe),
-		// 			finalize(() => {
-		// 				this.loading = false;
-		// 				this.cdr.markForCheck();
-		// 			})
-		// }));
-		// finalize(() => {
-		// 	this.loading = false;
-		// 	this.cdr.markForCheck();
-		// })
 	}
 
 	/**

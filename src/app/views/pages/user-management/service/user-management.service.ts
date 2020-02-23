@@ -9,6 +9,10 @@ import {catchError, map, retry} from 'rxjs/operators';
 const API_USER_LIST_URL = 'http://3.95.8.94/example/admin_request.php';
 // const API_USER_LIST_URL = 'http://localhost/admin_request.php';
 
+
+const headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+
+
 @Injectable()
 export class UserManagementService {
 
@@ -41,21 +45,25 @@ export class UserManagementService {
 			.pipe(retry(3));
 	}
 
-	update(_user: User1): Observable<any> {
+	update(_user: User1, oldUsername?: string, oldEmail?:string): Observable<any> {
 		console.log('Update user');
 		console.log(_user);
+		console.log('oldUsername',oldUsername);
+		console.log('oldEmail',oldEmail);
 
 		const body = new HttpParams()
-			.set(`updateReviewer`, 'updateReviewer',)
+			.set(`updateUser`, 'updateUser',)
 			.set(`Username`, _user.username)
 			.set(`Password`, _user.password)
-			.set(`RName`, _user.fullname)
+			.set(`Name`, _user.fullname)
 			.set(`Email`, _user.email)
+			.set(`oldUsername`, oldUsername)
+			.set(`oldEmail`, oldEmail)
 			.set(`CredentialID`, _user.credentialID.toString())
-			.set(`RoleId`, _user.role.toString())
-			.set(`RID`, _user.id.toString());
+			.set(`RoleId`, _user.roleId.toString())
+			.set(`ID`, _user.id.toString());
 
-		const headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+		// const headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
 		// const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
 		return this.http.post<User1>(API_USER_LIST_URL, body, {headers: headers});
@@ -68,31 +76,43 @@ export class UserManagementService {
 	// 	return this.http.put(API_USERS_URL, _user, { headers: httpHeaders });
 	// }
 	createUser(_user: User1): Observable<any> {
-		console.log('Create user');
-		console.log(_user);
+		// console.log('Create user');
+		// console.log(_user);
 
 		const body = new HttpParams()
-			.set(`createReviewer`, 'createReviewer',)
+			.set(`createUser`, 'createUser',)
 			.set(`Username`, _user.username)
 			.set(`Password`, _user.password)
-			.set(`RName`, _user.fullname)
+			.set(`Name`, _user.fullname)
 			.set(`Email`, _user.email)
 			.set(`CredentialID`, _user.credentialID.toString())
-			.set(`RoleId`, _user.role.toString());
+			.set(`RoleId`, _user.roleId.toString())
+		;
 
 		const headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
 		return this.http.post<User1>(API_USER_LIST_URL, body, {headers: headers});
 	}
 
-	deleteUser(_user: User1):Observable<any> {
+	deleteUser(_user: User1): Observable<any> {
 		console.log('Delete user');
 		console.log(_user);
 
 		const body = new HttpParams()
 			.set(`deleteReviewer`, 'deleteReviewer',)
-			.set(`RID`, _user.id.toString())
+			.set(`RID`, _user.id.toString());
 
-		const headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+		// const headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+		return this.http.post<User1>(API_USER_LIST_URL, body, {headers: headers});
+	}
+
+	deactivateUser(_user: User1): Observable<any> {
+		console.log(_user);
+		const body = new HttpParams()
+			.set(`deactivateUser`, 'deactivateUser',)
+			.set(`id`, _user.id.toString())
+			.set(`activeStatus`, _user.isActive.toString())
+			.set(`roleId`, _user.roleId.toString());
+
 		return this.http.post<User1>(API_USER_LIST_URL, body, {headers: headers});
 	}
 }

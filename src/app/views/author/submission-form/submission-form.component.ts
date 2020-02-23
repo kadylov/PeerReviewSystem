@@ -6,6 +6,9 @@ import {AuthNoticeService} from '../../../core/auth';
 import {Observable, of, Subject, Subscription} from 'rxjs';
 import {TagModel} from '../../../core/author/_models/tag.model';
 import {TagService} from '../../../core/author/_services/tag.service';
+import {LayoutUtilsService, MessageType} from '../../../core/_base/crud';
+import {MatSnackBar} from '@angular/material';
+import {duration} from 'moment';
 
 export class SelectedTag {
 	title: string;
@@ -46,18 +49,17 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 	 * Component constructor
 	 *
 	 * @param authNoticeService: AuthNoticeService
-	 * @param translate: TranslateService
 	 * @param router: Router
-	 * @param auth: AuthService
-	 * @param store: Store<AppState>
 	 * @param fb: FormBuilder
-	 * @param cdr
+	 * @param tagService
+	 * @param snackBar
 	 */
 	constructor(
 		private authNoticeService: AuthNoticeService,
 		private router: Router,
 		private fb: FormBuilder,
 		private tagService: TagService,
+		private snackBar: MatSnackBar
 	) {
 	}
 
@@ -70,7 +72,7 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 		this.tags$ = this.tagService.getAllTags();
 		this.initRegisterForm();
 
-		// this.titleField.nativeElement.focus();
+		this.titleField.nativeElement.focus();
 
 	}
 
@@ -115,7 +117,7 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 			title: ['', Validators.compose([
 				Validators.required,
 				Validators.minLength(3),
-				Validators.maxLength(100)
+				Validators.maxLength(200)
 			])
 			],
 			date_written: ['', Validators.compose([
@@ -125,7 +127,7 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 			url: ['', Validators.compose([
 				Validators.required,
 				Validators.minLength(3),
-				Validators.maxLength(100)
+				Validators.maxLength(400)
 			]),
 			],
 			author: ['', Validators.compose([
@@ -166,7 +168,7 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 			])
 			],
 			tag7: ['', Validators.compose([
-				Validators.required,
+				// Validators.required,
 			])
 			],
 		});
@@ -177,7 +179,10 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 	 * Form Submit
 	 */
 	submit() {
+		console.log("AAAa")
 		const controls = this.registerForm.controls;
+		console.log("AAAa1 ",controls)
+
 		// check form
 		if (this.registerForm.invalid) {
 			Object.keys(controls).forEach(controlName =>
@@ -185,9 +190,18 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 			);
 			return;
 		}
+		console.log("BBB")
+
+		const message = "Your Work has been submitted successfully!"
+		this.snackBar.open(message,"",{duration: 5000});
+		this.router.navigateByUrl('/home');
 		// this.loading = true;
 		// const _user: User = new User();
 		// _user.clear();
+
+		console.log("CCC")
+
+		this.router.navigateByUrl('/home');
 		// _user.email = controls['email'].value;
 		// _user.username = controls['username'].value;
 		// _user.fullname = controls['fullname'].value;
@@ -247,10 +261,10 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 			}
 		}
 
-		if (this.singleSelected['main'] !== undefined) {
-			console.log('SSSS ', this.singleSelected['main']);
-			this.singleSelected['main'] = undefined;
-		}
+		// if (this.singleSelected['main'] !== undefined) {
+		// 	console.log('SSSS ', this.singleSelected['main']);
+		// 	this.singleSelected['main'] = undefined;
+		// }
 	}
 
 

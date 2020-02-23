@@ -66,6 +66,8 @@ import * as xml from 'highlight.js/lib/languages/xml';
 import * as json from 'highlight.js/lib/languages/json';
 import {ReactiveFormsModule} from '@angular/forms';
 import {DeleteEntityDialogComponent} from './views/partials/content/crud';
+import {AboutComponent} from './views/about-page/about.component';
+import {ContactComponent} from './views/contact-page/contact.component';
 
 
 
@@ -96,7 +98,12 @@ export function hljsLanguages(): HighlightLanguage[] {
 }
 
 @NgModule({
-	declarations: [AppComponent],
+	declarations: [
+		AppComponent,
+		AboutComponent,
+		ContactComponent,
+
+	],
 	imports: [
 		BrowserAnimationsModule,
 		BrowserModule,

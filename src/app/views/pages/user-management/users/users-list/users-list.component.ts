@@ -35,6 +35,7 @@ import {SubheaderService} from '../../../../../core/_base/layout';
 import {UserManagementService} from '../../service/user-management.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {User1} from '../../../../../core/auth/_models/user1.model';
+import {RoleCredentialService} from '../../service/role-credential.service';
 
 // Table with EDIT item in MODAL
 // ARTICLE for table with sort/filter/paginator
@@ -53,9 +54,14 @@ export class UsersListComponent implements OnInit, OnDestroy {
 	dataSource: MatTableDataSource<User1>;
 	displayedColumns = ['id', 'username', 'email', 'fullname', '_roles', 'actions'];
 	users: any = [];
+	active;
+
+	userStatus: string[] = [];
+
+	color = 'warn';
+
 
 	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-	// @ViewChild('sort1', {static: true}) sort: MatSort;
 	@ViewChild(MatSort, {static: true}) sort: MatSort;
 
 	// Filter fields
@@ -63,7 +69,6 @@ export class UsersListComponent implements OnInit, OnDestroy {
 	lastQuery: QueryParamsModel;
 	// Selection
 	selection = new SelectionModel<User>(true, []);
-	usersResult: User[] = [];
 
 	// Subscriptions
 	private subscriptions: Subscription[] = [];
@@ -84,6 +89,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
 		private subheaderService: SubheaderService,
 		private cdr: ChangeDetectorRef,
 		private userManagementService: UserManagementService,
+		private roleCredentialService: RoleCredentialService,
 	) {
 
 		this.dataSource = new MatTableDataSource();
@@ -97,12 +103,24 @@ export class UsersListComponent implements OnInit, OnDestroy {
 
 		this.dataSource.paginator = this.paginator;
 		this.dataSource.sort = this.sort;
-
 		this.loadUsers();
+		this.getAllRolesAndCredentials();
 	}
 
 	ngOnDestroy(): void {
 		this.subscriptions.forEach(sub => sub.unsubscribe());
+	}
+
+	getAllRolesAndCredentials() {
+		const subsc = this.roleCredentialService.getRolesAndCredentialsList()
+			.subscribe(respond => {
+
+					// console.log('loadcredds()', respond['roles']);
+					localStorage.setItem('roleCredential', JSON.stringify(respond));
+				},
+				error => console.log('There was an error while retrieving roles and credentials !!!' + error));
+
+		this.subscriptions.push(subsc);
 	}
 
 	deleteUser(_item: User1) {
@@ -173,8 +191,6 @@ export class UsersListComponent implements OnInit, OnDestroy {
 	}
 
 	private loadUsers() {
-
-
 		const subsc = this.userManagementService.getAllUsers()
 			.subscribe(respond => {
 
@@ -189,4 +205,56 @@ export class UsersListComponent implements OnInit, OnDestroy {
 		this.subscriptions.push(subsc);
 	}
 
+	/**
+	 * Returns prepared data for save
+	 */
+	private prepareUser(user: User1): User1 {
+		const _user = new User1();
+		_user.clear();
+		_user.id = user.id;
+		_user.username = user.username;
+		_user.email = user.email;
+		_user.fullname = user.fullname;
+		_user.password = user.password;
+		_user.roleId = user.roleId;
+
+		_user.credentialID = user.credentialID;
+		_user.isActive=user.isActive;
+		return _user;
+	}
+
+	slideChanged(event: any, user: User1) {
+
+		let checkedUser: User1 = this.prepareUser(user);
+
+		console.log('BEfore ', checkedUser.isActive);
+
+		if (event.checked) {
+			console.log('Checked ', event.checked);
+			checkedUser.isActive = 0;
+		} else {
+			console.log('Unchecked ', event.checked);
+			checkedUser.isActive = 1;
+			console.log(checkedUser.isActive);
+
+
+		}
+		// this
+		// console.log(checkedUser);
+
+		const _title: string = 'User Deactivation';
+		const _deleteMessage = `User has been deactivated`;
+
+		const subsc = this.userManagementService.deactivateUser(checkedUser)
+			.subscribe(res => {
+					this.layoutUtilsService.showActionNotification(_deleteMessage, MessageType.Update);
+
+				},
+				error => {
+					console.log('Error ', error);
+					this.layoutUtilsService.showActionNotification('Unable to deactivate the user', MessageType.Update);
+				});
+		this.subscriptions.push(subsc);
+
+	}
 }

@@ -193,38 +193,6 @@
 						</ng-container>
 					</tr>
 
-					<!--					<tr>-->
-					<!--						<ng-container *ngFor="let tag of tags| slice:3; let index=index;">-->
-					<!--							<td *ngIf="index<3">-->
-					<!--								&lt;!&ndash;								<div>{{index+4}}</div>&ndash;&gt;-->
-					<!--								&lt;!&ndash;								{{selectedOptions[tag.title]}}<br>&ndash;&gt;-->
-
-					<!--								<mat-form-field>-->
-
-					<!--									<mat-label>{{tag.title | titlecase}}</mat-label>-->
-
-					<!--									<mat-select-->
-					<!--										placeholder="{{tag.title | titlecase}}"-->
-					<!--										formControlName="tag{{index+4}}"-->
-					<!--										[(ngModel)]="selectedOptions[tag.title]"-->
-					<!--										multiple>-->
-					<!--										<mat-select-trigger *ngIf="tag.isMultiple">-->
-					<!--											{{selectedOptions[tag.title] ? selectedOptions[tag.title][0] : ''}}-->
-					<!--											<span *ngIf="selectedOptions[tag.title]?.length > 1"-->
-					<!--												  class="example-additional-selection">-->
-					<!--                         						 (+{{selectedOptions[tag.title].length - 1}} others)-->
-					<!--                      					    </span>-->
-					<!--										</mat-select-trigger>-->
-					<!--										<mat-option *ngFor="let selectOption of tag.tagList" [value]="selectOption"-->
-					<!--													(onSelectionChange)="selectionChanged($event, tag.title)"-->
-					<!--										>{{selectOption}}-->
-					<!--										</mat-option>-->
-					<!--									</mat-select>-->
-
-					<!--								</mat-form-field>-->
-					<!--							</td>-->
-					<!--						</ng-container>-->
-					<!--					</tr>-->
 				</table>
 			</div>
 
