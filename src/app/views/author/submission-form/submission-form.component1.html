@@ -91,11 +91,10 @@
 			</div>
 
 			<!--         Tag option field-->
-			<div class="form-group">
-				<table>
-					<tr>
-						<ng-container *ngFor="let tag of tags; let index=index">
-							<td *ngIf="index<3 ">
+			<div class="form-group flex-container">
+
+
+					<div *ngFor="let tag of tags; let index=index">
 								<mat-form-field *ngIf="tag.isMultiple=='true'">
 									<mat-label>{{tag.title | titlecase}}</mat-label>
 									<mat-select
@@ -121,7 +120,7 @@
 
 								</mat-form-field>
 
-<!--								single selection dropboxes-->
+						<!--								single selection dropboxes-->
 								<mat-form-field *ngIf="tag.isMultiple=='false'">
 									<mat-label>{{tag.title | titlecase}}</mat-label>
 									<mat-select
@@ -136,61 +135,7 @@
 									</mat-select>
 
 								</mat-form-field>
-							</td>
-						</ng-container>
-					</tr>
-
-					<tr>
-						<ng-container *ngFor="let tag of tags| slice:3; let index=index;">
-							<td *ngIf="index<3 " class="twoRow">
-								<mat-form-field *ngIf="tag.isMultiple=='true'">
-									<mat-label>{{tag.title | titlecase}}</mat-label>
-									<mat-select
-										placeholder="{{tag.title | titlecase}}"
-										formControlName="tag{{index+4}}"
-										[(ngModel)]="selectedOptions[tag.title]"
-										multiple
-									>
-										<mat-select-trigger>
-
-											{{selectedOptions[tag.title] ? selectedOptions[tag.title][0] : ''}}
-											<span *ngIf="selectedOptions[tag.title]?.length > 1"
-												  class="example-additional-selection">
-                         						 (+{{selectedOptions[tag.title].length - 1}} others)
-                      					    </span>
-										</mat-select-trigger>
-
-										<mat-option *ngFor="let selectOption of tag.tagList" [value]="selectOption"
-													(onSelectionChange)="selectionChanged($event, tag.title)"
-										>{{selectOption}}
-										</mat-option>
-									</mat-select>
-
-								</mat-form-field>
-
-								<!-- single selection dropboxes-->
-								<mat-form-field *ngIf="tag.isMultiple=='false'">
-									<mat-label>{{tag.title | titlecase}}</mat-label>
-									<mat-select
-										placeholder="{{tag.title | titlecase}}"
-										formControlName="tag{{index+4}}"
-										[(ngModel)]="singleSelected[index+4]"
-									>
-										<mat-option>None</mat-option>
-										<mat-option *ngFor="let selectOption of tag.tagList" [value]="selectOption"
-										>{{selectOption}}
-										</mat-option>
-									</mat-select>
-
-								</mat-form-field>
-
-<!--								<div *ngIf="singleSelected">Seleced: {{ singleSelected[tag.title] }}</div>-->
-
-							</td>
-						</ng-container>
-					</tr>
-
-				</table>
+				</div>
 			</div>
 
 			<!--							Chip buttons-->
@@ -198,12 +143,12 @@
 
 				<mat-form-field>
 					<mat-chip-list #chipList>
-						<ng-container  *ngFor="let chip of singleSelected"
-							>
+						<ng-container *ngFor="let chip of singleSelected"
+						>
 							<mat-chip *ngIf="chip"
-								[selectable]="selectable"
-								[removable]="removable"
-								(removed)="removeFromSingleSelected(chip)">
+									  [selectable]="selectable"
+									  [removable]="removable"
+									  (removed)="removeFromSingleSelected(chip)">
 								{{chip}}
 								<mat-icon matChipRemove>cancel</mat-icon>
 							</mat-chip>
@@ -223,15 +168,6 @@
 				</mat-form-field>
 
 			</div>
-
-			<div class="flex-container">
-				<div>1</div>
-				<div>1</div>
-				<div>2</div>
-				<div>3</div>
-
-			</div>
-
 
 			<!--begin::Action-->
 			<div class="kt-login__actions">

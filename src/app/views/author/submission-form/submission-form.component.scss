@@ -14,14 +14,14 @@ td {
 
 .flex-container {
 	display: flex;
-	background-color: DodgerBlue;
-	flex-wrap: wrap;
-	align-content: space-between;
+	//flex-wrap: wrap;
+	flex-flow: row wrap;
+	justify-content: space-around;
 }
 
 .flex-container > div {
-	background-color: #f1f1f1;
-	margin: 10px;
-	padding: 80px;
-	font-size: 30px;
+	//background-color: #f1f1f1;
+	margin-right: 3.3px;
+	width: 180px;
+	//padding-right: 12px;
 }
