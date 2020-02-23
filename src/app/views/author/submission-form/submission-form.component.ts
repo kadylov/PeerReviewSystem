@@ -1,14 +1,12 @@
 // Angular
 import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {Router} from '@angular/router';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthNoticeService} from '../../../core/auth';
 import {Observable, of, Subject, Subscription} from 'rxjs';
 import {TagModel} from '../../../core/author/_models/tag.model';
 import {TagService} from '../../../core/author/_services/tag.service';
-import {LayoutUtilsService, MessageType} from '../../../core/_base/crud';
 import {MatSnackBar} from '@angular/material';
-import {duration} from 'moment';
 
 export class SelectedTag {
 	title: string;
@@ -31,7 +29,6 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 	minDate: Date = new Date(100, 0, 1);
 	maxDate: Date = new Date(Date.now());
 
-	single: boolean = false;
 
 	private unsubscribe: Subject<any>; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
 	private tagSub: Subscription;
@@ -44,6 +41,8 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 	selectedOptions = [];
 	chips: string[] = [];
 	singleSelected = [];
+	aaa:number = 0;
+
 
 	/**
 	 * Component constructor
@@ -72,7 +71,7 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 		this.tags$ = this.tagService.getAllTags();
 		this.initRegisterForm();
 
-		this.titleField.nativeElement.focus();
+		// this.titleField.nativeElement.focus();
 
 	}
 
@@ -179,9 +178,8 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 	 * Form Submit
 	 */
 	submit() {
-		console.log("AAAa")
 		const controls = this.registerForm.controls;
-		console.log("AAAa1 ",controls)
+		console.log('AAAa1 ', controls);
 
 		// check form
 		if (this.registerForm.invalid) {
@@ -190,16 +188,16 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 			);
 			return;
 		}
-		console.log("BBB")
+		console.log('BBB');
 
-		const message = "Your Work has been submitted successfully!"
-		this.snackBar.open(message,"",{duration: 5000});
+		const message = 'Your Work has been submitted successfully!';
+		this.snackBar.open(message, '', {duration: 5000});
 		this.router.navigateByUrl('/home');
 		// this.loading = true;
 		// const _user: User = new User();
 		// _user.clear();
 
-		console.log("CCC")
+		console.log('CCC');
 
 		this.router.navigateByUrl('/home');
 		// _user.email = controls['email'].value;
@@ -253,13 +251,13 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 		}
 
 
-		// loop through the single selected array
-		for (const index in this.singleSelected) {
-			if (this.singleSelected[index] !== undefined) {
-				this.singleSelected[index] = undefined;
-
-			}
-		}
+		// // loop through the single selected array
+		// for (const index in this.singleSelected) {
+		// 	if (this.singleSelected[index] !== undefined) {
+		// 		this.singleSelected[index] = undefined;
+		//
+		// 	}
+		// }
 
 		// if (this.singleSelected['main'] !== undefined) {
 		// 	console.log('SSSS ', this.singleSelected['main']);
@@ -267,6 +265,18 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 		// }
 	}
 
+	removeFromSingleSelected(chip: any) {
+		console.log(this.singleSelected);
+
+		for (let i = 0; i < this.singleSelected.length; ++i) {
+			if (this.singleSelected[i] === chip) {
+				// console.log(chip);
+				this.singleSelected.splice(i, 1);
+			}
+		}
+		console.log(this.singleSelected);
+
+	}
 
 	selectionChanged(event: any, tagTitle: string) {
 
@@ -300,14 +310,18 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 	singleSelectionChanged(event: any, title: string) {
 		if (event.isUserInput) {
 			const selectedTag: string = event.source.value;
+			console.log(this.singleSelected);
 
-			if (event.source.selected) {
+			// if (event.source.selected) {
+
+			if (this.chips.indexOf(selectedTag) == -1) {
 				this.chips.push(selectedTag);
-				this.singleSelected[title] = selectedTag;
-				console.log('SingleSelected ', this.singleSelected[title]);
-			} else {
-				this.chips = this.chips.filter(c => c !== selectedTag);
 			}
+
+
+			// } else {
+			// 	this.chips = this.chips.filter(c => c !== selectedTag);
+			// }
 		}
 	}
 }

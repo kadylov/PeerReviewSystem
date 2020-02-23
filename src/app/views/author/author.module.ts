@@ -12,15 +12,12 @@ import {
 	MatInputModule,
 	MatSelectModule, MatSliderModule
 } from '@angular/material';
-// NGRX
-// Module components
 import { AuthorComponent } from './author.component';
 import { SubmissionFormComponent } from './submission-form/submission-form.component';
 import { AuthNoticeComponent } from './auth-notice/auth-notice.component';
 import {NgbTabsetModule} from '@ng-bootstrap/ng-bootstrap';
 import {TagsComponent} from './tag-selections/tags.component';
 import {TagService} from '../../core/author/_services/tag.service';
-// Auth
 
 const routes: Routes = [
 	{
@@ -78,7 +75,7 @@ const routes: Routes = [
 		AuthorComponent,
 		SubmissionFormComponent,
 		AuthNoticeComponent,
-		TagsComponent
+		TagsComponent,
 	]
 })
 
