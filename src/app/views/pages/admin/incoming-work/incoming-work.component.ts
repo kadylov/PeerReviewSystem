@@ -15,5 +15,8 @@ export class IncomingWorkComponent implements OnInit {
   ngOnInit() {
   }
 
+	onSumbit(b: boolean) {
+		
+	}
 }
 

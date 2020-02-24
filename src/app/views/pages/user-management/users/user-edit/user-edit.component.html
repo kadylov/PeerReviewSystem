@@ -91,7 +91,11 @@
 									<div class="col-lg-4 kt-margin-bottom-20-mobile">
 										<mat-form-field class="mat-form-field-fluid">
 
-											<mat-select  placeholder="Select Credentials" [(ngModel)]="credentialsIdForAdding" formControlName="credential" [(value)]="credentialsIdForAdding">
+											<mat-select
+												#onCredFocus
+												(focus)="onCredFocus.open()"
+												(selectionChange)="onCredFocus.close(); onCredFocus.focus()"
+												placeholder="Select Credentials" [(ngModel)]="credentialsIdForAdding" formControlName="credential" [(value)]="credentialsIdForAdding">
 												<mat-option *ngFor="let c of credentials" value="{{c.rcID}}">{{c.CredentialType}}</mat-option>
 											</mat-select>
 											<mat-hint align="start">Select
@@ -103,7 +107,11 @@
 									<div class="col-lg-4 kt-margin-bottom-20-mobile">
 										<mat-form-field class="mat-form-field-fluid">
 
-											<mat-select placeholder="Select Role" [(ngModel)]="roleIdForAdding" formControlName="role" [(value)]="roleIdForAdding">
+											<mat-select
+												#onFocus
+												(focus)="onFocus.open()"
+												(selectionChange)="onFocus.close(); onFocus.focus()"
+												placeholder="Select Role" [(ngModel)]="roleIdForAdding" formControlName="role" [(value)]="roleIdForAdding">
 												<mat-option  *ngFor="let r of roles" value="{{r.id}}">{{r.RoleType}}</mat-option>
 											</mat-select>
 											<mat-hint align="start">Select

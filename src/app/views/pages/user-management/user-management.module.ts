@@ -18,10 +18,6 @@ import {ActionNotificationComponent} from '../../partials/content/crud';
 import { UserManagementComponent } from './user-management.component';
 import { UsersListComponent } from './users/users-list/users-list.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
-// import { RolesListComponent } from './roles/roles-list/roles-list.component';
-// import { RoleEditDialogComponent } from './roles/role-edit/role-edit.dialog.component';
-import { UserRolesListComponent } from './users/_subs/user-roles/user-roles-list.component';
-import { ChangePasswordComponent } from './users/_subs/change-password/change-password.component';
 
 // Material
 import {
@@ -161,10 +157,6 @@ const routes: Routes = [
 		UserManagementComponent,
 		UsersListComponent,
 		UserEditComponent,
-		// RolesListComponent,
-		// RoleEditDialogComponent,
-		// UserRolesListComponent,
-		ChangePasswordComponent,
 	]
 })
 export class UserManagementModule {}
