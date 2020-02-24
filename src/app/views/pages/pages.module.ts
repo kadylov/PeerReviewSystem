@@ -18,7 +18,7 @@ import { CompletedReviewComponent } from './admin/completed-review/completed-rev
 
 
 import {PublicPageModule} from "../public-page/public-page.module";
-import {MatFormFieldModule, MatRadioModule} from '@angular/material';
+import {MatFormFieldModule, MatRadioModule, MatSliderModule} from '@angular/material';
 import {RouterModule, Routes} from '@angular/router';
 import {BaseComponent} from '../theme/base/base.component';
 import {ErrorPageComponent} from '../theme/content/error-page/error-page.component';
@@ -100,19 +100,20 @@ const routes:Routes=[
 	],
 	exports: [
 	],
-	imports: [
-		CommonModule,
-		RouterModule.forChild(routes),  //////
-		HttpClientModule,
-		FormsModule,
-		CoreModule,
-		PartialsModule,
-		UserManagementModule,
-		PublicPageModule,
-		MatRadioModule,
-		MatFormFieldModule,
-		ThemeModule
-	],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),  //////
+        HttpClientModule,
+        FormsModule,
+        CoreModule,
+        PartialsModule,
+        UserManagementModule,
+        PublicPageModule,
+        MatRadioModule,
+        MatFormFieldModule,
+        ThemeModule,
+        MatSliderModule
+    ],
 	providers: []
 })
 export class PagesModule {
