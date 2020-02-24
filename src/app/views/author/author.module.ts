@@ -1,6 +1,6 @@
 // Angular
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 // Material
@@ -18,6 +18,7 @@ import { AuthNoticeComponent } from './auth-notice/auth-notice.component';
 import {NgbTabsetModule} from '@ng-bootstrap/ng-bootstrap';
 import {TagsComponent} from './tag-selections/tags.component';
 import {TagService} from '../../core/author/_services/tag.service';
+import { FocusDirective } from './directive/focus.directive';
 
 const routes: Routes = [
 	{
@@ -68,7 +69,8 @@ const routes: Routes = [
 		MatSliderModule,
 	],
 	providers: [
-		TagService
+		TagService,
+		DatePipe
 	],
 	exports: [AuthorComponent, AuthNoticeComponent],
 	declarations: [
@@ -76,6 +78,7 @@ const routes: Routes = [
 		SubmissionFormComponent,
 		AuthNoticeComponent,
 		TagsComponent,
+		FocusDirective,
 	]
 })
 

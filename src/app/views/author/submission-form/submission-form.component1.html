@@ -28,10 +28,10 @@
 			<div class="form-group">
 				<mat-form-field>
 					<mat-label>Date Written</mat-label>
-					<input matInput [matDatepicker]="dp3" [min]="minDate" [max]="maxDate" placeholder="MM/dd/YYYY"
+					<input matInput [matDatepicker]="dp3" [min]="minDate" [max]="maxDate" placeholder="MM/dd/YYYY" (focus)="dp3.open()"
 						   formControlName="date_written"
 						   disabled>
-					<mat-datepicker-toggle matSuffix [for]="dp3">
+					<mat-datepicker-toggle matSuffix [for]="dp3"   >
 						<mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
 					</mat-datepicker-toggle>
 					<mat-datepicker #dp3 disabled="false"></mat-datepicker>
@@ -43,7 +43,7 @@
 			<div class="form-group">
 				<mat-form-field>
 					<mat-label>URL of Your Work</mat-label>
-					<input matInput type="text" placeholder="Url" formControlName="url"/>
+					<input matInput #url type="text" placeholder="Url" formControlName="url"/>
 					<mat-error *ngIf="isControlHasError('url','required')">
 						<strong>Required field</strong>
 					</mat-error>
@@ -91,51 +91,58 @@
 			</div>
 
 			<!--         Tag option field-->
-			<div class="form-group flex-container">
+			<div class="form-group ">
 
-
+				<div class="flex-container">
 					<div *ngFor="let tag of tags; let index=index">
-								<mat-form-field *ngIf="tag.isMultiple=='true'">
-									<mat-label>{{tag.title | titlecase}}</mat-label>
-									<mat-select
-										placeholder="{{tag.title | titlecase}}"
-										formControlName="tag{{index+1}}"
-										[(ngModel)]="selectedOptions[tag.title]"
-										multiple
-									>
-										<mat-select-trigger>
+						<mat-form-field *ngIf="tag.isMultiple=='true'">
+							<mat-label>{{tag.title | titlecase}}</mat-label>
+							<mat-select
+								#onFocus (focus)="onFocus.open()"
+								placeholder="{{tag.title | titlecase}}"
+								formControlName="tag{{index+1}}"
+								[(ngModel)]="selectedOptions[tag.title]"
+								multiple
+							>
+								<mat-select-trigger>
 
-											{{selectedOptions[tag.title] ? selectedOptions[tag.title][0] : ''}}
-											<span *ngIf="selectedOptions[tag.title]?.length > 1"
-												  class="example-additional-selection">
+									{{selectedOptions[tag.title] ? selectedOptions[tag.title][0] : ''}}
+									<span *ngIf="selectedOptions[tag.title]?.length > 1"
+									>
                          						 (+{{selectedOptions[tag.title].length - 1}} others)
                       					    </span>
-										</mat-select-trigger>
+								</mat-select-trigger>
 
-										<mat-option *ngFor="let selectOption of tag.tagList" [value]="selectOption"
-													(onSelectionChange)="selectionChanged($event, tag.title)"
-										>{{selectOption}}
-										</mat-option>
-									</mat-select>
+								<mat-option *ngFor="let selectOption of tag.tagList" [value]="selectOption"
+											(onSelectionChange)="selectionChanged($event, tag.title)"
+								>{{selectOption}}
+								</mat-option>
+							</mat-select>
 
-								</mat-form-field>
+						</mat-form-field>
 
 						<!--								single selection dropboxes-->
-								<mat-form-field *ngIf="tag.isMultiple=='false'">
-									<mat-label>{{tag.title | titlecase}}</mat-label>
-									<mat-select
+						<mat-form-field *ngIf="tag.isMultiple=='false'">
+							<mat-label>{{tag.title | titlecase}}</mat-label>
+							<mat-select #onFocus
+										(focus)="onFocus.open()"
+										(selectionChange)="onFocus.close(); onFocus.focus()"
+
 										placeholder="{{tag.title | titlecase}}"
 										formControlName="tag{{index+1}}"
 										[(ngModel)]="singleSelected[index]"
-									>
-										<mat-option>None</mat-option>
-										<mat-option *ngFor="let selectOption of tag.tagList" [value]="selectOption"
-										>{{selectOption}}
-										</mat-option>
-									</mat-select>
+							>
+								<mat-option>None</mat-option>
+								<mat-option *ngFor="let selectOption of tag.tagList" [value]="selectOption"
+								>{{selectOption}}
+								</mat-option>
+							</mat-select>
 
-								</mat-form-field>
+						</mat-form-field>
+					</div>
+
 				</div>
+
 			</div>
 
 			<!--							Chip buttons-->
@@ -143,7 +150,7 @@
 
 				<mat-form-field>
 					<mat-chip-list #chipList>
-						<ng-container *ngFor="let chip of singleSelected"
+						<ng-container *ngFor="let chip of singleSelected; let i=index"
 						>
 							<mat-chip *ngIf="chip"
 									  [selectable]="selectable"

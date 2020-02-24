@@ -1,6 +1,16 @@
 mat-select-trigger, mat-selected {
 	color: #646c9a;
-	margin-right: 4px;
+}
+
+mat-select{
+	color: #646c9a;
+
+}
+
+
+
+.mat-select-value{
+	color: #646c9a;
 }
 
 
@@ -8,15 +18,12 @@ mat-chip-list, mat-chip {
 	font-style: normal;
 }
 
-td {
-	padding-right: 22px;
-}
-
 .flex-container {
 	display: flex;
 	//flex-wrap: wrap;
 	flex-flow: row wrap;
 	justify-content: space-around;
+
 }
 
 .flex-container > div {
@@ -24,4 +31,6 @@ td {
 	margin-right: 3.3px;
 	width: 180px;
 	//padding-right: 12px;
+	//color: #646c9a;
+
 }

@@ -7,6 +7,9 @@ import {Observable, of, Subject, Subscription} from 'rxjs';
 import {TagModel} from '../../../core/author/_models/tag.model';
 import {TagService} from '../../../core/author/_services/tag.service';
 import {MatSnackBar} from '@angular/material';
+import {Work} from '../model/work';
+import {DatePipe} from '@angular/common';
+import {WorkService} from '../service/work.service';
 
 export class SelectedTag {
 	title: string;
@@ -41,7 +44,7 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 	selectedOptions = [];
 	chips: string[] = [];
 	singleSelected = [];
-	aaa:number = 0;
+	aaa: number = 0;
 
 
 	/**
@@ -58,7 +61,9 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 		private router: Router,
 		private fb: FormBuilder,
 		private tagService: TagService,
-		private snackBar: MatSnackBar
+		private snackBar: MatSnackBar,
+		private datepipe: DatePipe,
+		private workService: WorkService
 	) {
 	}
 
@@ -147,23 +152,23 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 			])
 			],
 			tag2: ['', Validators.compose([
-				Validators.required,
+				// Validators.required,
 			])
 			],
 			tag3: ['', Validators.compose([
-				Validators.required,
+				// Validators.required,
 			])
 			],
 			tag4: ['', Validators.compose([
-				Validators.required,
+				// Validators.required,
 			])
 			],
 			tag5: ['', Validators.compose([
-				Validators.required,
+				// Validators.required,
 			])
 			],
 			tag6: ['', Validators.compose([
-				Validators.required,
+				// Validators.required,
 			])
 			],
 			tag7: ['', Validators.compose([
@@ -178,8 +183,10 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 	 * Form Submit
 	 */
 	submit() {
+
+		this.loading = true;
 		const controls = this.registerForm.controls;
-		console.log('AAAa1 ', controls);
+		// console.log('AAAa1 ', controls);
 
 		// check form
 		if (this.registerForm.invalid) {
@@ -188,40 +195,38 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 			);
 			return;
 		}
-		console.log('BBB');
+
+		let work: Work = new Work();
+		work.title = controls['title'].value;
+		work.dateWritten = this.datepipe.transform(controls['date_written'].value, 'yyyyMMddHHmmss');
+		work.dateSubmitted = this.datepipe.transform(new Date(Date.now()), 'yyyyMMddHHmmss');
+		work.url = controls['url'].value;
+		work.author = controls['author'].value;
+		work.email = controls['email'].value;
+
+		let tags: string[] = [];
+		for (let i = 1; i <= 7; i++) {
+			let tag = controls['tag' + i].value;
+			if (tag !== undefined) {
+				tags = tags.concat(tag);
+			}
+		}
+
+		// console.log(tags);
+
+		work.selectedTags = work.selectedTags.concat(tags);
+		console.log(work);
 
 		const message = 'Your Work has been submitted successfully!';
-		this.snackBar.open(message, '', {duration: 5000});
-		this.router.navigateByUrl('/home');
-		// this.loading = true;
-		// const _user: User = new User();
-		// _user.clear();
 
-		console.log('CCC');
+		this.workService.submit(work).subscribe(
+			res=>{
+				this.loading = false;
+				this.snackBar.open(message, '', {duration: 4000});
+				this.router.navigateByUrl('/home');
 
-		this.router.navigateByUrl('/home');
-		// _user.email = controls['email'].value;
-		// _user.username = controls['username'].value;
-		// _user.fullname = controls['fullname'].value;
-		// _user.password = controls['password'].value;
-		// _user.roles = [];
-		// this.auth.register(_user).pipe(
-		//     tap(user => {
-		//        if (user) {
-		//           this.store.dispatch(new Register({authToken: user.accessToken}));
-		//           // pass notice message to the login page
-		//           this.authNoticeService.setNotice(this.translate.instant('AUTH.REGISTER.SUCCESS'), 'success');
-		//           this.router.navigateByUrl('/auth/login');
-		//        } else {
-		//           this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
-		//        }
-		//     }),
-		//     takeUntil(this.unsubscribe),
-		//     finalize(() => {
-		//        this.loading = false;
-		//        this.cdr.markForCheck();
-		//     })
-		// ).subscribe();
+			}
+		);
 	}
 
 	/**
@@ -271,7 +276,8 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 		for (let i = 0; i < this.singleSelected.length; ++i) {
 			if (this.singleSelected[i] === chip) {
 				// console.log(chip);
-				this.singleSelected.splice(i, 1);
+				this.singleSelected[i] = '';
+				break;
 			}
 		}
 		console.log(this.singleSelected);
@@ -289,7 +295,7 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 				this.chips.push(selectedTag);
 
 				let opts: string[] = this.selectedOptions[tagTitle];
-				console.log('opts', opts);
+				// console.log('opts', opts);
 
 				if (opts !== undefined) {
 					opts.push(selectedTag);
