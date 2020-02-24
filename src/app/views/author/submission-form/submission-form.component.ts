@@ -193,6 +193,9 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 			Object.keys(controls).forEach(controlName =>
 				controls[controlName].markAsTouched()
 			);
+
+			this.loading = false;
+
 			return;
 		}
 

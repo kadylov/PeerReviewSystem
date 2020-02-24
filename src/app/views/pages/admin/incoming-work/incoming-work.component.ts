@@ -16,7 +16,7 @@ export class IncomingWorkComponent implements OnInit {
   }
 
 	onSumbit(b: boolean) {
-		
+
 	}
 }
 
