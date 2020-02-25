@@ -62,5 +62,8 @@ export class InProgressComponent implements OnInit {
 
 	}
 
+	onSumbit(b: boolean) {
+		
+	}
 }
 
