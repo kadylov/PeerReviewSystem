@@ -4,7 +4,14 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {GestureConfig, MatCheckboxModule, MatFormFieldModule, MatProgressSpinnerModule} from '@angular/material';
+import {
+	GestureConfig,
+	MatCardModule,
+	MatCheckboxModule,
+	MatFormFieldModule,
+	MatProgressSpinnerModule,
+	MatToolbarModule
+} from '@angular/material';
 import { OverlayModule } from '@angular/cdk/overlay';
 // Angular in memory
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -129,6 +136,8 @@ export function hljsLanguages(): HighlightLanguage[] {
 		MatCheckboxModule,
 		MatFormFieldModule,
 		ReactiveFormsModule,
+		MatToolbarModule,
+		MatCardModule,
 
 		// PublicPageModule ////////////////
 

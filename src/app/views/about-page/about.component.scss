@@ -1,8 +1,25 @@
-/*!
- * Start Bootstrap - Heroic Features (https://startbootstrap.com/template-overviews/heroic-features)
- * Copyright 2013-2019 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-heroic-features/blob/master/LICENSE)
- */
-body {
-	padding-top: 56px;
+.about-section {
+	padding: 50px;
+	text-align: center;
+	//background-color: green;
+	background-image: url(../../../assets/media/bg/bg-4.jpg);
+	color: white;
+}
+
+.font_size {
+	font-size: 16px;
+}
+p{
+	//padding-top: 22px;
+	
+}
+.main {
+	padding: 22px;
+}
+
+.my_kt-portlet__body {
+	height: 500px;
+	flex-direction: column;
+	flex-grow: 1;
+	width: 100%;
 }
