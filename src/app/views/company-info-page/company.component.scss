@@ -1,0 +1,48 @@
+.about-section {
+	//padding: 50px;
+	padding-top: 50px;
+	padding-right: 50px;
+	padding-bottom: 20px;
+	padding-left: 22px;
+
+	text-align: center;
+	background-image: url(../../../assets/media/bg/bg-4.jpg);
+	color: white;
+}
+
+.flex-container{
+	display: flex;
+	flex-direction: row;
+	margin-top: 80px;
+}
+
+.flex-container > div > a {
+	text-align: left;
+	font-size: 16px;
+	margin-right: 10px;
+	color:white;
+}
+
+
+
+
+.font_size {
+	font-size: 16px;
+	//font-weight: 300;
+	letter-spacing: 0.02em;
+	//line-height: 35px;
+}
+p{
+	//padding-top: 22px;
+}
+.main {
+	padding: 22px;
+}
+
+.my_kt-portlet__body {
+	height: 500px;
+	flex-direction: column;
+	flex-grow: 1;
+	width: 100%;
+}
+

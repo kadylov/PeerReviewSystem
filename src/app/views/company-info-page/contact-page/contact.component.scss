@@ -1,0 +1,22 @@
+.example-container {
+	display: flex;
+	flex-direction: column;
+}
+.example-container > * {
+}
+
+.portlet_ {
+	padding: 15px;
+	width: 75%;
+
+	margin: 0 auto;
+
+}
+
+.btn_container{
+	margin: 0 auto;
+	padding: 10px;
+}
+.btn_container > span{
+	margin-right: 10px;
+}

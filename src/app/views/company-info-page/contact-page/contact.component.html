@@ -1,0 +1,90 @@
+<div class="kt-space-40"></div>
+
+
+<div class="example-container">
+	<!--	<mat-form-field>-->
+	<!--		<input matInput-->
+	<!--			   placeholder="Input"-->
+	<!--			   [formControl]="firstName"-->
+	<!--		>-->
+	<!--	</mat-form-field>-->
+
+	<!--	<mat-form-field>-->
+	<!--		<textarea matInput-->
+	<!--				  placeholder="Textarea"-->
+	<!--				  [formControl]="lastName"></textarea>-->
+	<!--	</mat-form-field>-->
+
+	<!--begin::Body-->
+
+
+	<!--			<kt-auth-notice></kt-auth-notice>-->
+
+	<!--begin::Form-->
+	<div class="portlet_">
+		<kt-portlet>
+			<kt-portlet-body>
+				<div class="btn_container">
+					<h3>How Can We Help you</h3>
+				</div>
+
+				<form [formGroup]="loginForm" autocomplete="off">
+					<div class="example-container">
+						<mat-form-field>
+							<input matInput type="text" placeholder="Full Name"
+								   formControlName="username" autocomplete="off"/>
+						</mat-form-field>
+					</div>
+					<div class="example-container">
+						<mat-form-field>
+							<input matInput type="email" placeholder="Email"
+								   formControlName="password" autocomplete="off"/>
+						</mat-form-field>
+					</div>
+					<div class="example-container">
+						<mat-form-field>
+							<input matInput type="text" placeholder="Subject"
+								   formControlName="username" autocomplete="off"/>
+						</mat-form-field>
+					</div>
+					<div class="example-container">
+						<mat-form-field>
+							<textarea matInput placeholder="Message"
+									  autocomplete="off"></textarea>
+						</mat-form-field>
+					</div>
+
+					<!--begin::Action-->
+					<div class="row">
+						<div class="btn_container">
+							<span>
+								<button routerLink="/" id="kt_login_signup_cancel"
+										class="btn btn-default">Back
+								</button>
+							</span>
+							<span>
+								<button (click)="submit()"
+										class="btn btn-primary">Submit
+								</button>
+							</span>
+
+						</div>
+
+					</div>
+
+					<!--end::Action-->
+				</form>
+
+			</kt-portlet-body>
+		</kt-portlet>
+
+	</div>
+
+
+	<!--end::Form-->
+
+	<!--end::Signin-->
+	<!--end::Body-->
+
+
+</div>

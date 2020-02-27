@@ -8,8 +8,8 @@ import {
 	GestureConfig,
 	MatCardModule,
 	MatCheckboxModule,
-	MatFormFieldModule,
-	MatProgressSpinnerModule,
+	MatFormFieldModule, MatInputModule,
+	MatProgressSpinnerModule, MatSelectModule,
 	MatToolbarModule
 } from '@angular/material';
 import { OverlayModule } from '@angular/cdk/overlay';
@@ -73,8 +73,6 @@ import * as xml from 'highlight.js/lib/languages/xml';
 import * as json from 'highlight.js/lib/languages/json';
 import {ReactiveFormsModule} from '@angular/forms';
 import {DeleteEntityDialogComponent} from './views/partials/content/crud';
-import {AboutComponent} from './views/about-page/about.component';
-import {ContactComponent} from './views/contact-page/contact.component';
 
 
 
@@ -107,8 +105,6 @@ export function hljsLanguages(): HighlightLanguage[] {
 @NgModule({
 	declarations: [
 		AppComponent,
-		AboutComponent,
-		ContactComponent,
 
 	],
 	imports: [
@@ -138,6 +134,9 @@ export function hljsLanguages(): HighlightLanguage[] {
 		ReactiveFormsModule,
 		MatToolbarModule,
 		MatCardModule,
+		AuthModule,
+		MatSelectModule,
+		MatInputModule,
 
 		// PublicPageModule ////////////////
 

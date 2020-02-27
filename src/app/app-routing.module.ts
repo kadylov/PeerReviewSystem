@@ -1,5 +1,5 @@
 // Angular
-import {NgModule} from '@angular/core';
+import {ModuleWithProviders, NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 // Components
 import {BaseComponent} from './views/theme/base/base.component';
@@ -8,19 +8,6 @@ import {ErrorPageComponent} from './views/theme/content/error-page/error-page.co
 import {AuthGuard} from './core/auth';
 
 // Admin Parts
-import {IncomingWorkComponent} from './views/pages/admin/incoming-work/incoming-work.component';
-import {AssignmentComponent} from './views/pages/admin/assignment/assignment.component';
-import {CompletedReviewComponent} from './views/pages/admin/completed-review/completed-review.component';
-import {ScorecardComponent} from './views/pages/admin/scorecard/scorecard.component';
-import {ResultComponent} from './views/pages/admin/result/result.component';
-import {InProgressComponent} from './views/pages/admin/in-progress/in-progress.component';
-import {AssignedWorkComponent} from './views/reviewer-pages/assigned-work/assigned-work.component';
-import {AuthComponent} from './views/auth/auth.component';
-import {SubmissionFormComponent} from './views/author/submission-form/submission-form.component';
-import {ReviewerBaseComponent} from './views/theme/reviewer-base/reviewer-base.component';
-import {ReviewComponent} from './views/reviewer-pages/reviews/review.component';
-import {AboutComponent} from './views/about-page/about.component';
-import {ContactComponent} from './views/contact-page/contact.component';
 
 const routes: Routes = [
 	{path: 'auth', loadChildren: () => import('app/views/auth/auth.module').then(m => m.AuthModule)},
@@ -30,8 +17,8 @@ const routes: Routes = [
 	{path: 'reviewer', loadChildren: () => import('app/views/reviewer-pages/r_pages.module').then(m => m.ReviewerPagesModule)},
 	{path: 'admin', loadChildren: () => import('app/views/pages/pages.module').then(m => m.PagesModule)},
 
-	{path:'about', component: AboutComponent},
-	{path:'contact', component: ContactComponent},
+	{path: 'prs', loadChildren: () => import('app/views/company-info-page/company.module').then(m => m.CompanyModule)},
+
 
 	// Public user
 	{path: '', redirectTo: 'home', pathMatch: 'full'},
