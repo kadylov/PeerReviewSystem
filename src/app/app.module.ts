@@ -72,7 +72,6 @@ import * as scss from 'highlight.js/lib/languages/scss';
 import * as xml from 'highlight.js/lib/languages/xml';
 import * as json from 'highlight.js/lib/languages/json';
 import {ReactiveFormsModule} from '@angular/forms';
-import {DeleteEntityDialogComponent} from './views/partials/content/crud';
 
 
 

@@ -18,6 +18,7 @@ import {MenuConfig} from '../../../core/_config/menu.config';
 import {MenuConfigService, PageConfigService} from '../../../core/_base/layout';
 import {PageConfig} from '../../../core/_config/page.config';
 import {ReviewerPageConfig} from '../../../core/_config/reviewer-page.config';
+import {ReviewHistoryRequested} from '../../../core/reviewer/_actions/review-history.actions';
 
 /**
  * ! Just example => Should be removed in development
@@ -66,11 +67,13 @@ export class LoginComponent implements OnInit, OnDestroy {
 		private auth: AuthService,
 		private authNoticeService: AuthNoticeService,
 		private translate: TranslateService,
-		private store: Store<AppState>,
+		// private store: Store<AppState>,
 		private fb: FormBuilder,
 		private cdr: ChangeDetectorRef,
 		private menuConfigService: MenuConfigService,
-		private pageConfigService: PageConfigService
+		private pageConfigService: PageConfigService,
+		private store: Store<AppState>
+
 
 		// private route: ActivatedRoute
 	) {
@@ -168,6 +171,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 
 					if (this.user.roleId != 3) {
 						// this.router.navigateByUrl('reviewer/dashboard'); // Reviewer page
+
+
+
 						this.router.navigate(['reviewer/dashboard']); // Reviewer page
 
 

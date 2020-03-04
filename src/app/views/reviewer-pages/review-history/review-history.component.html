@@ -1,0 +1,60 @@
+<kt-portlet *ngIf="reviewHistory$ | async as reviewHistory else loadingMessage" [class]="'kt-portlet--height-fluid'">
+	<kt-portlet-header [title]="'Review History'">
+	</kt-portlet-header>
+	<kt-portlet-body>
+		<div perfectScrollbar [ngStyle]="{'max-height': '43vh', 'position': 'relative'}"
+			 class="mat-table__wrapper mat-table__wrapper--dashboard mb-4">
+			<!--			<table mat-table [dataSource]="dataSource" matSort>-->
+			<table mat-table [dataSource]="reviewHistory.data " matSort>
+
+				<!-- Work Id Column -->
+				<ng-container matColumnDef="id">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header> id</th>
+					<td mat-cell *matCellDef="let row"> {{row.WID}}</td>
+				</ng-container>
+
+				<!--		displayedColumns = ['id', 'Title', 'DateReviewed', 'Score'];-->
+
+				<!-- Title -->
+				<ng-container matColumnDef="Title">
+
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+					<td mat-cell *matCellDef="let row">
+						<a href="{{row.URL}}" target="_blank">{{row.WTitle}}</a>
+					</td>
+				</ng-container>
+
+				<!--		Date Reviewed-->
+				<ng-container matColumnDef="DateReviewed">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header> Date Reviewed</th>
+					<td mat-cell *matCellDef="let row"> {{row.DateReviewed}}</td>
+				</ng-container>
+
+				<!--		Date Reviewed-->
+				<ng-container matColumnDef="Score">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header> Score</th>
+					<td mat-cell *matCellDef="let row"> <span style="margin-left: 8px">{{row.Score}}</span></td>
+				</ng-container>
+
+				<!--		Actions-->
+				<ng-container matColumnDef="Action">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header> Action</th>
+					<td mat-cell *matCellDef="let row"><a href="">View</a></td>
+				</ng-container>
+
+
+				<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumns;">
+				</tr>
+			</table>
+
+
+			<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+		</div>
+
+	</kt-portlet-body>
+</kt-portlet>
+
+<ng-template #loadingMessage>
+	<p class="text-center">Loading...</p>
+</ng-template>

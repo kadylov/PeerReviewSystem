@@ -9,6 +9,16 @@
 			<mat-toolbar
 				style="background-image: url(../../../assets/media/bg/bg-4.jpg);max-height: 200px;min-height: 200px">
 				<span style="color: white">PRS_Logo</span>
+
+				<div class="flex-container">
+					<div><a href="/">Home</a>
+					</div>
+					<div><a routerLinkActive="active " [routerLink]="['/prs/about']"  class="kt-link">About</a>
+					</div>
+					<div><a [routerLink]="['/prs/contact']" class="kt-link">Contact</a>
+					</div>
+				</div>
+
 			</mat-toolbar>
 			<div class="kt-portlet__head kt-portlet__head--lg">
 				<div class="kt-portlet__head-label">

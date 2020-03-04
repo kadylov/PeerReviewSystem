@@ -15,6 +15,7 @@ import {WorksDb} from "./fake-db/works";
 import {TagsComponent} from '../../../../../views/author/tag-selections/tags.component';
 import {TagTable} from '../../../../author/_server/tag.table';
 import {TagDb} from './fake-db/tags';
+import {ReviewHistoryDb} from './fake-db/reviewHistory';
 
 @Injectable()
 export class FakeApiService implements InMemoryDbService {
@@ -51,6 +52,8 @@ export class FakeApiService implements InMemoryDbService {
 			works: WorksDb.works,
 
 			tags: TagDb.tags,
+
+			reviewHistory: ReviewHistoryDb.history,
 		};
 		return db;
 	}

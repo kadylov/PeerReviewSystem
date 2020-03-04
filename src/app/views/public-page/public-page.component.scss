@@ -90,3 +90,19 @@ a.pulsingButton:hover {
 		box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);
 	}
 }
+
+.flex-container{
+	display: flex;
+	flex-direction: row;
+	margin-top: 150px;
+	margin-left: -55px;
+
+}
+
+.flex-container > div > a {
+	text-align: left;
+	font-size: 16px;
+	margin-right: 10px;
+
+	color:white;
+}
