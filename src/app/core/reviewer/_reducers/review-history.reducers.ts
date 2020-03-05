@@ -1,8 +1,5 @@
 import {ReviewHistory} from '../_models/review-history.model';
 import {ReviewHistoryActions, ReviewHistoryActionTypes} from '../_actions/review-history.actions';
-import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {Actions} from '@ngrx/effects';
-
 
 export interface ReviewHistoryState {
 	data: ReviewHistory[],
@@ -16,14 +13,6 @@ export const initialState: ReviewHistoryState = {
 	loaded: false,
 	loading: false
 };
-
-const getReviewHistoryFeatureState = createFeatureSelector<ReviewHistoryState>('reviewHistory1');
-
-export const getReviewHistoryData = createSelector(
-	getReviewHistoryFeatureState,
-	state => state.data
-);
-
 
 export function reviewHistoryReducer(
 	state: ReviewHistoryState = initialState,
@@ -53,3 +42,6 @@ export function reviewHistoryReducer(
 }
 
 
+export const getReviewHistoryData =  (state: ReviewHistoryState) => state.data;
+export const getReviewHistoryLoaded = (state: ReviewHistoryState) => state.loaded;
+export const getReviewHistoryLoading = (state: ReviewHistoryState) => state.loading;

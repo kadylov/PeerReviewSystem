@@ -13,7 +13,7 @@ import {
 	MatSelectModule, MatSliderModule
 } from '@angular/material';
 import { AuthorComponent } from './author.component';
-import { SubmissionFormComponent } from './submission-form/submission-form.component';
+import {SubmissionFormComponent} from './submission-form/submission-form.component';
 import { AuthNoticeComponent } from './auth-notice/auth-notice.component';
 import {NgbTabsetModule} from '@ng-bootstrap/ng-bootstrap';
 import {TagsComponent} from './tag-selections/tags.component';
@@ -79,7 +79,8 @@ const routes: Routes = [
 		AuthNoticeComponent,
 		TagsComponent,
 		FocusDirective,
-	]
+	],
+
 })
 
 export class AuthorModule {

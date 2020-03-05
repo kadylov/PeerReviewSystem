@@ -39,9 +39,9 @@ export class ReviewerMenuConfig {
 					bullet: 'dot',
 				},
 				{
-					title: 'Assignments', // <= Title of the page
+					title: 'Assignment History', // <= Title of the page
 					root: true,
-					page: '/reviewer/assignments', // <= URL
+					page: '/reviewer/assignment_history', // <= URL
 					icon: 'flaticon-line-graph' // <= Choose the icon class
 				},
 				{

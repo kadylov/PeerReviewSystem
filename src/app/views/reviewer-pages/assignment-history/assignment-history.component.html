@@ -1,5 +1,5 @@
 <kt-portlet [class]="'kt-portlet--height-fluid'">
-	<kt-portlet-header [title]="'Review History'">
+	<kt-portlet-header [title]="'Assignment History'">
 	</kt-portlet-header>
 	<kt-portlet-body>
 		<div perfectScrollbar [ngStyle]="{'max-height': '43vh', 'position': 'relative'}"
@@ -10,30 +10,38 @@
 				<!-- Work Id Column -->
 				<ng-container matColumnDef="id">
 					<th mat-header-cell *matHeaderCellDef mat-sort-header> id</th>
-					<td mat-cell *matCellDef="let row"> {{row.WID}}</td>
+					<td mat-cell *matCellDef="let row"> {{row.WorkID}}</td>
 				</ng-container>
-
-				<!--		displayedColumns = ['id', 'Title', 'DateReviewed', 'Score'];-->
 
 				<!-- Title -->
 				<ng-container matColumnDef="Title">
-
 					<th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
 					<td mat-cell *matCellDef="let row">
-						<a href="{{row.URL}}" target="_blank">{{row.WTitle}}</a>
+						{{row.Title}}
 					</td>
 				</ng-container>
 
-				<!--		Date Reviewed-->
-				<ng-container matColumnDef="DateReviewed">
-					<th mat-header-cell *matHeaderCellDef mat-sort-header> Date Reviewed</th>
-					<td mat-cell *matCellDef="let row"> <span style="margin-left: 6px">{{row.DateReviewed}}</span></td>
+				<!--		Date Assigned-->
+				<ng-container matColumnDef="DateAssigned">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header> Date Assigned</th>
+					<td mat-cell *matCellDef="let row">
+<!--						<span style="margin-left: 6px">-->
+<!--							{{row.DateAssigned}}-->
+<!--						</span>-->
+						{{row.DateAssigned}}
+					</td>
 				</ng-container>
 
-				<!--		Date Reviewed-->
-				<ng-container matColumnDef="Score">
-					<th mat-header-cell *matHeaderCellDef mat-sort-header> Score</th>
-					<td mat-cell *matCellDef="let row"> <span style="margin-left: 8px">{{row.Score}}</span></td>
+				<!--		Due Date-->
+				<ng-container matColumnDef="DueDate">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header> Due Date</th>
+					<td mat-cell *matCellDef="let row">
+<!--						<span style="margin-left: 6px">-->
+<!--							{{row.DueDate}}-->
+<!--						</span>-->
+						{{row.DueDate}}
+
+					</td>
 				</ng-container>
 
 				<!--		Actions-->

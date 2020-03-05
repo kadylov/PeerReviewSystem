@@ -3,13 +3,14 @@ import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild, View
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthNoticeService} from '../../../core/auth';
-import {Observable, of, Subject, Subscription} from 'rxjs';
+import {Observable, of, pipe, Subject, Subscription} from 'rxjs';
 import {TagModel} from '../../../core/author/_models/tag.model';
 import {TagService} from '../../../core/author/_services/tag.service';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 import {Work} from '../model/work';
 import {DatePipe} from '@angular/common';
 import {WorkService} from '../service/work.service';
+import {delay} from 'rxjs/operators';
 
 export class SelectedTag {
 	title: string;
@@ -125,30 +126,30 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 			])
 			],
 			date_written: ['', Validators.compose([
-				Validators.required,
+				// Validators.required,
 			]),
 			],
 			url: ['', Validators.compose([
-				Validators.required,
-				Validators.minLength(3),
-				Validators.maxLength(400)
+				// Validators.required,
+				// Validators.minLength(3),
+				// Validators.maxLength(400)
 			]),
 			],
 			author: ['', Validators.compose([
-				Validators.required,
-				Validators.minLength(3),
-				Validators.maxLength(100)
+				// Validators.required,
+				// Validators.minLength(3),
+				// Validators.maxLength(100)
 			])
 			],
 			email: ['', Validators.compose([
-				Validators.required,
-				Validators.email,
-				Validators.minLength(3),
-				Validators.maxLength(100)
+				// Validators.required,
+				// Validators.email,
+				// Validators.minLength(3),
+				// Validators.maxLength(100)
 			])
 			],
 			tag1: ['', Validators.compose([
-				Validators.required,
+				// Validators.required,
 			])
 			],
 			tag2: ['', Validators.compose([
@@ -215,21 +216,54 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 			}
 		}
 
-		// console.log(tags);
 
 		work.selectedTags = work.selectedTags.concat(tags);
-		console.log(work);
-
 		const message = 'Your Work has been submitted successfully!';
 
-		this.workService.submit(work).subscribe(
-			res=>{
-				this.loading = false;
-				this.snackBar.open(message, '', {duration: 4000});
-				this.router.navigateByUrl('/home');
 
+		this.displaySnackBar(message);
+		this.workService.submit(work).subscribe(
+			res => {
+				this.loading = false;
+				// this.snackBar.open(message, '', {duration: 4000});
+				this.resetForm();
+				this.router.navigateByUrl('/home');
 			}
 		);
+		this.displaySnackBar(message);
+
+	}
+
+	resetForm() {
+		this.registerForm.reset();
+		const controls = this.registerForm.controls;
+		for (const key in controls) {
+			this.registerForm.get(key).clearValidators();
+			this.registerForm.get(key).updateValueAndValidity();
+		}
+
+	}
+
+	displaySnackBar(message: string) {
+		// let x = document.getElementById('snackbar');
+		// x.className = 'show';
+		// setTimeout(function() {
+		// 	x.className = x.className.replace('show', '');
+		// }, 3000);
+
+		// this.snackBar.open("hellow","",{
+		// 	panelClass: 'snackbar1'
+		// })
+		let config = new MatSnackBarConfig();
+		config.duration=2000;
+		config.panelClass= ['snackbar1'];
+
+		this.snackBar.open(message,"",config);
+		// this.snackBar.open(message,"",{
+		// 	duration: 2000,
+		// 	panelClass: 'snackbar1',
+		// 	// verticalPosition:'top'
+		// })
 	}
 
 	/**
@@ -258,19 +292,6 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 			}
 		}
 
-
-		// // loop through the single selected array
-		// for (const index in this.singleSelected) {
-		// 	if (this.singleSelected[index] !== undefined) {
-		// 		this.singleSelected[index] = undefined;
-		//
-		// 	}
-		// }
-
-		// if (this.singleSelected['main'] !== undefined) {
-		// 	console.log('SSSS ', this.singleSelected['main']);
-		// 	this.singleSelected['main'] = undefined;
-		// }
 	}
 
 	removeFromSingleSelected(chip: any) {
@@ -334,3 +355,5 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 		}
 	}
 }
+
+

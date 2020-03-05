@@ -2,14 +2,12 @@ mat-select-trigger, mat-selected {
 	color: #646c9a;
 }
 
-mat-select{
+mat-select {
 	color: #646c9a;
 
 }
 
-
-
-.mat-select-value{
+.mat-select-value {
 	color: #646c9a;
 }
 
@@ -32,5 +30,97 @@ mat-chip-list, mat-chip {
 	width: 180px;
 	//padding-right: 12px;
 	//color: #646c9a;
+}
 
+
+// snackbar
+#snackbar {
+	visibility: hidden;
+
+	margin-left: -125px;
+	background-color: #5A29A9;
+	color: #fff;
+	width: 250px;
+	height: 100px;
+	border-radius: 2px;
+	padding: 16px;
+	padding-bottom: -10px;
+	position: fixed;
+	z-index: 1;
+	left: 50%;
+	bottom: 30px;
+	font-size: 17px;
+	text-align: center;
+	font-family: Poppins, Helvetica, sans-serif;
+
+}
+
+
+#snackbar.show {
+	visibility: visible;
+	-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+	animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+	from {
+		bottom: 0;
+		opacity: 0;
+	}
+	to {
+		bottom: 30px;
+		opacity: 1;
+	}
+}
+
+@keyframes fadein {
+	from {
+		bottom: 0;
+		opacity: 0;
+	}
+	to {
+		bottom: 30px;
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes fadeout {
+	from {
+		bottom: 30px;
+		opacity: 1;
+	}
+	to {
+		bottom: 0;
+		opacity: 0;
+	}
+}
+
+@keyframes fadeout {
+	from {
+		bottom: 30px;
+		opacity: 1;
+	}
+	to {
+		bottom: 0;
+		opacity: 0;
+	}
+}
+
+
+.snackbar1 {
+	height: 90px;
+	//margin-left: auto !important; // center align from left
+	//margin-right: auto !important; // center align from right
+	//margin-bottom: 1rem !important;
+	padding: 30px !important; // spacing between the text and boundary
+	background-color: #5A29A9;
+	justify-content: center;
+	color: #ffffff;
+	font-size: 2rem;
+	font-weight: 500;
+	font-family: inherit;
+	text-align: center;
+	.mat-button-wrapper {
+		color: black !important; // action text color
+	}
 }

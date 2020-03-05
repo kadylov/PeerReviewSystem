@@ -7,7 +7,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {PartialsModule} from '../partials/partials.module';
 // Pages
 import {CoreModule} from '../../core/core.module';
-import {AssignedWorkComponent} from './assigned-work/assigned-work.component';
+import {AssignmentHistoryComponent} from './assignment-history/assignment-history.component';
 import {RouterModule, Routes} from '@angular/router';
 import {ReviewHistoryComponent} from './review-history/review-history.component';
 import {ReviewerBaseComponent} from '../theme/reviewer-base/reviewer-base.component';
@@ -21,6 +21,9 @@ import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {ReviewHistoryEffects} from '../../core/reviewer/_effects/review-history.effects';
 import {reviewHistoryReducer} from '../../core/reviewer/_reducers/review-history.reducers';
+import {reducers} from '../../core/reviewer/_reducers';
+import {AssignmentEffects} from '../../core/reviewer/_effects/assignment.effects';
+import {AssignmentComponent} from './assignment/assignment.component';
 
 
 const routes: Routes = [
@@ -38,12 +41,17 @@ const routes: Routes = [
 				component: R_DashboardComponent,
 			},
 			{
-				path: 'assignments',
-				component: AssignedWorkComponent,
+				path: 'assignment_history',
+				component: AssignmentHistoryComponent,
 			},
 			{
 				path: 'reviews',
 				component: ReviewHistoryComponent,
+			},
+
+			{
+				path: 'assignment',
+				component: AssignmentComponent,
 			},
 
 		]
@@ -52,9 +60,10 @@ const routes: Routes = [
 
 @NgModule({
 	declarations: [
-		AssignedWorkComponent,
+		AssignmentHistoryComponent,
 		ReviewHistoryComponent,
-		R_DashboardComponent
+		R_DashboardComponent,
+		AssignmentComponent
 	],
 	exports: [],
 	imports: [
@@ -71,9 +80,9 @@ const routes: Routes = [
 		MatSortModule,
 		MatPaginatorModule,
 
-		StoreModule.forFeature('reviewHist1',reviewHistoryReducer
+		StoreModule.forFeature('reviewer',reducers
 		),
-		EffectsModule.forFeature([ReviewHistoryEffects]),
+		EffectsModule.forFeature([ReviewHistoryEffects, AssignmentEffects]),
 	],
 
 	providers: [

@@ -1,18 +1,18 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {ReviewHistory} from '../../../core/reviewer/_models/review-history.model';
 import {ReviewerService} from '../../../core/reviewer/_services/reviewer.service';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {select, Store} from '@ngrx/store';
-import {AppState} from '../../../core/reviewer/_models/app-state.model';
 import {ReviewHistoryRequested} from '../../../core/reviewer/_actions/review-history.actions';
+import * as fromReviewer from '../../../core/reviewer/_reducers/';
 
 @Component({
 	selector: 'kt-review-history',
 	templateUrl: './review-history.component.html',
 	styleUrls: ['./review-history.component.scss']
 })
-export class ReviewHistoryComponent implements OnInit {
+export class ReviewHistoryComponent implements OnInit, OnDestroy {
 
 	dataSource: MatTableDataSource<ReviewHistory>;
 	displayedColumns = ['id', 'Title', 'DateReviewed', 'Score', 'Action'];
@@ -20,26 +20,22 @@ export class ReviewHistoryComponent implements OnInit {
 	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 	@ViewChild(MatSort, {static: true}) sort: MatSort;
 
-
-	reviewHistory$: Observable<any>;
-
-	// reviewHistory: ReviewHistory[];
+	// Subscriptions
+	private subscriptions: Subscription[] = [];
 
 	constructor(
-		private reviewerService: ReviewerService,
-		private store: Store<AppState>
+		private store: Store<fromReviewer.ReviewerState>////////////////////////////////////////////////
 	) {
 		this.dataSource = new MatTableDataSource<ReviewHistory>();
 	}
 
 	ngOnInit() {
-		this.dataSource.paginator = this.paginator;
-		this.dataSource.sort = this.sort;
-
-
 		this.store.dispatch(new ReviewHistoryRequested());
-
 		this.loadItems();
+	}
+
+	ngOnDestroy(): void {
+		this.subscriptions.forEach(sub => sub.unsubscribe());
 	}
 
 
@@ -53,7 +49,19 @@ export class ReviewHistoryComponent implements OnInit {
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
 
-		this.reviewHistory$ = this.store.select('reviewHist1');
+
+		this.store.select(fromReviewer.getAllHistoryLoaded).subscribe(isLoaded => {
+			if (isLoaded) {
+				let subc$ = this.store.select(fromReviewer.getAllHistory)
+				.subscribe(res => {
+					this.dataSource.data = res;
+					// console.log(res);
+				});
+
+				this.subscriptions.push(subc$);
+			}
+		});
+
 
 
 		// this.reviewHistory$=this.store.pipe(select('reviewHistory1'));

@@ -24,20 +24,14 @@ export class R_DashboardComponent implements OnInit {
 	}
 
 
-	public testvar=[];
+	public testvar = [];
+
 	test() {
 
-		this.histservice.getAllReviews()
-			.subscribe(res=>{
-				this.testvar=res;
+		this.histservice.getCurrentAssignment(1)
+			.subscribe(res => {
+					this.testvar = res;
 				}
-
-
-
-		// res => {
-		// 	console.log(res);
-		// };
-	)
-		;
+			);
 	}
 }

@@ -11,7 +11,6 @@ export class ReviewHistoryRequested implements Action {
 	readonly type = ReviewHistoryActionTypes.ReviewHistoryRequested;
 }
 
-
 export class ReviewHistoryLoaded implements Action {
 	readonly type = ReviewHistoryActionTypes.ReviewHistoryLoaded;
 
