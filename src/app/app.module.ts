@@ -5,7 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-	GestureConfig,
+	GestureConfig, MAT_SNACK_BAR_DEFAULT_OPTIONS,
 	MatCardModule,
 	MatCheckboxModule,
 	MatFormFieldModule, MatInputModule,
@@ -72,7 +72,6 @@ import * as scss from 'highlight.js/lib/languages/scss';
 import * as xml from 'highlight.js/lib/languages/xml';
 import * as json from 'highlight.js/lib/languages/json';
 import {ReactiveFormsModule} from '@angular/forms';
-import {DeleteEntityDialogComponent} from './views/partials/content/crud';
 
 
 
@@ -105,8 +104,8 @@ export function hljsLanguages(): HighlightLanguage[] {
 @NgModule({
 	declarations: [
 		AppComponent,
-
 	],
+
 	imports: [
 		BrowserAnimationsModule,
 		BrowserModule,
@@ -139,7 +138,6 @@ export function hljsLanguages(): HighlightLanguage[] {
 		MatInputModule,
 
 		// PublicPageModule ////////////////
-
 	],
 	exports: [
 	],
@@ -151,8 +149,6 @@ export function hljsLanguages(): HighlightLanguage[] {
 		PageConfigService,
 		KtDialogService,
 		DataTableService,
-
-
 		DataTableWorkService,
 
 		{
@@ -173,6 +169,19 @@ export function hljsLanguages(): HighlightLanguage[] {
 			provide: HIGHLIGHT_OPTIONS,
 			useValue: {languages: hljsLanguages}
 		},
+
+		// // snackbar
+		// {
+		// 	provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+		// 	useValue: {
+		// 		duration: 41000,
+		// 		horizontalPosition: 'center',
+		// 		verticalPosition: 'bottom',
+		// 		panelClass: 'snackBarInfo'
+		// 	}
+		// },
+
+
 		// template services
 		// SubheaderService,
 		// MenuHorizontalService,

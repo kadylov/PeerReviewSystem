@@ -2,17 +2,17 @@ export class ReviewerPageConfig {
 	public defaults: any = {
 		dashboard: {
 			page: {
-				'title': 'Dashboard2',
+				'title': 'Dashboard',
 				'desc': 'Latest updates and statistic charts'
 			},
 		},
 		header: {
 			actions: {
-				page: {title: 'Actions2', desc: 'Actions example page'}
+				page: {title: 'Actions', desc: 'Actions example page'}
 			}
 		},
 		profile: {
-			page: {title: 'User Profile2', desc: ''}
+			page: {title: 'User Profile', desc: ''}
 		},
 		error: {
 			404: {

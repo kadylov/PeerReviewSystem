@@ -8,11 +8,10 @@ import {WorkService} from '../../../author/service/work.service';
 import {IncomingWorkService} from './incoming-work.service';
 import {MatSnackBar} from '@angular/material';
 import {Router} from '@angular/router';
-import {DatePipe} from '@angular/common';
+
 
 
 @Component({
-	providers: [DatePipe],
   selector: 'kt-incoming-work',
   templateUrl: './incoming-work.component.html',
   styleUrls: ['./incoming-work.component.scss']
@@ -34,7 +33,7 @@ export class IncomingWorkComponent implements OnInit {
 	  private fb: FormBuilder,
 	  private snackBar: MatSnackBar,
 	  private router: Router,
-	  private datePipe: DatePipe,
+
 	  private incomingWorkService: IncomingWorkService
   ) { }
 
@@ -84,9 +83,9 @@ export class IncomingWorkComponent implements OnInit {
 
 
 		let adminReview: IncomingWorkModel = new IncomingWorkModel();
-		adminReview.AdminID = "0";
-		adminReview.WorkID = "4";
-		adminReview.DateReviewed = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+		adminReview.AdminID = 0;
+		adminReview.WorkID = 27;
+		adminReview.DateReviewed = "2020-03-10";
 		adminReview.Decision = "rejected";
 		adminReview.RejectNote = "Poor grammars";
 
@@ -101,7 +100,7 @@ export class IncomingWorkComponent implements OnInit {
 			res=>{
 
 				this.snackBar.open(message, '', {duration: 4000});
-				this.router.navigateByUrl('/home');
+				this.router.navigateByUrl('/dashboard');
 
 			}
 		);

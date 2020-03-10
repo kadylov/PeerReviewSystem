@@ -1,6 +1,6 @@
 export class IncomingWorkModel {
-	AdminID: string;
-	WorkID: string;
+	AdminID: number;
+	WorkID: number;
 	DateReviewed: string;
 	Decision: string;
 	RejectNote: string;

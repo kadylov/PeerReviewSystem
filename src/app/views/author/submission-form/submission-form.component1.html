@@ -28,10 +28,11 @@
 			<div class="form-group">
 				<mat-form-field>
 					<mat-label>Date Written</mat-label>
-					<input matInput [matDatepicker]="dp3" [min]="minDate" [max]="maxDate" placeholder="MM/dd/YYYY" (focus)="dp3.open()"
+					<input matInput [matDatepicker]="dp3" [min]="minDate" [max]="maxDate" placeholder="MM/dd/YYYY"
+						   (focus)="dp3.open()"
 						   formControlName="date_written"
 						   disabled>
-					<mat-datepicker-toggle matSuffix [for]="dp3"   >
+					<mat-datepicker-toggle matSuffix [for]="dp3">
 						<mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
 					</mat-datepicker-toggle>
 					<mat-datepicker #dp3 disabled="false"></mat-datepicker>
@@ -191,6 +192,20 @@
 	</div>
 
 </div>
+
+<div class="form-group">
+	<div id="snackbar">
+<!--		<div class="center">-->
+<!--			Your Work has been submitted successfully!-->
+<!--		</div>-->
+		Your Work has been submitted successfully!
+
+	</div>
+<!--	<button type="button" class="btn btn-primary" (click)="displaySnackBar('Your Work has been submitted successfully!')">Click</button>-->
+
+</div>
+
+
 
 <ng-template #loadingMessage>
 	<p class="text-center">Loading...</p>

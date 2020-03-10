@@ -2,7 +2,7 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
 
 @Component({
-	selector: 'kt-portlet-body',
+	selector: '	kt-portlet-body',
 	template: `
 		<ng-content></ng-content>`
 })
