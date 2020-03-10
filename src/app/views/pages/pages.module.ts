@@ -1,7 +1,7 @@
 // Angular
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 // Partials
 import { PartialsModule } from '../partials/partials.module';
@@ -112,7 +112,8 @@ const routes:Routes=[
         MatRadioModule,
         MatFormFieldModule,
         ThemeModule,
-        MatSliderModule
+        MatSliderModule,
+        ReactiveFormsModule
     ],
 	providers: []
 })
