@@ -255,10 +255,10 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 		// 	panelClass: 'snackbar1'
 		// })
 		let config = new MatSnackBarConfig();
-		config.duration=2000;
-		config.panelClass= ['snackbar1'];
+		config.duration = 5000;
+		config.panelClass = ['snackbar1'];
 
-		this.snackBar.open(message,"",config);
+		this.snackBar.open(message, '', config);
 		// this.snackBar.open(message,"",{
 		// 	duration: 2000,
 		// 	panelClass: 'snackbar1',

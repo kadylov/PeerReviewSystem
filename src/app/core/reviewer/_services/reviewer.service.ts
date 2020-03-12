@@ -5,9 +5,11 @@ import {User1} from '../../auth/_models/user1.model';
 import {catchError, map} from 'rxjs/operators';
 import {ReviewHistory} from '../_models/review-history.model';
 import {Assignment} from '../_models/assignment.model';
+import {DataTableWorkModel} from '../../_base/layout';
 
 
 const API_REVIEWER_URL = 'http://3.95.8.94/example/reviewer_request.php';
+const API_REVIEWER_URL2 = 'http://3.95.8.94/example/admin_request.php';
 const headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
 
 @Injectable()
@@ -42,7 +44,7 @@ export class ReviewerService {
 		});
 	}
 
-	getAssignmentHistory(reviewerID: number): Observable<any>{
+	getAssignmentHistory(reviewerID: number): Observable<any> {
 		return this.http.get<Assignment[]>(API_REVIEWER_URL, {
 			params: {
 				assignmentHistory: 'assignmentHistory',

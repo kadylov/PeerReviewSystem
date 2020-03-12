@@ -35,6 +35,8 @@ export class ReviewerBaseComponent implements OnInit, OnDestroy {
 	fitTop: boolean;
 	fluid: boolean;
 
+	modal = true;
+
 	// Private properties
 	private unsubscribe: Subscription[] = []; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
 	private currentUserPermissions$: Observable<Permission[]>;

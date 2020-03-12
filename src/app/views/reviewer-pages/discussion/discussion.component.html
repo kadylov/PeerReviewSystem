@@ -1,0 +1,452 @@
+<!--
+<div class="kt-section" >
+	<div class="kt-section__content" >
+
+
+<ng-template
+	#content5 let-c="close" let-d="dismiss">
+
+	<div class="modal-header">
+		<span class="title"><h4>DISCUSSION</h4></span>
+		<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	<div class="modal-body">
+							<div class="chat">
+								<div class="chat-content clearfix">
+		           							 <span class="friend last">
+												  Hi, How are You?
+												  <span class="time">
+													7:30 PM
+												  </span>
+		           							 </span>
+									<span class="you first">
+											  Hi, I am fine.
+											  How about you?
+												  <span class="time">
+													7:31 PM
+												  </span>
+											</span>
+									<span class="you last">
+												  lets meet,
+												  this sunday!
+												  <span class="time">
+													7:31 PM
+												  </span>
+											</span>
+									<span class="friend last">
+												  Hi, How are You?
+												  <span class="time">
+													7:30 PM
+												  </span>
+		           							 </span>
+									<span class="you first">
+											  Hi, I am fine.
+											  How about you?
+												  <span class="time">
+													7:31 PM
+												  </span>
+											</span>
+									<span class="you last">
+												  lets meet,
+												  this sunday!
+												  <span class="time">
+													7:31 PM
+												  </span>
+											</span>
+									<span class="friend last">
+												  Hi, How are You?
+												  <span class="time">
+													7:30 PM
+												  </span>
+		           							 </span>
+									<span class="you first">
+											  Hi, I am fine.
+											  How about you?
+												  <span class="time">
+													7:31 PM
+												  </span>
+											</span>
+									<span class="you last">
+												  lets meet,
+												  this sunday!
+												  <span class="time">
+													7:31 PM
+												  </span>
+											</span>
+									<span class="friend last">
+												  Hi, How are You?
+												  <span class="time">
+													7:30 PM
+												  </span>
+		           							 </span>
+									<span class="you first">
+											  Hi, I am fine.
+											  How about you?
+												  <span class="time">
+													7:31 PM
+												  </span>
+											</span>
+									<span class="you last">
+												  lets meet,
+												  this sunday!
+												  <span class="time">
+													7:31 PM
+												  </span>
+											</span>
+									<span class="friend last">
+												  Hi, How are You?
+												  <span class="time">
+													7:30 PM
+												  </span>
+		           							 </span>
+									<span class="you first">
+											  Hi, I am fine.
+											  How about you?
+												  <span class="time">
+													7:31 PM
+												  </span>
+											</span>
+									<span class="you last">
+												  lets meet,
+												  this sunday!
+												  <span class="time">
+													7:31 PM
+												  </span>
+											</span>
+									<span class="friend last">
+												  Hi, How are You?
+												  <span class="time">
+													7:30 PM
+												  </span>
+		           							 </span>
+									<span class="you first">
+											  Hi, I am fine.
+											  How about you?
+												  <span class="time">
+													7:31 PM
+												  </span>
+											</span>
+									<span class="you last">
+												  lets meet,
+												  this sunday!
+												  <span class="time">
+													7:31 PM
+												  </span>
+											</span>
+								</div>
+
+							</div>
+	</div>
+
+	<div class="modal-footer msg-box">
+						<div class="msg-box">
+							<input type="text" class="ip-msg" placeholder="type something.."/>
+							<span class="btn-group">
+													  <i class="fa fa-paper-plane"></i>
+									</span>
+						</div>
+		<input type="text" class="ip-msg" placeholder="type something.."/>
+		<span class="btn-group">
+											  <i class="fa fa-paper-plane"></i>
+							</span>
+	</div>
+
+	&lt;!&ndash;			<div class="head clearfix">&ndash;&gt;
+	&lt;!&ndash;				<h4 class="modal-title title">Messenger</h4>&ndash;&gt;
+	&lt;!&ndash;				<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">&ndash;&gt;
+	&lt;!&ndash;					<span aria-hidden="true">&times;</span>&ndash;&gt;
+	&lt;!&ndash;				</button>&ndash;&gt;
+	&lt;!&ndash;			</div>&ndash;&gt;
+
+	&lt;!&ndash;				<div class="app">&ndash;&gt;
+	&lt;!&ndash;					<div class="head clearfix">&ndash;&gt;
+
+	&lt;!&ndash;						<span class="title">Messenger</span>&ndash;&gt;
+
+	&lt;!&ndash;					</div>&ndash;&gt;
+	&lt;!&ndash;				</div>&ndash;&gt;
+
+
+</ng-template>
+
+
+
+<span style="margin-right: 55px">
+			<button mat-fab (click)="open(content5)">
+			&lt;!&ndash;			<mat-icon style="height: 7px;width:7px; !important; transform: scale(1)">chat</mat-icon>&ndash;&gt;
+			<mat-icon svgIcon="chat1"></mat-icon>
+		</button>
+		</span>
+
+
+	</div>
+</div>
+-->
+
+
+<div class="backdrop"></div>
+
+<div class="modal1">
+
+
+	<nav id="navbar-example2" class="navbar1 navbar">
+		<h1>{{ title }}</h1>
+
+		<button type="button" class="close" aria-label="Close" (click)="close.emit()">
+			<span style="color: white" aria-hidden="true">&times;</span>
+		</button>
+	</nav>
+
+	<div class="container-fluids messages">
+
+		<div class="container ">
+			<div class="media">
+				<div class="media-left">
+					<img src="https://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object"
+						 style="width:60px">
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">John Doe <small><i>Posted on February 19, 2016</i></small></h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+						labore et dolore magna aliqua.
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto dicta fugit impedit maxime
+						necessitatibus perspiciatis quae quod rerum sit tempore! Autem blanditiis doloribus fugit nulla
+						obcaecati quae quos. Aliquid autem consequuntur fuga iste pariatur tempore ullam vel vitae.
+						Eveniet necessitatibus quisquam sapiente vero voluptatibus.</p>
+				</div>
+			</div>
+			<hr>
+		</div>
+
+		<div class="container">
+
+			<div class="media">
+				<div class="media-left">
+					<img src="https://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object"
+						 style="width:60px">
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">John Doe <small><i>Posted on February 19, 2016</i></small></h4>
+
+					<div class="msg-box">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+							labore et dolore magna aliqua.</p>
+
+					</div>
+				</div>
+			</div>
+			<hr>
+		</div>
+
+		<div class="container">
+
+			<div class="media">
+				<div class="media-left">
+					<img src="https://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object"
+						 style="width:60px">
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">John Doe <small><i>Posted on February 19, 2016</i></small></h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+						labore et dolore magna aliqua.</p>
+				</div>
+			</div>
+			<hr>
+		</div>
+		<div class="container">
+
+			<div class="media">
+				<div class="media-left">
+					<img src="https://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object"
+						 style="width:60px">
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">John Doe <small><i>Posted on February 19, 2016</i></small></h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+						labore et dolore magna aliqua.
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto dicta fugit impedit maxime
+						necessitatibus perspiciatis quae quod rerum sit tempore! Autem blanditiis doloribus fugit nulla
+						obcaecati quae quos. Aliquid autem consequuntur fuga iste pariatur tempore ullam vel vitae.
+						Eveniet necessitatibus quisquam sapiente vero voluptatibus.</p>
+				</div>
+			</div>
+			<hr>
+		</div>
+
+		<div class="container">
+
+			<div class="media">
+				<div class="media-left">
+					<img src="https://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object"
+						 style="width:60px">
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">John Doe <small><i>Posted on February 19, 2016</i></small></h4>
+
+					<div class="msg-box">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+							labore et dolore magna aliqua.</p>
+
+					</div>
+				</div>
+			</div>
+			<hr>
+		</div>
+
+		<div class="container">
+
+			<div class="media">
+				<div class="media-left">
+					<img src="https://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object"
+						 style="width:60px">
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">John Doe <small><i>Posted on February 19, 2016</i></small></h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+						labore et dolore magna aliqua.</p>
+				</div>
+			</div>
+			<hr>
+		</div>
+		<div class="container">
+
+			<div class="media">
+				<div class="media-left">
+					<img src="https://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object"
+						 style="width:60px">
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">John Doe <small><i>Posted on February 19, 2016</i></small></h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+						labore et dolore magna aliqua.
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto dicta fugit impedit maxime
+						necessitatibus perspiciatis quae quod rerum sit tempore! Autem blanditiis doloribus fugit nulla
+						obcaecati quae quos. Aliquid autem consequuntur fuga iste pariatur tempore ullam vel vitae.
+						Eveniet necessitatibus quisquam sapiente vero voluptatibus.</p>
+				</div>
+			</div>
+			<hr>
+		</div>
+
+		<div class="container">
+
+			<div class="media">
+				<div class="media-left">
+					<img src="https://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object"
+						 style="width:60px">
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">John Doe <small><i>Posted on February 19, 2016</i></small></h4>
+
+					<div class="msg-box">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+							labore et dolore magna aliqua.</p>
+
+					</div>
+				</div>
+			</div>
+			<hr>
+		</div>
+
+		<div class="container">
+
+			<div class="media">
+				<div class="media-left">
+					<img src="https://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object"
+						 style="width:60px">
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">John Doe <small><i>Posted on February 19, 2016</i></small></h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+						labore et dolore magna aliqua.</p>
+				</div>
+			</div>
+			<hr>
+		</div>
+		<div class="container">
+
+
+			<div class="media">
+				<div class="media-left">
+					<img src="https://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object"
+						 style="width:60px">
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">John Doe <small><i>Posted on February 19, 2016</i></small></h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+						labore et dolore magna aliqua.
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto dicta fugit impedit maxime
+						necessitatibus perspiciatis quae quod rerum sit tempore! Autem blanditiis doloribus fugit nulla
+						obcaecati quae quos. Aliquid autem consequuntur fuga iste pariatur tempore ullam vel vitae.
+						Eveniet necessitatibus quisquam sapiente vero voluptatibus.</p>
+				</div>
+			</div>
+			<hr>
+		</div>
+
+		<div class="container">
+
+
+			<div class="media">
+				<div class="media-left">
+					<img src="https://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object"
+						 style="width:60px">
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">John Doe <small><i>Posted on February 19, 2016</i></small></h4>
+
+					<div class="msg-box">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+							labore et dolore magna aliqua.</p>
+
+					</div>
+				</div>
+			</div>
+			<hr>
+		</div>
+
+		<div class="container">
+
+
+			<div class="media">
+				<div class="media-left">
+					<img src="https://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object"
+						 style="width:60px">
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">John Doe <small><i>Posted on February 19, 2016</i></small></h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+						labore et dolore magna aliqua.</p>
+				</div>
+			</div>
+			<hr>
+		</div>
+	</div>
+
+
+	<div class="msg-footer">
+
+		<div style="
+		padding: 8px;
+		border-bottom-right-radius: 4px;
+  		border-bottom-left-radius: 43px;
+    	margin: 9px 6px;">
+
+			<div class="inputWithIcon">
+				<input type="text" placeholder="Write a message...">
+				<i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i>
+			</div>
+		</div>
+
+	</div>
+	<!--	<button class="btn" (click)="close.emit()">Close</button>-->
+</div>
+
+
+
+
+
+

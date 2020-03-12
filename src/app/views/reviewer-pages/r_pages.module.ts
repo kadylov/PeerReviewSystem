@@ -14,16 +14,17 @@ import {ReviewerBaseComponent} from '../theme/reviewer-base/reviewer-base.compon
 import {R_DashboardComponent} from './dashboard/r_dashboard.component';
 import {ThemeModule} from '../theme/theme.module';
 import {ReviewerService} from '../../core/reviewer/_services/reviewer.service';
-import {MatInputModule, MatPaginatorModule, MatSortModule, MatTableModule} from '@angular/material';
+import {MatButtonModule, MatIconModule, MatInputModule, MatPaginatorModule, MatSortModule, MatTableModule} from '@angular/material';
 import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {StoreModule} from '@ngrx/store';
 
 import {EffectsModule} from '@ngrx/effects';
 import {ReviewHistoryEffects} from '../../core/reviewer/_effects/review-history.effects';
-import {reviewHistoryReducer} from '../../core/reviewer/_reducers/review-history.reducers';
 import {reducers} from '../../core/reviewer/_reducers';
 import {AssignmentEffects} from '../../core/reviewer/_effects/assignment.effects';
 import {AssignmentComponent} from './assignment/assignment.component';
+import {NgbModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {DiscussionComponent} from './discussion/discussion.component';
 
 
 const routes: Routes = [
@@ -63,9 +64,14 @@ const routes: Routes = [
 		AssignmentHistoryComponent,
 		ReviewHistoryComponent,
 		R_DashboardComponent,
-		AssignmentComponent
+		AssignmentComponent,
+		DiscussionComponent,
 	],
-	exports: [],
+
+
+	exports: [
+		// DiscussionComponent
+	],
 	imports: [
 		CommonModule,
 		RouterModule.forChild(routes),  //////
@@ -79,14 +85,19 @@ const routes: Routes = [
 		MatTableModule,
 		MatSortModule,
 		MatPaginatorModule,
+		NgbModule,
 
-		StoreModule.forFeature('reviewer',reducers
+
+		StoreModule.forFeature('reviewer', reducers
 		),
 		EffectsModule.forFeature([ReviewHistoryEffects, AssignmentEffects]),
+		MatButtonModule,
+		MatIconModule,
 	],
 
 	providers: [
-		ReviewerService
+		ReviewerService,
+		NgbModal
 
 	]
 })

@@ -1,14 +1,31 @@
 <div class="row">
-	<div class="col-xl-12">
-<!--			<kt-review-history></kt-review-history>-->
+	<div class="col-xl-12 dash-container">
+		<div class="">
+			<kt-assigned-work></kt-assigned-work>
+
+		</div>
+		<div class="dbox discusion">
+			<kt-discussion
+				*ngIf="modal"
+				(close)="modal=false"
+			></kt-discussion>
+		</div>
 
 
-<!--			<div class="form-group">-->
-<!--				<button class="btn btn-primary" (click)="test()">Click</button>-->
+	</div>
 
-<!--				<span>{{testvar | json}}</span>-->
-<!--			</div>-->
-		<kt-assigned-work></kt-assigned-work>
+	<!--		<kt-assigned-work ></kt-assigned-work>-->
+
+
+	<!--	<div class="row">-->
+	<!--		<div class="col-xl-12">-->
+	<!--		</div>-->
+
+	<!--			<button type="button" class="btn btn-primary" (click)="test()">Click</button>-->
+
+	<div class="row">
+
+		<button type="button" class="btn btn-primary" (click)="modal=!modal">Open1</button>
 	</div>
 </div>
 

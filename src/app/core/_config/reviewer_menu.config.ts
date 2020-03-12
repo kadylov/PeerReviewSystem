@@ -4,18 +4,17 @@ export class ReviewerMenuConfig {
 			self: {},
 			items: [
 				{
-					title: 'Dashboards',
+					title: 'Current Assignments',
 					root: true,
 					alignment: 'left',
 					page: '/reviewer/dashboard',
-					translate: 'MENU.DASHBOARD',
 				},
 
 				{
-					title: 'Assignments',
+					title: 'Assignment History',
 					root: true,
 					alignment: 'left',
-					page: '/reviewer/assignments',
+					page: '/reviewer/assignment_history',
 				},
 
 				{
@@ -23,7 +22,6 @@ export class ReviewerMenuConfig {
 					root: true,
 					alignment: 'left',
 					page: '/reviewer/reviews',
-					translate: 'MENU.DASHBOARD',
 				},
 			]
 		},

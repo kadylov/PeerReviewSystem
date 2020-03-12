@@ -12,7 +12,6 @@ import {User1} from '../../../core/auth/_models/user1.model';
 @Component({
 	selector: 'kt-assigned-work',
 	templateUrl: './assignment.component.html',
-	styleUrls: ['../assignment-history/assignment-history.component.scss']
 })
 export class AssignmentComponent implements OnInit, OnDestroy{
 

@@ -20,30 +20,50 @@
 				<!-- end:: Header -->
 
 				<!-- begin:: Content -->
-				<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content" [ngClass]="{'kt-content--fit-top': fitTop}">
+				<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content"
+					 [ngClass]="{'kt-content--fit-top': fitTop}">
 					<!-- begin:: Content Head -->
 					<kt-subheader *ngIf="subheaderDisplay"></kt-subheader>
 					<!-- end:: Content Head -->
 
+
+
 					<!-- begin:: Content Body -->
-					<div ktContentAnimate class="kt-container kt-grid__item kt-grid__item--fluid" [ngClass]="{'kt-container--fluid': fluid}">
+					<div ktContentAnimate class="kt-container kt-grid__item kt-grid__item--fluid"
+						 [ngClass]="{'kt-container--fluid': fluid}">
 						<router-outlet></router-outlet>
 					</div>
+
+<!--					<kt-discussion-->
+
+<!--						*ngIf="modal"-->
+<!--						(close)="modal=false"-->
+<!--					></kt-discussion>-->
+
 					<!-- end:: Content Body -->
 				</div>
 				<!-- end:: Content -->
 
-<!--				<kt-footer></kt-footer>-->
+				<!--				<kt-footer></kt-footer>-->
 			</div>
 		</div>
 		<!-- end:: Body -->
 
-		<kt-quick-panel></kt-quick-panel>
+		<!--		<kt-quick-panel></kt-quick-panel>-->
 		<kt-scroll-top></kt-scroll-top>
 		<kt-sticky-toolbar></kt-sticky-toolbar>
+
+		<div class="fab_btn">
+			<button type="button" class="btn btn-primary" (click)="modal">Open</button>
+		</div>
+
+
 	</div>
 </ng-container>
 <!-- end:: Page -->
+
+
+
 
 <ng-template #blankLayout>
 	<router-outlet></router-outlet>

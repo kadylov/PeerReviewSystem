@@ -162,8 +162,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 				res => {
 
 					this.user = res;
-					console.log('User login ', this.user = res);
-
 					if (this.user.isActive == 0) {
 						this.authNoticeService.setNotice('Error, you account has been deactivated', 'danger');
 						return;

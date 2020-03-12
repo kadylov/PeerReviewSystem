@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 // Angular Material
-import { MatButtonModule, MatProgressBarModule, MatTabsModule, MatTooltipModule } from '@angular/material';
+import {MatButtonModule, MatIconModule, MatProgressBarModule, MatTabsModule, MatTooltipModule} from '@angular/material';
 // NgBootstrap
 import { NgbProgressbarModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 // Translation
@@ -32,14 +32,13 @@ import { TopbarComponent } from './header/topbar/topbar.component';
 import { MenuHorizontalComponent } from './header/menu-horizontal/menu-horizontal.component';
 import { PartialsModule } from '../partials/partials.module';
 import { BaseComponent } from './base/base.component';
-// import { PagesModule } from '../pages/pages.module';
 import { HtmlClassService } from './html-class.service';
 import { HeaderMobileComponent } from './header/header-mobile/header-mobile.component';
 import { ErrorPageComponent } from './content/error-page/error-page.component';
 import { PermissionEffects, permissionsReducer, RoleEffects, rolesReducer } from '../../core/auth';
 import { ReviewerBaseComponent } from './reviewer-base/reviewer-base.component';
 import {MenuAsideService, MenuHorizontalService, SubheaderService} from '../../core/_base/layout';
-// import {ReviewerPagesModule} from '../reviewer-pages/r_pages.module';
+import {ReviewerPagesModule} from '../reviewer-pages/r_pages.module';
 
 @NgModule({
 	declarations: [
@@ -122,6 +121,7 @@ import {MenuAsideService, MenuHorizontalService, SubheaderService} from '../../c
 		// ng-bootstrap modules
 		NgbProgressbarModule,
 		NgbTooltipModule,
+		MatIconModule,
 	]
 })
 export class ThemeModule {
