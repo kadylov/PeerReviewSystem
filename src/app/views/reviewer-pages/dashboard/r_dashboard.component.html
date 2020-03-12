@@ -1,8 +1,9 @@
 <div class="row">
 	<div class="col-xl-12 dash-container">
 			<kt-assigned-work></kt-assigned-work>
-		<div class="discusion">
+		<div class="discusion" #scrollMe2 [scrollTop]="scrollMe2.scrollHeight">
 			<kt-discussion
+
 				*ngIf="modal"
 				(close)="modal=false"
 			></kt-discussion>

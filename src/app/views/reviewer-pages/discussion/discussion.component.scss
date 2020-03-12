@@ -228,17 +228,20 @@ div.msg-box span.btn-group i {
 	border-radius: 10px;
 	display: flex;
 	flex-direction: column;
+	margin-bottom: 35px;
+	top: -40px;
 }
 
 .container-fluids{
 	overflow: auto;
+	margin-bottom: -12px;
 }
 
 .navbar1 {
 	background: #271c5d;
 	color: #fff;
-	margin-bottom: 30px;
-	height: 88px;
+	margin-bottom: 20px;
+	height: 70px;
 	border-radius: 10px 10px 0 0;
 
 
@@ -270,19 +273,18 @@ div.msg-box span.btn-group i {
 
 	.grid-main{
 		box-sizing: border-box;
-		margin-top: 22px;
+		margin-top: 18px;
 	}
 
 	.grid-title{
-		width: 90%;
+		width: 92%;
 		float: left;
 		text-align: center;
 	}
 	.grid-btn{
 		float: right;
-		padding-bottom: 40px;
-		margin-right: 27px;
-		margin-top: 11px;
+		margin-right: 20px;
+		margin-top: 13px;
 	}
 	i{
 		color:white;
@@ -310,7 +312,7 @@ div.msg-box span.btn-group i {
 	margin-left: 10px;
 }
 
-msg-footer{
+.msg-footer{
 	background: #F1F1F1;
 	position: absolute;
 	bottom: 0;
