@@ -13,6 +13,8 @@ import {ReviewHistory} from '../../../core/reviewer/_models/review-history.model
 import {map} from 'rxjs/operators';
 import {pipe} from 'rxjs';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {MatIconRegistry} from '@angular/material';
+import {DomSanitizer} from '@angular/platform-browser';
 
 
 @Component({
@@ -29,7 +31,13 @@ export class R_DashboardComponent implements OnInit {
 				private histservice: ReviewerService,
 				private modalService: NgbModal,
 				private resolver: ComponentFactoryResolver,
+
+				iconRegistry: MatIconRegistry,
+				sanitizer: DomSanitizer
 	) {
+
+		iconRegistry.addSvgIcon('chat1',
+			sanitizer.bypassSecurityTrustResourceUrl('./assets/media/icons/svg/Communication/Chat_1.svg'));
 	}
 
 	ngOnInit(): void {

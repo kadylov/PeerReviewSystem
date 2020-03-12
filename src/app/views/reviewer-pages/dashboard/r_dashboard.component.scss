@@ -28,15 +28,18 @@ kt-base {
 	position: relative;
 }
 
-.dbox{
+.discusion{
 	position: absolute;
 	top:0;left: 0;
 	width: 100%;
 	height: 100%;
+	z-index: 9;
 }
 
-.discusion{
-	z-index: 9;
+.fab-btn{
+	position: absolute;
+	right: 38px;
+	bottom: -312px;
 }
 
 //kt-discussion{

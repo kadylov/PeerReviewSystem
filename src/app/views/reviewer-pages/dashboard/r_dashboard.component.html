@@ -1,10 +1,7 @@
 <div class="row">
 	<div class="col-xl-12 dash-container">
-		<div class="">
 			<kt-assigned-work></kt-assigned-work>
-
-		</div>
-		<div class="dbox discusion">
+		<div class="discusion">
 			<kt-discussion
 				*ngIf="modal"
 				(close)="modal=false"
@@ -12,9 +9,21 @@
 		</div>
 
 
+		<div class="row fab-btn">
+
+<!--			<button mat-fab (click)="open(content5)">-->
+<!--&lt;!&ndash;				<mat-icon style="height: 7px;width:7px; !important; transform: scale(1)">chat</mat-icon>&ndash;&gt;-->
+<!--				<mat-icon svgIcon="chat1"></mat-icon>-->
+<!--			</button>-->
+			<button mat-fab (click)="modal=!modal">
+				<mat-icon svgIcon="chat1"></mat-icon>
+<!--				Open1-->
+			</button>
+		</div>
+
 	</div>
 
-	<!--		<kt-assigned-work ></kt-assigned-work>-->
+
 
 
 	<!--	<div class="row">-->
@@ -23,9 +32,6 @@
 
 	<!--			<button type="button" class="btn btn-primary" (click)="test()">Click</button>-->
 
-	<div class="row">
 
-		<button type="button" class="btn btn-primary" (click)="modal=!modal">Open1</button>
-	</div>
 </div>
 

@@ -262,7 +262,39 @@ div.msg-box span.btn-group i {
 		margin: 0 auto;
 		font-family: inherit;
 	}
+
+	span{
+		color: white;
+		font-family: inherit;
+	}
+
+	.grid-main{
+		box-sizing: border-box;
+		margin-top: 22px;
+	}
+
+	.grid-title{
+		width: 90%;
+		float: left;
+		text-align: center;
+	}
+	.grid-btn{
+		float: right;
+		padding-bottom: 40px;
+		margin-right: 27px;
+		margin-top: 11px;
+	}
+	i{
+		color:white;
+
+	}
 }
+
+.navbar1 grid-btn{
+	color:white;
+}
+
+
 
 .msgs {
 	padding: 1rem;

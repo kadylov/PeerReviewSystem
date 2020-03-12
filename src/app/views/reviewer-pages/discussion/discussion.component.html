@@ -187,20 +187,35 @@
 -->
 
 
-<div class="backdrop"></div>
+<div class="backdrop" (click)="close.emit()"></div>
 
 <div class="modal1">
 
 
-	<nav id="navbar-example2" class="navbar1 navbar">
-		<h1>{{ title }}</h1>
+	<nav  class="navbar1">
+		<div class="grid-main">
+			<div class="grid-title">
+				<h1>{{ title }}</h1>
+			</div>
 
-		<button type="button" class="close" aria-label="Close" (click)="close.emit()">
-			<span style="color: white" aria-hidden="true">&times;</span>
-		</button>
+			<div class="grid-btn">
+				<button type="button" class="close" style="opacity: 1;" aria-label="Close" (click)="close.emit()">
+					<i class="fa fa-window-minimize" aria-hidden="true"></i>
+				</button>
+			</div>
+		</div>
+
+
+<!--		<button type="button" (click)="close.emit()">-->
+<!--			<mat-icon>minimize</mat-icon>-->
+<!--		</button>-->
+<!--		<button type="button" class="close" aria-label="Close">-->
+<!--			<span aria-hidden="true">&times;</span>-->
+<!--		</button>-->
+
 	</nav>
 
-	<div class="container-fluids messages">
+	<div class="container-fluids messages" #scrollMe [scrollTop]="scrollMe.scrollHeight">
 
 		<div class="container ">
 			<div class="media">
