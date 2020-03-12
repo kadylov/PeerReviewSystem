@@ -11,7 +11,6 @@ import {Assignment} from '../../../core/reviewer/_models/assignment.model';
 @Component({
 	selector: 'kt-assignment-history-work',
 	templateUrl: './assignment-history.component.html',
-	styleUrls: ['./assignment-history.component.scss']
 })
 export class AssignmentHistoryComponent implements OnInit, OnDestroy {
 

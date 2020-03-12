@@ -10,8 +10,7 @@ import {User1} from '../../../../core/auth/_models/user1.model';
 
 @Component({
 	selector: 'kt-assigned-work',
-	templateUrl: './assignment.component.html',
-	styleUrls: ['../assignment-history/assignment-history.component.scss']
+	templateUrl: './incomingDatatable.component.html',
 })
 export class IncomingDatatable implements OnInit, OnDestroy{
 

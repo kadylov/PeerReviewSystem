@@ -18,11 +18,12 @@ import { CompletedReviewComponent } from './admin/completed-review/completed-rev
 
 
 import {PublicPageModule} from "../public-page/public-page.module";
-import {MatFormFieldModule, MatRadioModule, MatSliderModule} from '@angular/material';
+import {MatFormFieldModule, MatPaginatorModule, MatRadioModule, MatSliderModule, MatTableModule} from '@angular/material';
 import {RouterModule, Routes} from '@angular/router';
 import {BaseComponent} from '../theme/base/base.component';
 import {ErrorPageComponent} from '../theme/content/error-page/error-page.component';
 import {ThemeModule} from '../theme/theme.module';
+import {IncomingDatatable} from './admin/incoming-datatable/incomingDatatable.component';
 
 const routes:Routes=[
 	{
@@ -97,24 +98,27 @@ const routes:Routes=[
 		ResultComponent,
 		InProgressComponent,
 		CompletedReviewComponent,
+		IncomingDatatable,
 	],
 	exports: [
 	],
-    imports: [
-        CommonModule,
-        RouterModule.forChild(routes),  //////
-        HttpClientModule,
-        FormsModule,
-        CoreModule,
-        PartialsModule,
-        UserManagementModule,
-        PublicPageModule,
-        MatRadioModule,
-        MatFormFieldModule,
-        ThemeModule,
-        MatSliderModule,
-        ReactiveFormsModule
-    ],
+	imports: [
+		CommonModule,
+		RouterModule.forChild(routes),  //////
+		HttpClientModule,
+		FormsModule,
+		CoreModule,
+		PartialsModule,
+		UserManagementModule,
+		PublicPageModule,
+		MatRadioModule,
+		MatFormFieldModule,
+		ThemeModule,
+		MatSliderModule,
+		ReactiveFormsModule,
+		MatTableModule,
+		MatPaginatorModule
+	],
 	providers: []
 })
 export class PagesModule {
