@@ -8,9 +8,10 @@ import {
 	NewMessageCreated,
 	NewMessageSavedOnServer
 } from '../_actions/message.actions';
-import {catchError, map, mergeMap} from 'rxjs/operators';
+import {catchError, groupBy, map, mergeMap, switchMap} from 'rxjs/operators';
 import {Message} from '../_models/message.model';
 import {AssignmentActionTypes, AssignmentHistoryLoaded, AssignmentHistoryRequested} from '../_actions/assignment.actions';
+import {pipe} from 'rxjs';
 
 
 @Injectable()
@@ -32,9 +33,17 @@ export class MessageEffects {
 					.pipe(
 						map((data: Message[]) => new MessagesLoaded(data))
 					)
-				)
-			);
-
+			)
+		);
+	/*
+	* this.test$ = Observable.of(['one', 'two', 'three'])
+.map((data) => {
+    data.sort((a, b) => {
+        return a < b ? -1 : 1;
+     });
+    return data;
+ });
+	* */
 	@Effect()
 	createNewMessage$ = this.actions$
 		.pipe(
@@ -42,8 +51,8 @@ export class MessageEffects {
 			mergeMap(
 				(message) => this.reviewerService.postNewMessage(message.payload)
 					.pipe(
-						map(()=>{
-								return new NewMessageSavedOnServer(message.payload);
+						map(() => {
+							return new NewMessageSavedOnServer(message.payload);
 						})
 					)
 			)

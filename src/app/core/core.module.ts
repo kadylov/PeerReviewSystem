@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 // Layout Directives
 // Services
 import {
-	ContentAnimateDirective,
+	ContentAnimateDirective, CustomSortPipe,
 	FirstLetterPipe,
 	GetObjectPipe,
 	HeaderDirective,
@@ -39,6 +39,7 @@ import {
 		GetObjectPipe,
 		SafePipe,
 		FirstLetterPipe,
+		CustomSortPipe,
 	],
 	exports: [
 		// directives
@@ -57,6 +58,7 @@ import {
 		GetObjectPipe,
 		SafePipe,
 		FirstLetterPipe,
+		CustomSortPipe,
 	],
 	providers: []
 })

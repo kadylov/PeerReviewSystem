@@ -18,7 +18,7 @@
 
 	<div class="container-fluids messages"
 		 #scrollMe [scrollTop]="scrollMe.scrollHeight"
-		*ngIf="messages$ | async as messages; else loadingMessage"
+		*ngIf="messages$ | async | sortbyDate as messages; else loadingMessage"
 	>
 		<div class="container"
 		*ngFor="let msg of messages">

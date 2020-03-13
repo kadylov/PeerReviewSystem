@@ -31,6 +31,8 @@ export { JoinPipe } from './pipes/join.pipe';
 export { SafePipe } from './pipes/safe.pipe';
 export { TimeElapsedPipe } from './pipes/time-elapsed.pipe';
 
+export {CustomSortPipe} from './pipes/custom-sort.pipe';
+
 // Services
 export { DataTableService } from './services/datatable.service';
 export { TranslationService } from './services/translation.service';
