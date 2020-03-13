@@ -6,9 +6,9 @@ import {ReviewerService} from '../_services/reviewer.service';
 import {
 	AssignmentActionTypes,
 	AssignmentHistoryLoaded,
-	AssignmentHistoryRequested, AssignmentLoaded, AssignmentRequested,
-	// AssignmentLoaded,
-	// AssignmentRequested
+	AssignmentHistoryRequested,
+	AssignmentLoaded,
+	AssignmentRequested,
 } from '../_actions/assignment.actions';
 import {map, mergeMap} from 'rxjs/operators';
 

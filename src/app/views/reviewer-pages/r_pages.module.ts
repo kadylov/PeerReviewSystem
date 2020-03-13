@@ -1,6 +1,6 @@
 // Angular
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 // Partials
@@ -25,6 +25,7 @@ import {AssignmentEffects} from '../../core/reviewer/_effects/assignment.effects
 import {AssignmentComponent} from './assignment/assignment.component';
 import {NgbModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {DiscussionComponent} from './discussion/discussion.component';
+import {MessageEffects} from '../../core/reviewer/_effects/message.effects';
 
 
 const routes: Routes = [
@@ -90,14 +91,15 @@ const routes: Routes = [
 
 		StoreModule.forFeature('reviewer', reducers
 		),
-		EffectsModule.forFeature([ReviewHistoryEffects, AssignmentEffects]),
+		EffectsModule.forFeature([ReviewHistoryEffects, AssignmentEffects, MessageEffects]),
 		MatButtonModule,
 		MatIconModule,
 	],
 
 	providers: [
 		ReviewerService,
-		NgbModal
+		NgbModal,
+		DatePipe
 
 	]
 })

@@ -6,6 +6,8 @@ import {catchError, map} from 'rxjs/operators';
 import {ReviewHistory} from '../_models/review-history.model';
 import {Assignment} from '../_models/assignment.model';
 import {DataTableWorkModel} from '../../_base/layout';
+import {Message} from '../_models/message.model';
+import {Work} from '../../../views/author/model/work';
 
 
 const API_REVIEWER_URL = 'http://3.95.8.94/example/reviewer_request.php';
@@ -52,4 +54,29 @@ export class ReviewerService {
 			}
 		});
 	}
+
+	getMessageHistory(workID: number): Observable<Message[]> {
+		return this.http.get<Message[]>(API_REVIEWER_URL, {
+			params: {
+				getDiscussions: 'getDiscussions',
+				WorkID: workID.toString()
+			}
+		});
+	}
+
+	postNewMessage(message: Message): Observable<any> {
+		//WorkID, ReviewerID, Message, DTime
+		const body = new HttpParams()
+			.set(`postNewMessage`, 'postNewMessage')
+			.set(`WorkID`, message.WorkID.toString())
+			.set(`ReviewerID`, message.ReviewerID.toString())
+			.set(`Message`, message.Message)
+			.set(`DTime`, message.DTime);
+		// return this.http.post<Work>(api, body, {headers: headers});
+
+
+		return this.http.post<any>(API_REVIEWER_URL, body, {headers: headers});
+	}
+
+
 }

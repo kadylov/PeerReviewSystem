@@ -1,11 +1,10 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {AssignmentHistoryComponent} from '../assignment-history/assignment-history.component';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Assignment} from '../../../core/reviewer/_models/assignment.model';
 import {Subscription} from 'rxjs';
 import {Store} from '@ngrx/store';
 import * as fromReviewer from '../../../core/reviewer/_reducers';
-import {AssignmentHistoryRequested, AssignmentRequested} from '../../../core/reviewer/_actions/assignment.actions';
+import {AssignmentRequested} from '../../../core/reviewer/_actions/assignment.actions';
 import {User1} from '../../../core/auth/_models/user1.model';
 
 

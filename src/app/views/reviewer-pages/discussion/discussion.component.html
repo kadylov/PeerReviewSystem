@@ -1,194 +1,4 @@
-<!--
-<div class="kt-section" >
-	<div class="kt-section__content" >
-
-
-<ng-template
-	#content5 let-c="close" let-d="dismiss">
-
-	<div class="modal-header">
-		<span class="title"><h4>DISCUSSION</h4></span>
-		<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-			<span aria-hidden="true">&times;</span>
-		</button>
-	</div>
-
-	<div class="modal-body">
-							<div class="chat">
-								<div class="chat-content clearfix">
-		           							 <span class="friend last">
-												  Hi, How are You?
-												  <span class="time">
-													7:30 PM
-												  </span>
-		           							 </span>
-									<span class="you first">
-											  Hi, I am fine.
-											  How about you?
-												  <span class="time">
-													7:31 PM
-												  </span>
-											</span>
-									<span class="you last">
-												  lets meet,
-												  this sunday!
-												  <span class="time">
-													7:31 PM
-												  </span>
-											</span>
-									<span class="friend last">
-												  Hi, How are You?
-												  <span class="time">
-													7:30 PM
-												  </span>
-		           							 </span>
-									<span class="you first">
-											  Hi, I am fine.
-											  How about you?
-												  <span class="time">
-													7:31 PM
-												  </span>
-											</span>
-									<span class="you last">
-												  lets meet,
-												  this sunday!
-												  <span class="time">
-													7:31 PM
-												  </span>
-											</span>
-									<span class="friend last">
-												  Hi, How are You?
-												  <span class="time">
-													7:30 PM
-												  </span>
-		           							 </span>
-									<span class="you first">
-											  Hi, I am fine.
-											  How about you?
-												  <span class="time">
-													7:31 PM
-												  </span>
-											</span>
-									<span class="you last">
-												  lets meet,
-												  this sunday!
-												  <span class="time">
-													7:31 PM
-												  </span>
-											</span>
-									<span class="friend last">
-												  Hi, How are You?
-												  <span class="time">
-													7:30 PM
-												  </span>
-		           							 </span>
-									<span class="you first">
-											  Hi, I am fine.
-											  How about you?
-												  <span class="time">
-													7:31 PM
-												  </span>
-											</span>
-									<span class="you last">
-												  lets meet,
-												  this sunday!
-												  <span class="time">
-													7:31 PM
-												  </span>
-											</span>
-									<span class="friend last">
-												  Hi, How are You?
-												  <span class="time">
-													7:30 PM
-												  </span>
-		           							 </span>
-									<span class="you first">
-											  Hi, I am fine.
-											  How about you?
-												  <span class="time">
-													7:31 PM
-												  </span>
-											</span>
-									<span class="you last">
-												  lets meet,
-												  this sunday!
-												  <span class="time">
-													7:31 PM
-												  </span>
-											</span>
-									<span class="friend last">
-												  Hi, How are You?
-												  <span class="time">
-													7:30 PM
-												  </span>
-		           							 </span>
-									<span class="you first">
-											  Hi, I am fine.
-											  How about you?
-												  <span class="time">
-													7:31 PM
-												  </span>
-											</span>
-									<span class="you last">
-												  lets meet,
-												  this sunday!
-												  <span class="time">
-													7:31 PM
-												  </span>
-											</span>
-								</div>
-
-							</div>
-	</div>
-
-	<div class="modal-footer msg-box">
-						<div class="msg-box">
-							<input type="text" class="ip-msg" placeholder="type something.."/>
-							<span class="btn-group">
-													  <i class="fa fa-paper-plane"></i>
-									</span>
-						</div>
-		<input type="text" class="ip-msg" placeholder="type something.."/>
-		<span class="btn-group">
-											  <i class="fa fa-paper-plane"></i>
-							</span>
-	</div>
-
-	&lt;!&ndash;			<div class="head clearfix">&ndash;&gt;
-	&lt;!&ndash;				<h4 class="modal-title title">Messenger</h4>&ndash;&gt;
-	&lt;!&ndash;				<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">&ndash;&gt;
-	&lt;!&ndash;					<span aria-hidden="true">&times;</span>&ndash;&gt;
-	&lt;!&ndash;				</button>&ndash;&gt;
-	&lt;!&ndash;			</div>&ndash;&gt;
-
-	&lt;!&ndash;				<div class="app">&ndash;&gt;
-	&lt;!&ndash;					<div class="head clearfix">&ndash;&gt;
-
-	&lt;!&ndash;						<span class="title">Messenger</span>&ndash;&gt;
-
-	&lt;!&ndash;					</div>&ndash;&gt;
-	&lt;!&ndash;				</div>&ndash;&gt;
-
-
-</ng-template>
-
-
-
-<span style="margin-right: 55px">
-			<button mat-fab (click)="open(content5)">
-			&lt;!&ndash;			<mat-icon style="height: 7px;width:7px; !important; transform: scale(1)">chat</mat-icon>&ndash;&gt;
-			<mat-icon svgIcon="chat1"></mat-icon>
-		</button>
-		</span>
-
-
-	</div>
-</div>
--->
-
-
 <div class="backdrop" (click)="close.emit()"
-
 ></div>
 
 <div class="modal1">
@@ -204,20 +14,30 @@
 				</button>
 			</div>
 		</div>
-
-
-<!--		<button type="button" (click)="close.emit()">-->
-<!--			<mat-icon>minimize</mat-icon>-->
-<!--		</button>-->
-<!--		<button type="button" class="close" aria-label="Close">-->
-<!--			<span aria-hidden="true">&times;</span>-->
-<!--		</button>-->
-
 	</nav>
 
-	<div class="container-fluids messages" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+	<div class="container-fluids messages"
+		 #scrollMe [scrollTop]="scrollMe.scrollHeight"
+		*ngIf="messages$ | async as messages; else loadingMessage"
+	>
+		<div class="container"
+		*ngFor="let msg of messages">
+			<div class="media">
+				<div class="media-left">
+					<img src="https://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object"
+						 style="width:60px">
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">{{msg.ReviewerName}} <small><i>Posted on {{msg.DTime | date: 'longDate' }}</i></small></h4>
+					<p>{{msg.Message}}</p>
+				</div>
+			</div>
+			<hr>
+		</div>
 
-		<div class="container ">
+
+
+		<!--<div class="container ">
 			<div class="media">
 				<div class="media-left">
 					<img src="https://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object"
@@ -234,9 +54,9 @@
 				</div>
 			</div>
 			<hr>
-		</div>
+		</div>-->
 
-		<div class="container">
+		<!--<div class="container">
 
 			<div class="media">
 				<div class="media-left">
@@ -438,7 +258,7 @@
 				</div>
 			</div>
 			<hr>
-		</div>
+		</div>-->
 	</div>
 
 
@@ -451,17 +271,24 @@
     	margin: 15px 6px;">
 
 			<div class="inputWithIcon">
-				<input type="text" placeholder="Write a message...">
+				<input #input type="text" placeholder="Write a message..."
+					   (keyup.enter)="submit(input)"
+				/>
 				<i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i>
 			</div>
 		</div>
 
 	</div>
-	<!--	<button class="btn" (click)="close.emit()">Close</button>-->
 </div>
 
 
+<ng-template #loadingMessage>
+	<p class="text-center">Loading...</p>
+</ng-template>
 
+<ng-template #multiple>
+
+</ng-template>
 
 
 
