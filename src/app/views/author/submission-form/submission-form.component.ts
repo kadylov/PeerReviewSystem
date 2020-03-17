@@ -19,7 +19,7 @@ export class SelectedTag {
 
 @Component({
 	selector: 'kt-submission',
-	templateUrl: './submission-form.component1.html',
+	templateUrl: './submission-form.component.html',
 	styleUrls: ['./submission-form.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
@@ -74,7 +74,9 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 	 */
 	ngOnInit() {
 
-		this.tags$ = this.tagService.getAllTags();
+		// this.tags$ = this.tagService.getAllTags();
+		this.tags$ = this.workService.getAllTags();
+
 		this.initRegisterForm();
 
 		// this.titleField.nativeElement.focus();
@@ -126,38 +128,38 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 			])
 			],
 			date_written: ['', Validators.compose([
-				// Validators.required,
+				Validators.required,
 			]),
 			],
 			url: ['', Validators.compose([
-				// Validators.required,
-				// Validators.minLength(3),
-				// Validators.maxLength(400)
+				Validators.required,
+				Validators.minLength(3),
+				Validators.maxLength(400)
 			]),
 			],
 			author: ['', Validators.compose([
-				// Validators.required,
-				// Validators.minLength(3),
-				// Validators.maxLength(100)
+				Validators.required,
+				Validators.minLength(3),
+				Validators.maxLength(100)
 			])
 			],
 			email: ['', Validators.compose([
-				// Validators.required,
-				// Validators.email,
-				// Validators.minLength(3),
-				// Validators.maxLength(100)
+				Validators.required,
+				Validators.email,
+				Validators.minLength(3),
+				Validators.maxLength(100)
 			])
 			],
 			tag1: ['', Validators.compose([
-				// Validators.required,
+				Validators.required,
 			])
 			],
 			tag2: ['', Validators.compose([
-				// Validators.required,
+				Validators.required,
 			])
 			],
 			tag3: ['', Validators.compose([
-				// Validators.required,
+				Validators.required,
 			])
 			],
 			tag4: ['', Validators.compose([
@@ -165,15 +167,15 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 			])
 			],
 			tag5: ['', Validators.compose([
-				// Validators.required,
+				Validators.required,
 			])
 			],
 			tag6: ['', Validators.compose([
-				// Validators.required,
+				Validators.required,
 			])
 			],
 			tag7: ['', Validators.compose([
-				// Validators.required,
+				Validators.required,
 			])
 			],
 		});
@@ -187,7 +189,6 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 
 		this.loading = true;
 		const controls = this.registerForm.controls;
-		// console.log('AAAa1 ', controls);
 
 		// check form
 		if (this.registerForm.invalid) {

@@ -97,25 +97,25 @@
 				<div class="flex-container">
 					<div *ngFor="let tag of tags; let index=index">
 						<mat-form-field *ngIf="tag.isMultiple=='true'">
-							<mat-label>{{tag.title | titlecase}}</mat-label>
+							<mat-label>{{tag.Title | titlecase}}</mat-label>
 							<mat-select
 								#onFocus (focus)="onFocus.open()"
-								placeholder="{{tag.title | titlecase}}"
+								placeholder="{{tag.Title | titlecase}}"
 								formControlName="tag{{index+1}}"
-								[(ngModel)]="selectedOptions[tag.title]"
+								[(ngModel)]="selectedOptions[tag.Title]"
 								multiple
 							>
 								<mat-select-trigger>
 
-									{{selectedOptions[tag.title] ? selectedOptions[tag.title][0] : ''}}
-									<span *ngIf="selectedOptions[tag.title]?.length > 1"
+									{{selectedOptions[tag.Title] ? selectedOptions[tag.Title][0] : ''}}
+									<span *ngIf="selectedOptions[tag.Title]?.length > 1"
 									>
-                         						 (+{{selectedOptions[tag.title].length - 1}} others)
+                         						 (+{{selectedOptions[tag.Title].length - 1}} others)
                       					    </span>
 								</mat-select-trigger>
 
-								<mat-option *ngFor="let selectOption of tag.tagList" [value]="selectOption"
-											(onSelectionChange)="selectionChanged($event, tag.title)"
+								<mat-option *ngFor="let selectOption of tag.TagList" [value]="selectOption"
+											(onSelectionChange)="selectionChanged($event, tag.Title)"
 								>{{selectOption}}
 								</mat-option>
 							</mat-select>
@@ -124,17 +124,17 @@
 
 						<!--								single selection dropboxes-->
 						<mat-form-field *ngIf="tag.isMultiple=='false'">
-							<mat-label>{{tag.title | titlecase}}</mat-label>
+							<mat-label>{{tag.Title | titlecase}}</mat-label>
 							<mat-select #onFocus
 										(focus)="onFocus.open()"
 										(selectionChange)="onFocus.close(); onFocus.focus()"
 
-										placeholder="{{tag.title | titlecase}}"
+										placeholder="{{tag.Title | titlecase}}"
 										formControlName="tag{{index+1}}"
 										[(ngModel)]="singleSelected[index]"
 							>
 								<mat-option>None</mat-option>
-								<mat-option *ngFor="let selectOption of tag.tagList" [value]="selectOption"
+								<mat-option *ngFor="let selectOption of tag.TagList" [value]="selectOption"
 								>{{selectOption}}
 								</mat-option>
 							</mat-select>

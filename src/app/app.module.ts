@@ -115,6 +115,8 @@ export function hljsLanguages(): HighlightLanguage[] {
 			passThruUnknownUrl: true,
 			dataEncapsulation: false
 		}) : [],
+
+
 		NgxPermissionsModule.forRoot(),
 		PartialsModule,
 		CoreModule,

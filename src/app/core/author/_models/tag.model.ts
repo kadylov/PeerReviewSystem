@@ -1,11 +1,11 @@
 export class TagModel {
-
-	title: string;
-	tagList: string [];
+	TID?: number;
+	Title: string;
+	TagList: string [];
 	isMultiple?: boolean;
 
 
 	clear?() {
-		this.tagList = [];
+		this.TagList = [];
 	}
 }
