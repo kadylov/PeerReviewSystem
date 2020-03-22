@@ -19,6 +19,7 @@ import { CompletedReviewComponent } from './admin/completed-review/completed-rev
 
 import {PublicPageModule} from "../public-page/public-page.module";
 import {
+	MatButtonModule, MatDialogModule,
 	MatExpansionModule,
 	MatFormFieldModule,
 	MatPaginatorModule,
@@ -35,7 +36,7 @@ import {IncomingDatatable} from './admin/incoming-datatable/incomingDatatable.co
 import {ReviewInProgressComponent} from './review-in-progress/review-in-progress.component';
 import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {AssignedListComponent} from './review-in-progress/assigned-works/assigned-work.component';
+import {AssignedListComponent, Modal3Component} from './review-in-progress/assigned-works/assigned-work.component';
 
 const routes:Routes=[
 	{
@@ -117,7 +118,10 @@ const routes:Routes=[
 		IncomingDatatable,
 		ReviewInProgressComponent,
 		AssignedListComponent,
+		Modal3Component
 	],
+	entryComponents: [Modal3Component],
+
 	exports: [
 	],
 	imports: [
@@ -139,7 +143,9 @@ const routes:Routes=[
 		MatSortModule,
 		PerfectScrollbarModule,
 		NgbModule,
-		MatExpansionModule
+		MatExpansionModule,
+		MatButtonModule,
+		MatDialogModule
 	],
 	providers: [DatePipe]
 })

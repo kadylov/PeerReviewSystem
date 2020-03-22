@@ -1,9 +1,7 @@
-import {Component, DoCheck, Input, OnChanges, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
-import {MatSort, MatTableDataSource} from '@angular/material';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Observable, Subscription} from 'rxjs';
 import {ReviewInProgressModel} from '../../../core/admin/_models/review-in-progress.model';
 import {AdminService} from '../../../core/admin/_services/admin.service';
-import {DatePipe} from '@angular/common';
 
 
 @Component({
@@ -11,16 +9,7 @@ import {DatePipe} from '@angular/common';
 		templateUrl: './review-in-progress.component.html'
 	}
 )
-export class ReviewInProgressComponent implements OnInit, OnDestroy {
-
-
-	// Subscriptions
-	private wSub: Subscription;
-	panelOpenState: boolean = false;
-
-
-
-	// reviewInProgress: ReviewInProgressModel[];
+export class ReviewInProgressComponent implements OnInit {
 
 	reviewInProgress$: Observable<ReviewInProgressModel[]>;
 
@@ -28,10 +17,6 @@ export class ReviewInProgressComponent implements OnInit, OnDestroy {
 
 	ngOnInit(): void {
 		this.reviewInProgress$ = this.adminService.getAllAssignedWorks();
-	}
-
-	ngOnDestroy(): void {
-		this.wSub.unsubscribe();
 	}
 
 	combineArrays(lhs: string[], rhs: string[]) {
