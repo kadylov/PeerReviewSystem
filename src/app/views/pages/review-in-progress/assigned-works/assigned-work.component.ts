@@ -113,7 +113,7 @@ export class AssignedListComponent implements OnInit, OnDestroy {
 				<div class="kt-modal3__container">
 				<mat-toolbar>
 					  <mat-toolbar-row>
-						<span>List of Reviewers</span>
+						<span>List of Reviewers [Currently Under development....]</span>
 					  </mat-toolbar-row>
 				</mat-toolbar>
 <!--					<h2 mat-dialog-title>List of Reviewers</h2>-->

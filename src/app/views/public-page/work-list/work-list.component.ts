@@ -18,7 +18,7 @@ import {Work} from '../../author/model/work';
 	styleUrls: ['./work-list.component.scss']
 })
 export class WorkListComponent implements OnInit, OnDestroy {
-	displayedColumns = ['Category', 'Title', 'Author Name', 'Score'];
+	displayedColumns = ['Tags', 'Title', 'AuthorName', 'Score'];
 	dataSource: MatTableDataSource<Work>;
 	works: any = [];
 
