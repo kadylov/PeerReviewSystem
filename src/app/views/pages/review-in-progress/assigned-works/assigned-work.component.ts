@@ -14,7 +14,7 @@ export class AssignedListComponent implements OnInit, OnDestroy {
 
 
 	dataSource: MatTableDataSource<Reviewer>;
-	displayedColumns = ['id', 'Reviewer', 'DueDate', 'Status', 'Action'];
+	displayedColumns = ['id', 'Reviewer', 'Role', 'DueDate', 'Status', 'Action'];
 
 	@ViewChild(MatSort, {static: true}) sort: MatSort;
 	@Input() data: any;

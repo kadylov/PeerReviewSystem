@@ -20,5 +20,6 @@ export class ReviewInProgressModel extends AssignmentModel {
 export class Reviewer {
 	ReviewerID: number;
 	ReviewerName: string;
+	Role: string;
 
 }

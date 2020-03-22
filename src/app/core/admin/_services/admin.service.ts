@@ -47,6 +47,7 @@ export class AdminService {
 			(reviewerDueDate[work.WID] = reviewerDueDate[work.WID] || []).push({
 				ReviewerID: work.ReviewerID,
 				ReviewerName: work.ReviewerName,
+				Role:work.Role,
 				DueDate:work.DueDate
 			});
 
