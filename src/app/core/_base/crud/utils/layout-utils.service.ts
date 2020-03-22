@@ -63,6 +63,44 @@ export class LayoutUtilsService {
 		});
 	}
 
+
+	/**
+	 * Showing (Mat-Snackbar) Notification
+	 *
+	 * @param message: string
+	 * @param type: MessageType
+	 * @param duration: number
+	 * @param showCloseButton: boolean
+	 * @param showUndoButton: boolean
+	 * @param undoButtonDuration: number
+	 * @param verticalPosition: 'top' | 'bottom' = 'top'
+	 */
+	showActionNotification_(
+		_message: string,
+		_type: MessageType = MessageType.Create,
+		_duration: number = 10000,
+		_showCloseButton: boolean = true,
+		_showUndoButton: boolean = false,
+		_undoButtonDuration: number = 3000,
+		_verticalPosition: 'top' | 'bottom' = 'bottom'
+	) {
+		const _data = {
+			message: _message,
+			snackBar: this.snackBar,
+			showCloseButton: _showCloseButton,
+			showUndoButton: _showUndoButton,
+			undoButtonDuration: _undoButtonDuration,
+			verticalPosition: _verticalPosition,
+			type: _type,
+			action: 'Undo'
+		};
+		return this.snackBar.openFromComponent(ActionNotificationComponent, {
+			duration: _duration,
+			data: _data,
+			verticalPosition: _verticalPosition
+		});
+	}
+
 	/**
 	 * Showing Confirmation (Mat-Dialog) before Entity Removing
 	 *

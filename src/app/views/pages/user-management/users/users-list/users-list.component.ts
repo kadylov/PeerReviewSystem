@@ -145,14 +145,14 @@ export class UsersListComponent implements OnInit, OnDestroy {
 
 		const subsc = this.userManagementService.deleteUser(_item)
 			.subscribe(res => {
-					this.layoutUtilsService.showActionNotification(_deleteMessage, MessageType.Delete);
+					this.layoutUtilsService.showActionNotification(_deleteMessage);
 
 					this.dataSource.data = this.dataSource.data.filter(user => user.id !== _item.id);
 
 				},
 				error => {
 					console.log('Error ', error);
-					this.layoutUtilsService.showActionNotification('Unable to delete the user', MessageType.Delete);
+					this.layoutUtilsService.showActionNotification('Unable to delete the user');
 				});
 		this.subscriptions.push(subsc);
 
@@ -228,32 +228,32 @@ export class UsersListComponent implements OnInit, OnDestroy {
 
 		let checkedUser: User1 = this.prepareUser(user);
 
-		console.log('BEfore ', checkedUser.isActive);
+		// console.log('BEfore ', checkedUser.isActive);
 
 		if (event.checked) {
-			console.log('Checked ', event.checked);
-			checkedUser.isActive = 0;
-		} else {
-			console.log('Unchecked ', event.checked);
+			// console.log('Checked ', event.checked);
 			checkedUser.isActive = 1;
-			console.log(checkedUser.isActive);
+		} else {
+			// console.log('Unchecked ', event.checked);
+			checkedUser.isActive = 0;
+			// console.log(checkedUser.isActive);
 
 
 		}
-		// this
-		// console.log(checkedUser);
-
-		const _title: string = 'User Deactivation';
-		const _deleteMessage = `User has been deactivated`;
 
 		const subsc = this.userManagementService.deactivateUser(checkedUser)
 			.subscribe(res => {
-					this.layoutUtilsService.showActionNotification(_deleteMessage, MessageType.Update);
+					if (checkedUser.isActive) {
+						this.layoutUtilsService.showActionNotification_(`User has been activated`);
+					} else {
+						this.layoutUtilsService.showActionNotification_(`User has been deactivated`);
+
+					}
 
 				},
 				error => {
 					console.log('Error ', error);
-					this.layoutUtilsService.showActionNotification('Unable to deactivate the user', MessageType.Update);
+					this.layoutUtilsService.showActionNotification_('Unable to deactivate the user');
 				});
 		this.subscriptions.push(subsc);
 
