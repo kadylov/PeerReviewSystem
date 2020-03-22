@@ -1,0 +1,23 @@
+
+ /deep/ .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+	//background-color: green;
+	// background-color: rgba(0, 0, 0, .38);
+	 background-color: #9E9E9E
+
+ }
+
+ /deep/ .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb{
+	 box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+	 background-color: #fafafa
+	 // dont touch
+ }
+
+ /deep/ .mat-slide-toggle .mat-slide-toggle-bar {
+	 background-color: rgba(253, 57, 122, .54)
+
+ }
+
+ /deep/ .mat-slide-toggle .mat-slide-toggle-thumb{
+	 background-color: #fd397a
+ }
+

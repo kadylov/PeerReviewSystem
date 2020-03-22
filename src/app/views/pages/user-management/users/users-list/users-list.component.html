@@ -80,15 +80,9 @@
 								(click)="editUser(user.id, user)">
 							<mat-icon>create</mat-icon>
 						</button>&nbsp;
-						<!--						<button mat-icon-button-->
-						<!--								color="warn"-->
-						<!--								matTooltip="Delete user"-->
-						<!--								(click)="deleteUser(user)">-->
-						<!--							<mat-icon>delete</mat-icon>-->
-						<!--						</button>-->
 						<mat-slide-toggle
-							color="warn"
-							[checked]="user.isActive==='0'"
+							[checked]="user.isActive!=='0'"
+
 							(change)="slideChanged($event, user)"
 						>
 						</mat-slide-toggle>

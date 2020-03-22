@@ -47,6 +47,7 @@ import {RoleCredentialService} from '../../service/role-credential.service';
 @Component({
 	selector: 'kt-users-list',
 	templateUrl: './users-list.component.html',
+	styleUrls: ['./users-list.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UsersListComponent implements OnInit, OnDestroy {
