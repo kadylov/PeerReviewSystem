@@ -8,7 +8,7 @@ export class DataTableWorkModel {
 	Status: string;
 	AuthorName: string;
 	AuthorEmail: string;
-	Tags: string;
+	Tags: string[];
 	RSID: null;
 	Score: number
 	// reviewSummary: string;

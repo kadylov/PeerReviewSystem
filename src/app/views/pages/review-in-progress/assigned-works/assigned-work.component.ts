@@ -111,47 +111,29 @@ export class AssignedListComponent implements OnInit, OnDestroy {
 		<div class="col-xl-12">
 			<div class="col-xl-12">
 				<div class="kt-modal3__container">
-					<h2 mat-dialog-title>List of Reviewers</h2>
+				<mat-toolbar>
+					  <mat-toolbar-row>
+						<span>List of Reviewers</span>
+					  </mat-toolbar-row>
+				</mat-toolbar>
+<!--					<h2 mat-dialog-title>List of Reviewers</h2>-->
 					<mat-dialog-content>
+						<mat-selection-list multiple="'false'">
+							<mat-list-option >Reviewer 1</mat-list-option>
+							<mat-list-option >Reviewer 2</mat-list-option>
+							<mat-list-option >Reviewer 3</mat-list-option>
+						</mat-selection-list>
 
 					</mat-dialog-content>
 					<mat-dialog-actions>
 						<button class="mat-raised-button" (click)="close()">Close</button>
-						<button class="mat-raised-button mat-primary" (click)="save()">Save</button>
+						<button class="btn btn-primary " (click)="save()">Switch</button>
 					</mat-dialog-actions>
 				</div>
 			</div>
 		</div>
 
-		<!--		<div class="col-xl-12">-->
-		<!--			<div class="col-xl-12">-->
-		<!--				<div class="kt-modal3__container">-->
-		<!--					<h1 mat-dialog-title>Favorite Animal</h1>-->
-		<!--					<h2 mat-dialog-title>Install Angular</h2>-->
-		<!--					<mat-dialog-content>-->
-		<!--						<h3>DEVELOP ACROSS ALL PLATFORMS</h3>-->
-		<!--						<p>Learn one way to build applications with Angular and reuse your code and abilities to build-->
-		<!--							apps for any deployment target. For web, mobile web, native mobile and native desktop.</p>-->
-		<!--						<h3>SPEED &amp; PERFORMANCE</h3>-->
-		<!--						<p>Achieve the maximum speed possible on the Web Platform today, and take it further, via Web-->
-		<!--							Workers and server-side rendering. Angular puts you in control over scalability. Meet huge data requirements-->
-		<!--							by building data models on RxJS, Immutable.js or another push-model.</p>-->
-		<!--						<h3>INCREDIBLE TOOLING</h3>-->
-		<!--						<p>Build features quickly with simple, declarative templates. Extend the template language with your own-->
-		<!--							components and use a wide array of existing components. Get immediate Angular-specific help and feedback-->
-		<!--							with nearly every IDE and editor. All this comes together so you can focus on building amazing apps rather-->
-		<!--							than trying to make the code work.</p>-->
-		<!--						<h3>LOVED BY MILLIONS</h3>-->
-		<!--						<p>From prototype through global deployment, Angular delivers the productivity and scalable infrastructure-->
-		<!--							that supports Google's largest applications.</p>-->
-		<!--					</mat-dialog-content>-->
-		<!--					<mat-dialog-actions>-->
-		<!--						<button mat-button mat-dialog-close>Cancel</button>-->
-		<!--						<button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>-->
-		<!--					</mat-dialog-actions>-->
-		<!--				</div>-->
-		<!--			</div>-->
-		<!--		</div>-->`,
+		`,
 })
 export class Modal3Component implements OnInit {
 

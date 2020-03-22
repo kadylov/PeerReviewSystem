@@ -28,7 +28,7 @@ export class WorkListComponent implements OnInit, OnDestroy {
 	@ViewChild(MatSort, {static: true}) sort: MatSort;
 
 
-	tagList4 = ['Volume', 'Impressions', 'Engagements', 'Share of Voice', 'Click-throughs', 'AVE', 'ROI'];
+	tagList = [];
 	selectable: boolean = false;
 	removable: boolean = false;
 
@@ -64,7 +64,6 @@ export class WorkListComponent implements OnInit, OnDestroy {
 					this.dataSource.data = res;
 					this.dataSource.sort = this.sort;
 					this.dataSource.paginator = this.paginator;
-
 					// console.log("AAAA");
 					// console.log(this.dataSource.data);
 				},

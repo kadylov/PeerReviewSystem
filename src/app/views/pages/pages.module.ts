@@ -21,12 +21,12 @@ import {PublicPageModule} from "../public-page/public-page.module";
 import {
 	MatButtonModule, MatDialogModule,
 	MatExpansionModule,
-	MatFormFieldModule,
+	MatFormFieldModule, MatListModule,
 	MatPaginatorModule,
 	MatRadioModule,
 	MatSliderModule,
 	MatSortModule,
-	MatTableModule
+	MatTableModule, MatToolbarModule
 } from '@angular/material';
 import {RouterModule, Routes} from '@angular/router';
 import {BaseComponent} from '../theme/base/base.component';
@@ -145,7 +145,9 @@ const routes:Routes=[
 		NgbModule,
 		MatExpansionModule,
 		MatButtonModule,
-		MatDialogModule
+		MatDialogModule,
+		MatToolbarModule,
+		MatListModule,
 	],
 	providers: [DatePipe]
 })
