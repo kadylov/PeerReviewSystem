@@ -19,6 +19,8 @@ import {
 	TimeElapsedPipe,
 	ToggleDirective
 } from './_base/layout';
+import {AdminService} from './admin/_services/admin.service';
+import {TitleCheckerDirective} from './admin/directives/title-checker.directive';
 
 @NgModule({
 	imports: [CommonModule],
@@ -40,6 +42,7 @@ import {
 		SafePipe,
 		FirstLetterPipe,
 		CustomSortPipe,
+		TitleCheckerDirective
 	],
 	exports: [
 		// directives
@@ -59,8 +62,10 @@ import {
 		SafePipe,
 		FirstLetterPipe,
 		CustomSortPipe,
+
+		TitleCheckerDirective
 	],
-	providers: []
+	providers: [AdminService]
 })
 export class CoreModule {
 }

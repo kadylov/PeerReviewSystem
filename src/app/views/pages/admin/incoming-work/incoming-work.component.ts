@@ -20,7 +20,7 @@ import {Router} from '@angular/router';
 
 export class IncomingWorkComponent implements OnInit {
 	workForm: any;
-	PreReviewValue: string = "approved";
+	PreReviewValue: string = "admitted";
 	PreReviewDate: string = "2019-12-11";
 	PreReviewAdminID: string = "6";
 	PreReviewWorkID: string = "2";

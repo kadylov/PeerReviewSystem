@@ -80,6 +80,12 @@ export class MenuConfig {
 					icon: 'flaticon-line-graph' // <= Choose the icon class
 				},
 				{
+					title: 'Reviews In Progress', // <= Title of the page
+					root: true,
+					page: '/admin/review-in-progress', // <= URL
+					icon: 'flaticon-line-graph' // <= Choose the icon class
+				},
+				{
 					title: 'Completed Reviews', // <= Title of the page
 					root: true,
 					page: '/admin/result', // <= URL

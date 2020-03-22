@@ -1,0 +1,32 @@
+<div class="row">
+	<div class="col-xl-12">
+		<mat-accordion  multi="true" *ngIf="reviewInProgress$ | async as reviewInProgress; else loadingMessage">
+			<mat-expansion-panel
+				*ngFor="let review of reviewInProgress; let i=index;" expanded="{{i==0}}"
+				expanded="{{true}}"
+			>
+				<mat-expansion-panel-header>
+					<mat-panel-title>
+						{{i+1}}.<span style="margin-left: 5px">
+
+						{{review.Title}}</span>
+					</mat-panel-title>
+
+				</mat-expansion-panel-header>
+
+				<assigned-work-table [data]="review.Reviewers" ></assigned-work-table>
+
+			</mat-expansion-panel>
+		</mat-accordion>
+	</div>
+</div>
+
+
+<ng-template #loadingMessage>
+	<div class="col-xl-12"></div><p class="text-center">Loading...</p>
+</ng-template>
+
+<div class="row">
+	<div class="col-xl-12">
+	</div>
+</div>

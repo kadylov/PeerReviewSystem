@@ -6,6 +6,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {DataTableWorkModel, DataTableWorkService} from '../../../core/_base/layout';
 import {Subscription} from 'rxjs';
 import {delay} from 'rxjs/operators';
+import {Work} from '../../author/model/work';
 
 
 /**
@@ -18,7 +19,7 @@ import {delay} from 'rxjs/operators';
 })
 export class WorkListComponent implements OnInit, OnDestroy {
 	displayedColumns = ['Category', 'Title', 'Author Name', 'Score'];
-	dataSource: MatTableDataSource<DataTableWorkModel>;
+	dataSource: MatTableDataSource<Work>;
 	works: any = [];
 
 	wSub: Subscription;

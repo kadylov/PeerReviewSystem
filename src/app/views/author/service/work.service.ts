@@ -19,13 +19,13 @@ export class WorkService {
 	submit(work: Work): Observable<any> {
 		const body = new HttpParams()
 			.set(`postNewWork`, 'postNewWork',)
-			.set(`title`, work.title)
-			.set(`dateWritten`, work.dateWritten)
-			.set(`dateSubmitted`, work.dateSubmitted)
-			.set(`url`, work.url)
-			.set(`author`, work.author)
-			.set(`email`, work.email)
-			.set(`selectedTags`, work.selectedTags.toString());
+			.set(`title`, work.Title)
+			.set(`dateWritten`, work.DateWritten)
+			.set(`dateSubmitted`, work.DateSubmission)
+			.set(`url`, work.URL)
+			.set(`author`, work.AuthorName)
+			.set(`email`, work.AuthorEmail)
+			.set(`selectedTags`, work.SelectedTags.toString());
 		return this.http.post<Work>(api, body, {headers: headers});
 	}
 

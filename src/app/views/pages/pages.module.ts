@@ -1,6 +1,6 @@
 // Angular
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 // Partials
@@ -18,12 +18,24 @@ import { CompletedReviewComponent } from './admin/completed-review/completed-rev
 
 
 import {PublicPageModule} from "../public-page/public-page.module";
-import {MatFormFieldModule, MatPaginatorModule, MatRadioModule, MatSliderModule, MatTableModule} from '@angular/material';
+import {
+	MatExpansionModule,
+	MatFormFieldModule,
+	MatPaginatorModule,
+	MatRadioModule,
+	MatSliderModule,
+	MatSortModule,
+	MatTableModule
+} from '@angular/material';
 import {RouterModule, Routes} from '@angular/router';
 import {BaseComponent} from '../theme/base/base.component';
 import {ErrorPageComponent} from '../theme/content/error-page/error-page.component';
 import {ThemeModule} from '../theme/theme.module';
 import {IncomingDatatable} from './admin/incoming-datatable/incomingDatatable.component';
+import {ReviewInProgressComponent} from './review-in-progress/review-in-progress.component';
+import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {AssignedListComponent} from './review-in-progress/assigned-works/assigned-work.component';
 
 const routes:Routes=[
 	{
@@ -57,6 +69,10 @@ const routes:Routes=[
 			{
 				path: 'in-progress',
 				component: InProgressComponent
+			},
+			{
+				path: 'review-in-progress',
+				component: ReviewInProgressComponent
 			},
 			{
 				path: 'completed-review',
@@ -99,6 +115,8 @@ const routes:Routes=[
 		InProgressComponent,
 		CompletedReviewComponent,
 		IncomingDatatable,
+		ReviewInProgressComponent,
+		AssignedListComponent,
 	],
 	exports: [
 	],
@@ -117,9 +135,13 @@ const routes:Routes=[
 		MatSliderModule,
 		ReactiveFormsModule,
 		MatTableModule,
-		MatPaginatorModule
+		MatPaginatorModule,
+		MatSortModule,
+		PerfectScrollbarModule,
+		NgbModule,
+		MatExpansionModule
 	],
-	providers: []
+	providers: [DatePipe]
 })
 export class PagesModule {
 }

@@ -90,19 +90,6 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 		setTimeout(() => {
 			// this.titleField.nativeElement.focus();
 		}, 3000);
-
-
-		/*
-		*
-		*  setTimeout(()=>{
-    this.loading = true;
-    if (this.loading == true) {
-      this.viewPayloadTransaction();
-    }
-     },3000);
-		*
-		* */
-
 	}
 
 	/*
@@ -163,7 +150,7 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 			])
 			],
 			tag4: ['', Validators.compose([
-				// Validators.required,
+				Validators.required,
 			])
 			],
 			tag5: ['', Validators.compose([
@@ -202,12 +189,12 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 		}
 
 		let work: Work = new Work();
-		work.title = controls['title'].value;
-		work.dateWritten = this.datepipe.transform(controls['date_written'].value, 'yyyyMMddHHmmss');
-		work.dateSubmitted = this.datepipe.transform(new Date(Date.now()), 'yyyyMMddHHmmss');
-		work.url = controls['url'].value;
-		work.author = controls['author'].value;
-		work.email = controls['email'].value;
+		work.Title = controls['title'].value;
+		work.DateWritten = this.datepipe.transform(controls['date_written'].value, 'yyyyMMddHHmmss');
+		work.DateSubmission = this.datepipe.transform(new Date(Date.now()), 'yyyyMMddHHmmss');
+		work.URL = controls['url'].value;
+		work.AuthorName = controls['author'].value;
+		work.AuthorEmail = controls['email'].value;
 
 		let tags: string[] = [];
 		for (let i = 1; i <= 7; i++) {
@@ -218,7 +205,7 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 		}
 
 
-		work.selectedTags = work.selectedTags.concat(tags);
+		work.SelectedTags = work.SelectedTags.concat(tags);
 		const message = 'Your Work has been submitted successfully!';
 
 
