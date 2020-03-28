@@ -3,14 +3,13 @@ import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild, View
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthNoticeService} from '../../../core/auth';
-import {Observable, of, pipe, Subject, Subscription} from 'rxjs';
+import {Observable, Subject, Subscription} from 'rxjs';
 import {TagModel} from '../../../core/author/_models/tag.model';
 import {TagService} from '../../../core/author/_services/tag.service';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 import {Work} from '../model/work';
 import {DatePipe} from '@angular/common';
 import {WorkService} from '../service/work.service';
-import {delay} from 'rxjs/operators';
 
 export class SelectedTag {
 	title: string;
@@ -87,19 +86,16 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 	 * On AfterView
 	 */
 	ngAfterViewInit() {
-		setTimeout(() => {
-			// this.titleField.nativeElement.focus();
-		}, 3000);
+		// setTimeout(() => {
+		// 	// this.titleField.nativeElement.focus();
+		// }, 3000);
 	}
 
 	/*
 	 * On destroy
 	 */
 	ngOnDestroy(): void {
-		// this.unsubscribe.next();
-		// this.unsubscribe.complete();
 		this.loading = false;
-		// this.tags$
 	}
 
 	/**
@@ -233,25 +229,10 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 	}
 
 	displaySnackBar(message: string) {
-		// let x = document.getElementById('snackbar');
-		// x.className = 'show';
-		// setTimeout(function() {
-		// 	x.className = x.className.replace('show', '');
-		// }, 3000);
-
-		// this.snackBar.open("hellow","",{
-		// 	panelClass: 'snackbar1'
-		// })
 		let config = new MatSnackBarConfig();
 		config.duration = 5000;
-		config.panelClass = ['snackbar1'];
-
+		config.panelClass = ['d-flex','justify-content-center','snackbar1'];
 		this.snackBar.open(message, '', config);
-		// this.snackBar.open(message,"",{
-		// 	duration: 2000,
-		// 	panelClass: 'snackbar1',
-		// 	// verticalPosition:'top'
-		// })
 	}
 
 	/**

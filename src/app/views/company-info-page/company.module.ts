@@ -8,6 +8,7 @@ import {ContactComponent} from './contact-page/contact.component';
 import {MatFormFieldModule, MatInputModule} from '@angular/material';
 import {PartialsModule} from '../partials/partials.module';
 import {CompanyComponent} from './company.component';
+import {AuthModule} from '../auth/auth.module';
 // Material
 
 const routes: Routes = [
@@ -35,15 +36,16 @@ const routes: Routes = [
 
 
 @NgModule({
-	imports: [
-		RouterModule.forChild(routes),
-		MatFormFieldModule,
-		ReactiveFormsModule,
-		PartialsModule,
-		FormsModule,
-		CommonModule,
-		MatInputModule
-	],
+    imports: [
+        RouterModule.forChild(routes),
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        PartialsModule,
+        FormsModule,
+        CommonModule,
+        MatInputModule,
+        AuthModule
+    ],
 	providers: [
 	],
 	exports: [CompanyComponent],
@@ -55,4 +57,11 @@ const routes: Routes = [
 })
 
 export class CompanyModule {
+	static forRoot(): ModuleWithProviders {
+		return {
+			ngModule: CompanyModule,
+			providers: [
+			]
+		};
+	}
 }

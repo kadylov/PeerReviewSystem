@@ -1,20 +1,36 @@
-<div class="about-section">
-	<div>
-		<h1>About Peer Review System Application</h1>
-		<p>Some text about who we are and what we do.</p>
-	</div>
-
-
-	<div class="flex-container">
-		<div><a href="/">Home</a>
+<div class="container-fluid" style="background: url('../assets/media/bg/bg-4.jpg'); height: 220px;max-width: 100%;">
+	<nav class="navbar navbar-expand-lg navbar-dark ">
+		<div class="d-flex flex-grow-1">
+			<span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
+			<a class="navbar-brand" [routerLink]="['/home']">
+				<h3>PRS_Logo</h3>
+			</a>
 		</div>
-		<div><a [routerLink]="['about']"  class="kt-link">About</a>
+		<div class="collapse navbar-collapse flex-grow-1 text-right " id="myNavbar7">
+			<ul class="navbar-nav ml-auto flex-nowrap " style="font-size: 15px">
+				<li class="nav-item ">
+					<a [routerLink]="['/home']" class="nav-link">Home</a>
+				</li>
+				<li class="nav-item">
+					<a [routerLink]="['/prs/about']" class="nav-link">About</a>
+				</li>
+				<li class="nav-item">
+					<a [routerLink]="['/prs/contact']" class="nav-link">Contact Us</a>
+					<!--					<div><a [routerLink]="['/prs/contact']" class="kt-link">Contact</a>-->
+
+				</li>
+			</ul>
 		</div>
-		<div><a [routerLink]="['contact']" class="kt-link">Contact</a>
+	</nav>
+	<div class="h-50" style="color: white; position: relative; margin-top: 20px">
+		<div class="d-flex justify-content-center header-about text-center">
+			<span>
+				<h3>About Peer Review System Application</h3>
+				<p>Some text about who we are and what we do.</p>
+			</span>
+
 		</div>
 	</div>
 </div>
 
-<div class="kt-space-40"></div>
 <router-outlet></router-outlet>
-

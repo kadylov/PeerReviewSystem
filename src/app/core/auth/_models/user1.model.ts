@@ -8,7 +8,7 @@ export class User1 {
 	credentialType?: string;
 	roleId?: number;
 	roleType?: string;
-	isActive?: number
+	isActive?: number;
 	accessToken?: string;
 	refreshToken?: string;
 

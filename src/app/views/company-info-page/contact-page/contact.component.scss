@@ -1,22 +1,34 @@
-.example-container {
-	display: flex;
-	flex-direction: column;
-}
-.example-container > * {
-}
 
-.portlet_ {
-	padding: 15px;
-	width: 75%;
-
-	margin: 0 auto;
-
+.contact {
+	width: 50%;
+	padding: 22px;
+	margin: auto;
+	height: 90%;
+	background: white;
 }
 
-.btn_container{
-	margin: 0 auto;
-	padding: 10px;
+
+mat-form-field {
+	width: 100%;
 }
-.btn_container > span{
-	margin-right: 10px;
+
+
+.mat-simple-snackbar {
+	font-size: 16px;
+}
+
+.snackbar2 {
+	height: 90px;
+	//margin-left: auto !important; // center align from left
+	//margin-right: auto !important; // center align from right
+	//margin-bottom: 1rem !important;
+	padding: 30px !important; // spacing between the text and boundary
+	background-color: #5A29A9;
+	color: #ffffff;
+	font-weight: 500;
+	font-family: inherit;
+
+	.mat-button-wrapper {
+		color: black !important; // action text color
+	}
 }
