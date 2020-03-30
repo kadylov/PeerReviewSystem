@@ -57,11 +57,4 @@ const routes: Routes = [
 })
 
 export class CompanyModule {
-	static forRoot(): ModuleWithProviders {
-		return {
-			ngModule: CompanyModule,
-			providers: [
-			]
-		};
-	}
 }

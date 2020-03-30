@@ -45,7 +45,7 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 	chips: string[] = [];
 	singleSelected = [];
 
-	sub: Subscription;
+	private sub: Subscription;
 
 	/**
 	 * Component constructor
@@ -93,7 +93,10 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 	 */
 	ngOnDestroy(): void {
 		this.loading = false;
-		this.sub.unsubscribe();
+		if (this.sub != undefined) {
+			this.sub.unsubscribe();
+
+		}
 	}
 
 	/**

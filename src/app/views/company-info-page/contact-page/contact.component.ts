@@ -16,7 +16,7 @@ import {Subscription} from 'rxjs';
 })
 export class ContactComponent implements OnInit, OnDestroy {
 
-	subscription: Subscription;
+	private subscription: Subscription;
 
 	loading: any;
 
@@ -39,7 +39,11 @@ export class ContactComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy() {
-		this.subscription.unsubscribe();
+		console.log(this.subscription)
+		if (this.subscription != undefined) {
+			this.subscription.unsubscribe();
+
+		}
 	}
 
 	isControlHasError(controlName: string, validationType: string) {

@@ -1,11 +1,6 @@
 <div class="row">
 	<div class="col-xl-12">
 		<kt-portlet [class]="'kt-portlet--height-fluid' ">
-
-			<!--			<kt-portlet-header [title]="'sdsdsd'"-->
-			<!--							   [class]="'kt-portlet__head&#45;&#45;lg kt-portlet__head&#45;&#45;noborder kt-portlet__head&#45;&#45;break-sm'">-->
-			<!--			</kt-portlet-header>-->
-
 			<mat-toolbar
 				style="background-image: url(../../../assets/media/bg/bg-4.jpg);max-height: 200px;min-height: 200px">
 				<span style="color: white">PRS_Logo</span>
@@ -13,7 +8,7 @@
 				<div class="flex-container">
 					<div><a href="/">Home</a>
 					</div>
-					<div><a routerLinkActive="active " [routerLink]="['/prs/about']"  class="kt-link">About</a>
+					<div><a [routerLink]="['/prs/about']"  class="kt-link">About</a>
 					</div>
 					<div><a [routerLink]="['/prs/contact']" class="kt-link">Contact</a>
 					</div>

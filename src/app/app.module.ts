@@ -37,7 +37,6 @@ import { AppComponent } from './app.component';
 // Modules
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
-// import { ThemeModule } from "./views/theme/theme.module";
 // Partials
 import { PartialsModule } from './views/partials/partials.module';
 // Layout Services
@@ -47,12 +46,8 @@ import {
 	KtDialogService,
 	LayoutConfigService,
 	LayoutRefService,
-	MenuAsideService,
 	MenuConfigService,
-	MenuHorizontalService,
 	PageConfigService,
-	SubheaderService,
-
 
 	DataTableWorkService,
 
@@ -172,22 +167,6 @@ export function hljsLanguages(): HighlightLanguage[] {
 			useValue: {languages: hljsLanguages}
 		},
 
-		// // snackbar
-		// {
-		// 	provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
-		// 	useValue: {
-		// 		duration: 41000,
-		// 		horizontalPosition: 'center',
-		// 		verticalPosition: 'bottom',
-		// 		panelClass: 'snackBarInfo'
-		// 	}
-		// },
-
-
-		// template services
-		// SubheaderService,
-		// MenuHorizontalService,
-		// MenuAsideService,
 		HttpUtilsService,
 		TypesUtilsService,
 		LayoutUtilsService,

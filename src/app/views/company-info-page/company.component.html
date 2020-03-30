@@ -2,22 +2,20 @@
 	<nav class="navbar navbar-expand-lg navbar-dark ">
 		<div class="d-flex flex-grow-1">
 			<span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
-			<a class="navbar-brand" [routerLink]="['/home']">
+			<a class="navbar-brand" href="/home">
 				<h3>PRS_Logo</h3>
 			</a>
 		</div>
 		<div class="collapse navbar-collapse flex-grow-1 text-right " id="myNavbar7">
 			<ul class="navbar-nav ml-auto flex-nowrap " style="font-size: 15px">
 				<li class="nav-item ">
-					<a [routerLink]="['/home']" class="nav-link">Home</a>
+					<a routerLink="/home" class="nav-link">Home</a>
 				</li>
 				<li class="nav-item">
-					<a [routerLink]="['/prs/about']" class="nav-link">About</a>
+					<a  routerLink="./about" routerLinkActive="active" class="nav-link">About</a>
 				</li>
 				<li class="nav-item">
-					<a [routerLink]="['/prs/contact']" class="nav-link">Contact Us</a>
-					<!--					<div><a [routerLink]="['/prs/contact']" class="kt-link">Contact</a>-->
-
+					<a routerLink="./contact" routerLinkActive="active" class="nav-link">Contact Us</a>
 				</li>
 			</ul>
 		</div>
