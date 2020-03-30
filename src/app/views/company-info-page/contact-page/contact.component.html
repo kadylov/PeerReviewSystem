@@ -3,7 +3,7 @@
 
 
 		<div class="contact">
-			<div class="mt-5">
+			<div class="mt-4">
 				<span class="text-center my-5"><h3>How Can We Help you</h3></span>
 				<kt-auth-notice></kt-auth-notice>
 
@@ -50,12 +50,29 @@
 
 					<div class="form-group">
 						<mat-form-field>
+							<mat-label>Subject</mat-label>
+							<input matInput type="text" placeholder="subject" formControlName="subject"
+								   autocomplete="off"/>
+							<mat-error *ngIf="isControlHasError('subject','required')">
+								<strong>Required field</strong>
+							</mat-error>
+							<mat-error *ngIf="isControlHasError('subject','minlength')">
+								<strong>Minimum field length: 3</strong>
+							</mat-error>
+							<mat-error *ngIf="isControlHasError('subject','maxlength')">
+								<strong>Maximum field length: 320</strong>
+							</mat-error>
+						</mat-form-field>
+					</div>
+
+					<div class="form-group">
+						<mat-form-field>
 							<mat-label>Message</mat-label>
 							<textarea matInput
 									  cdkTextareaAutosize
 									  #autosize="cdkTextareaAutosize"
-									  cdkAutosizeMinRows="2"
-									  cdkAutosizeMaxRows="5"
+									  cdkAutosizeMinRows="4"
+									  cdkAutosizeMaxRows="4"
 									  formControlName="cmessage"
 							></textarea>
 							<mat-error *ngIf="isControlHasError('cmessage','required')">

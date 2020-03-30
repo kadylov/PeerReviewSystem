@@ -44,8 +44,8 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 	selectedOptions = [];
 	chips: string[] = [];
 	singleSelected = [];
-	aaa: number = 0;
 
+	sub: Subscription;
 
 	/**
 	 * Component constructor
@@ -82,9 +82,6 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 
 	}
 
-	/**
-	 * On AfterView
-	 */
 	ngAfterViewInit() {
 		// setTimeout(() => {
 		// 	// this.titleField.nativeElement.focus();
@@ -96,6 +93,7 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 	 */
 	ngOnDestroy(): void {
 		this.loading = false;
+		this.sub.unsubscribe();
 	}
 
 	/**
@@ -205,16 +203,21 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 		const message = 'Your Work has been submitted successfully!';
 
 
-		this.displaySnackBar(message);
-		this.workService.submit(work).subscribe(
+		this.sub = this.workService.submit(work).subscribe(
 			res => {
 				this.loading = false;
-				// this.snackBar.open(message, '', {duration: 4000});
 				this.resetForm();
+				this.displaySnackBar(message);
 				this.router.navigateByUrl('/home');
+
+			},
+
+			err => {
+				this.displaySnackBar('Work is not received.');
+				return;
 			}
 		);
-		this.displaySnackBar(message);
+		// this.displaySnackBar(message);
 
 	}
 
@@ -231,7 +234,7 @@ export class SubmissionFormComponent implements OnInit, AfterViewInit, OnDestroy
 	displaySnackBar(message: string) {
 		let config = new MatSnackBarConfig();
 		config.duration = 5000;
-		config.panelClass = ['d-flex','justify-content-center','snackbar1'];
+		config.panelClass = ['d-flex', 'justify-content-center', 'snackbar1'];
 		this.snackBar.open(message, '', config);
 	}
 

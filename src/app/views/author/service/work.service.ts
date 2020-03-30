@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Work} from '../model/work';
-import {Observable} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import {TagModel} from '../../../core/author/_models/tag.model';
-import {map, tap} from 'rxjs/operators';
+import {catchError, map, tap} from 'rxjs/operators';
 
 
 const api = 'http://3.95.8.94/example/work_request.php';
@@ -26,7 +26,12 @@ export class WorkService {
 			.set(`author`, work.AuthorName)
 			.set(`email`, work.AuthorEmail)
 			.set(`selectedTags`, work.SelectedTags.toString());
-		return this.http.post<Work>(api, body, {headers: headers});
+		return this.http.post<Work>(api, body, {headers: headers})
+			.pipe(
+				catchError(err => {
+					return throwError(err);
+				})
+			);
 	}
 
 	getAllTags(): Observable<TagModel[]> {

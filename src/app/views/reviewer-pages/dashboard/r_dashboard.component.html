@@ -1,38 +1,27 @@
 <div class="row">
 	<div class="col-xl-12 dash-container">
-			<kt-assigned-work></kt-assigned-work>
+		<kt-assigned-work></kt-assigned-work>
 		<div class="discusion" #scrollMe2 [scrollTop]="scrollMe2.scrollHeight">
 			<kt-discussion
-
 				*ngIf="modal"
 				(close)="modal=false"
 			></kt-discussion>
 		</div>
-
-
 		<div class="row fab-btn">
-
-<!--			<button mat-fab (click)="open(content5)">-->
-<!--&lt;!&ndash;				<mat-icon style="height: 7px;width:7px; !important; transform: scale(1)">chat</mat-icon>&ndash;&gt;-->
-<!--				<mat-icon svgIcon="chat1"></mat-icon>-->
-<!--			</button>-->
 			<button mat-fab (click)="modal=!modal">
 				<mat-icon svgIcon="chat1"></mat-icon>
-<!--				Open1-->
 			</button>
 		</div>
 
 	</div>
 
 
+<!--	<div class="row">-->
+<!--		<div class="col-xl-12">-->
+<!--		</div>-->
 
-
-	<!--	<div class="row">-->
-	<!--		<div class="col-xl-12">-->
-	<!--		</div>-->
-
-	<!--			<button type="button" class="btn btn-primary" (click)="test()">Click</button>-->
-
+<!--		<button type="button" class="btn btn-primary" (click)="test()">Click</button>-->
+<!--	</div>-->
 
 </div>
 

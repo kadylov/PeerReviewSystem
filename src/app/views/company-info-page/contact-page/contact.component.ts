@@ -1,8 +1,11 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthNoticeService} from '../../../core/auth';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 import {Router} from '@angular/router';
+import {EmailService} from '../../../core/email-notification/_services/email.service';
+import {Email} from '../../../core/email-notification/_models/email.model';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -11,7 +14,10 @@ import {Router} from '@angular/router';
 	styleUrls: ['./contact.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
-export class ContactComponent implements OnInit {
+export class ContactComponent implements OnInit, OnDestroy {
+
+	subscription: Subscription;
+
 	loading: any;
 
 	contactForm: FormGroup;
@@ -21,14 +27,19 @@ export class ContactComponent implements OnInit {
 		private authNoticeService: AuthNoticeService,
 		private fb: FormBuilder,
 		private snackBar: MatSnackBar,
-		private router:Router,
+		private router: Router,
 
+		private emailService:EmailService
 	) {
 	}
 
 
 	ngOnInit() {
 		this.initContactForm();
+	}
+
+	ngOnDestroy() {
+		this.subscription.unsubscribe();
 	}
 
 	isControlHasError(controlName: string, validationType: string) {
@@ -46,25 +57,37 @@ export class ContactComponent implements OnInit {
 			Object.keys(controls).forEach(controlName =>
 				controls[controlName].markAsTouched()
 			);
-
-			this.loading = false;
+			return;
 		}
 
 
-			let fullname = controls['fullname'].value;
-			let email = controls['email'].value;
-			let cmessage = controls['cmessage'].value;
+		let senderName = controls['fullname'].value;
+		let senderEmail = controls['email'].value;
+		let subject = controls['subject'].value;
+		let cmessage = controls['cmessage'].value;
 
-		this.displaySnackBar('Your message has been submitted!');
+		let email:Email={
+			senderName: senderName,
+			senderEmail: senderEmail,
+			subject:subject,
+			message: cmessage
+		};
+		this.subscription= this.emailService.sendEmail(email).subscribe(
+			error => {
+				this.displaySnackBar("Unable to submit your message.");
+				return;
+			}
+		);
 
+		this.resetForm();
+		this.displaySnackBar('Your message has been submitted successfully.');
 		this.router.navigateByUrl('/home');
-			return;
+
+		return;
 
 	}
 
 	initContactForm() {
-		// demo message to show
-
 		this.contactForm = this.fb.group({
 			fullname: ['', Validators.compose([
 				Validators.required,
@@ -79,6 +102,12 @@ export class ContactComponent implements OnInit {
 				Validators.maxLength(100)
 			])
 			],
+			subject: ['', Validators.compose([
+				Validators.required,
+				Validators.minLength(3),
+				Validators.maxLength(320)
+			])
+			],
 			cmessage: ['', Validators.compose([
 				Validators.required,
 				Validators.minLength(3),
@@ -89,11 +118,18 @@ export class ContactComponent implements OnInit {
 	}
 
 
-	displaySnackBar(message: string) {
+	private displaySnackBar(message: string) {
 		let config = new MatSnackBarConfig();
 		config.duration = 5000;
-		config.panelClass = ['d-flex','justify-content-center','snackbar2'];
+		config.panelClass = ['d-flex', 'justify-content-center', 'snackbar2'];
 		this.snackBar.open(message, '', config);
+	}
+
+	private resetForm() {
+		this.contactForm.reset();
+		Object.keys(this.contactForm.controls).forEach(key => {
+			this.contactForm.get(key).setErrors(null);
+		});
 	}
 
 }

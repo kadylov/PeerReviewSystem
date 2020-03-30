@@ -3,15 +3,13 @@
 	max-width: 1080px;
 }
 
+.card-header h4{
+	margin: 0;
+}
+
 .card-deck{
 	font-size: 15px;
 }
-
-.icon-styles {
-	vertical-align: top;
-	font-size: 63px;
-}
-
 
 .img {
 	vertical-align: top;
@@ -28,9 +26,14 @@
 	margin-top: 30px;
 }
 
-.bottom{
+.bottom {
 	background-color: #646c9a;
-	height: 323px;
+	height: 285px;
 	display: flex;
-	padding-top: 59px;
+	/* padding-top: 37px; */
+}
+
+.bottom-card{
+	width: 50%;
+	height: 50%;
 }

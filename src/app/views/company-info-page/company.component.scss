@@ -1,4 +1,4 @@
-.header-about{
+.header-about {
 	position: absolute;
 	margin: 0;
 	top: 50%;
@@ -6,3 +6,7 @@
 	transform: translate(-50%, -50%);
 }
 
+.header-company {
+	height: 280px;
+	max-width: 100%;
+}

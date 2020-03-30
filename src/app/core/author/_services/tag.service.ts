@@ -6,12 +6,6 @@ import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse} fr
 // RxJS
 import {Observable, of, forkJoin, throwError} from 'rxjs';
 import {map, catchError, mergeMap, tap} from 'rxjs/operators';
-// Lodash
-import {filter, some, find, each} from 'lodash';
-// Environment
-import {environment} from '../../../../environments/environment';
-// CRUD
-import {QueryParamsModel, QueryResultsModel, HttpUtilsService} from '../../_base/crud';
 
 
 const API_TAGS_URL = 'api/tags';

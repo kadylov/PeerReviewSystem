@@ -2,11 +2,9 @@ import {Component, ComponentFactoryResolver, ComponentRef, ElementRef, OnDestroy
 import {
 	LayoutConfigService,
 } from '../../../core/_base/layout';
-import {ReviewerService} from '../../../core/reviewer/_services/reviewer.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
-
 
 @Component({
 	selector: 'kt-reviewer-dashboard',
@@ -19,12 +17,13 @@ export class R_DashboardComponent implements OnInit {
 
 
 	constructor(private layoutConfigService: LayoutConfigService,
-				private histservice: ReviewerService,
 				private modalService: NgbModal,
 				private resolver: ComponentFactoryResolver,
-
 				iconRegistry: MatIconRegistry,
-				sanitizer: DomSanitizer
+				sanitizer: DomSanitizer,
+
+
+				// delete later
 	) {
 
 		iconRegistry.addSvgIcon('chat1',
@@ -38,7 +37,6 @@ export class R_DashboardComponent implements OnInit {
 	public testvar = [];
 
 	test() {
-
 	}
 
 }
