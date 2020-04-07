@@ -46,10 +46,10 @@ export class UserManagementService {
 	}
 
 	update(_user: User1, oldUsername?: string, oldEmail?:string): Observable<any> {
-		console.log('Update user');
-		console.log(_user);
-		console.log('oldUsername',oldUsername);
-		console.log('oldEmail',oldEmail);
+		// console.log('Update user');
+		// console.log(_user);
+		// console.log('oldUsername',oldUsername);
+		// console.log('oldEmail',oldEmail);
 
 		const body = new HttpParams()
 			.set(`updateUser`, 'updateUser',)
@@ -106,7 +106,7 @@ export class UserManagementService {
 	}
 
 	deactivateUser(_user: User1): Observable<any> {
-		console.log(_user);
+		// console.log(_user);
 		const body = new HttpParams()
 			.set(`deactivateUser`, 'deactivateUser',)
 			.set(`id`, _user.id.toString())

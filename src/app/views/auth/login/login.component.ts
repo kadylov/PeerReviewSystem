@@ -180,6 +180,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
 					}
 
+					this.clearUserCredentials(this.user);
 					localStorage.setItem('user', JSON.stringify(this.user));
 					// this.router.navigateByUrl(this.returnUrl); // Main page
 
@@ -194,6 +195,12 @@ export class LoginComponent implements OnInit, OnDestroy {
 				// this.cdr.markForCheck();
 			});
 
+	}
+
+	private clearUserCredentials(user:User1){
+		user.email='';
+		user.username='';
+		user.password='';
 	}
 
 	/**

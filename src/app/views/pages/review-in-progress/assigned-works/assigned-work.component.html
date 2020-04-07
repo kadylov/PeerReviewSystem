@@ -43,11 +43,10 @@
 			<ng-container matColumnDef="Action" style="margin-left: 40px">
 				<th mat-header-cell *matHeaderCellDef  > Action</th>
 				<td mat-cell *matCellDef="let row" >
-<!--					<a href="javascript:;" [hidden]="row.DueDate<currentDate==false">Switch Reviewer</a>-->
 					<button mat-button
 							color="primary"
 							[hidden]="row.DueDate<currentDate==false"
-							(click)="openDialog()"
+							(click)="switchUser(row)"
 					>Switch Reviewer</button>
 				</td>
 

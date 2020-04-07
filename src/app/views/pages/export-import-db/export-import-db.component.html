@@ -1,0 +1,34 @@
+<div class="row">
+	<div class="col-xl-4">
+		<kt-portlet [class]="'kt-portlet--height-fluid'">
+			<kt-portlet-header [title]="'Download database file'">
+			</kt-portlet-header>
+			<kt-portlet-body>
+
+				<span><button class="btn btn-primary mr-3" (click)="onSubmit()">Download</button></span>
+
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+	<div class="col-xl-4">
+		<kt-portlet [class]="'kt-portlet--height-fluid'">
+			<kt-portlet-header [title]="'upload database file'">
+			</kt-portlet-header>
+			<kt-portlet-body>
+
+				<div class="d-flex justify-content-between">
+					<div  class="align-self-center">
+						<input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".sql">
+					</div>
+					<div>
+						<span><button class="btn btn-primary">Upload</button></span>
+					</div>
+
+				</div>
+
+
+
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+</div>

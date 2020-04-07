@@ -91,33 +91,6 @@ export class MenuConfig {
 					page: '/admin/result', // <= URL
 					icon: 'flaticon-line-graph' // <= Choose the icon class
 				},
-				// {
-				// 	title: 'Layout Builder',
-				// 	root: true,
-				// 	icon: 'flaticon2-expand',
-				// 	page: '/builder'
-				// },
-				// {section: 'Reviews'},
-				// {
-				// 	title: 'Preliminary',
-				// 	root: true,
-				// 	bullet: 'dot',
-				// 	icon: 'flaticon2-browser-2',
-				// },
-				// {
-				// 	title: 'In-Progress',
-				// 	root: true,
-				// 	bullet: 'dot',
-				// 	icon: 'flaticon2-digital-marketing',
-				//
-				// },
-				// {
-				// 	title: 'Completed',
-				// 	root: true,
-				// 	bullet: 'dot',
-				// 	icon: 'flaticon2-digital-marketing',
-				//
-				// },
 				{section: 'Members'},
 				// {
 				// 	title: 'Members',
@@ -136,11 +109,22 @@ export class MenuConfig {
 							title: 'Users',
 							page: '/admin/user-management/users'
 						},
-						// {
-						// 	title: 'Roles',
-						// 	page: '/admin/user-management/roles'
-						// }
 					]
+				},
+
+				{section: 'Database'},
+				// {
+				// 	title: 'Members',
+				// 	bullet: 'dot',
+				// 	icon: 'flaticon2-list-2',
+				// 	root: true,
+				// 	permission: 'accessToECommerceModule',
+				// },
+				{
+					title: 'Export/Import Database',
+					root: true,
+					page: '/admin/export-import-db', // <= URL
+					icon: 'flaticon-open-box',
 				},
 			]
 		},

@@ -1,0 +1,12 @@
+
+.mat-row.hovered {
+	background: #ebedf2;
+}
+
+.mat-row.highlighted {
+	background: #ebedf2;
+}
+
+:host::ng-deep .mat-button-focus-overlay {
+	background-color: transparent!important;
+}

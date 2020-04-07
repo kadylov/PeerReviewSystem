@@ -1,7 +1,11 @@
 import {MatDialog, MatDialogRef, MatSort, MatTableDataSource} from '@angular/material';
 import {Reviewer, ReviewInProgressModel} from '../../../../core/admin/_models/review-in-progress.model';
-import {Component, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {DatePipe} from '@angular/common';
+import {ReviewerToAssignComponent} from '../../reviewersToAssign/reviewer-to-assign.component';
+import {BehaviorSubject, Subscription} from 'rxjs';
+import {AdminService} from '../../../../core/admin/_services/admin.service';
+import {LayoutUtilsService, MessageType} from '../../../../core/_base/crud';
 
 
 @Component({
@@ -17,29 +21,36 @@ export class AssignedListComponent implements OnInit, OnDestroy {
 	displayedColumns = ['id', 'Reviewer', 'Role', 'DueDate', 'Status', 'Action'];
 
 	@ViewChild(MatSort, {static: true}) sort: MatSort;
-	@Input() data: any;
+	@Input() reviewers: any;
+	@Input() workID: number;
 
 	currentDate: string;
+	subscriptions: Subscription[] = [];
 
-
-	constructor(datePipe: DatePipe,
-				public dialog: MatDialog) {
+	constructor(private datePipe: DatePipe,
+				public dialog: MatDialog,
+				private adminService: AdminService,
+				private layoutUtilsService: LayoutUtilsService,
+	) {
 		this.currentDate = datePipe.transform(new Date(Date.now()), 'yyyy-MM-dd');
 
 	}
 
 	ngOnDestroy(): void {
+		if (this.subscriptions.length > 0) {
+			this.subscriptions.forEach(sub => sub.unsubscribe());
+		}
 	}
 
 	ngOnInit(): void {
-		this.dataSource = new MatTableDataSource<Reviewer>(this.data);
+		this.dataSource = new MatTableDataSource<Reviewer>(this.reviewers);
 	}
 
 
 	getItemStatusString(reviewDue: string = ''): string {
 		if (reviewDue < this.currentDate) {
 			return 'overdue';
-		} else if (reviewDue > this.currentDate) {
+		} else if (reviewDue >= this.currentDate) {
 			return 'due';
 		} else {
 			return '';
@@ -58,97 +69,94 @@ export class AssignedListComponent implements OnInit, OnDestroy {
 		// due date = 17 curr date =22
 		if (reviewDue < this.currentDate) {
 			return 'danger';
-		} else if (reviewDue > this.currentDate) {
+		} else if (reviewDue >= this.currentDate) {
 			return 'success';
 		} else {
 			return '';
 		}
 	}
 
-	/**
-	 * Returns item condition
-	 *
-	 * @param condition: number
-	 */
-	getItemConditionString(condition: number = 0): string {
-		switch (condition) {
-			case 0:
-				return 'New';
-			case 1:
-				return 'Used';
-		}
-		return '';
-	}
 
-	/**
-	 * Returns CSS Class name by condition
-	 *
-	 * @param condition: number
-	 */
-	getItemCssClassByCondition(condition: number = 0): string {
-		switch (condition) {
-			case 0:
-				return 'success';
-			case 1:
-				return 'info';
-		}
-		return '';
-	}
+	switchUser(reviewer: any) {
 
-	openDialog() {
-		const dialogRef = this.dialog.open(Modal3Component, {height: '350px'});
+		const reviewerToSwap = reviewer;
+
+		const dialogRef = this.dialog.open(ReviewerToAssignComponent, {
+			width: '1131px',
+			data: {'reviewer': reviewer,
+				'workID':this.workID},
+		});
 
 		dialogRef.afterClosed().subscribe(result => {
-			console.log(`Dialog result: ${result}`);
+
+			if (result.data == 'close') {
+				return;
+			} else {
+				// first, deactivate reviewer whose assignment is overdue
+				// and then swap the deactivated reviewer with selected reviewer from the dialogbox
+				this.deactivateUserByIdFromAssignment(reviewerToSwap.ReviewerID, this.workID);
+
+				const newAssignedReviewer = {
+					ReviewerID: result.assignment.reviewer.ReviewerID,
+					ReviewerName: result.assignment.reviewer.ReviewerName,
+					Role: result.assignment.reviewer.Role,
+					DueDate: result.assignment.dueDate
+				};
+
+				const assignment = {
+					adminID: this.getAdminId(),
+					reviewerID: newAssignedReviewer.ReviewerID,
+					workID: this.workID,
+					dueDate: result.assignment.dueDate,
+					dateAssigned: this.currentDate
+				};
+
+				this.subscriptions.push(this.adminService.assignReviewer(assignment).subscribe(
+					res => {
+
+						this.updateRowData(reviewerToSwap, newAssignedReviewer);
+						this.displayConfirmationMessage();
+
+					}
+				));
+
+			}
+
 		});
 	}
-}
-
-@Component({
-	selector: 'kt-modal3',
-	template: `
-
-		<div class="col-xl-12">
-			<div class="col-xl-12">
-				<div class="kt-modal3__container">
-				<mat-toolbar>
-					  <mat-toolbar-row>
-						<span>List of Reviewers [Currently Under development....]</span>
-					  </mat-toolbar-row>
-				</mat-toolbar>
-<!--					<h2 mat-dialog-title>List of Reviewers</h2>-->
-					<mat-dialog-content>
-						<mat-selection-list multiple="'false'">
-							<mat-list-option >Reviewer 1</mat-list-option>
-							<mat-list-option >Reviewer 2</mat-list-option>
-							<mat-list-option >Reviewer 3</mat-list-option>
-						</mat-selection-list>
-
-					</mat-dialog-content>
-					<mat-dialog-actions>
-						<button class="mat-raised-button" (click)="close()">Close</button>
-						<button class="btn btn-primary " (click)="save()">Switch</button>
-					</mat-dialog-actions>
-				</div>
-			</div>
-		</div>
-
-		`,
-})
-export class Modal3Component implements OnInit {
 
 
-	constructor(private dialogRef: MatDialogRef<Modal3Component>) {
+	private deactivateUserByIdFromAssignment(reviewerId: number, workId: number) {
+		this.subscriptions.push(this.adminService.deactivateUserFromAssignment(reviewerId, workId).subscribe());
 	}
 
-	ngOnInit() {
+	private getAdminId() {
+		const user = JSON.parse(localStorage.getItem('user'));
+
+		return user.id;
 	}
 
-	close() {
-		this.dialogRef.close();
+
+	private updateRowData(reviewer, newReviewer) {
+		console.log('Reviewer ', reviewer);
+		console.log('Reviewer2 ', newReviewer);
+
+		let newData = Object.assign([], this.reviewers);
+		console.log('Before ', newData);
+
+		newData = newData.filter(r =>
+			r.ReviewerID !== reviewer.ReviewerID
+		);
+
+		newData.push(newReviewer);
+		this.dataSource.data = newData;
 	}
 
-	save() {
 
+	private displayConfirmationMessage() {
+		const message = `The reviewer has been swapped successfully.`;
+		this.layoutUtilsService.showActionNotification(message, MessageType.Create, 5000, true, false);
 	}
+
+
 }

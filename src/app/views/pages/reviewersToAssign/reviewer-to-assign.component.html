@@ -1,0 +1,118 @@
+<div class="col-xl-12" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+	<div class="col-xl-12">
+		<div class="kt-modal3__container">
+			<mat-toolbar>
+				<mat-toolbar-row>
+					<span>Select one of the reviewers from the table</span>
+				</mat-toolbar-row>
+			</mat-toolbar>
+
+
+
+			<mat-dialog-content>
+
+				<div class="mt-5">
+					<div class="d-flex justify-content-center" *ngIf="due_date.invalid && due_date.touched">
+						<ngb-alert [type]="'danger'" [dismissible]="false" ><strong>Please select a reviewer from the table and set due date</strong></ngb-alert>
+					</div>
+					<div perfectScrollbar [ngStyle]="{'max-height': '43vh', 'position': 'relative'}"
+						 class="mat-table__wrapper mat-table__wrapper--dashboard mb-4">
+						<table mat-table [dataSource]="dataSource">
+
+							<!-- ReviewerID Column -->
+							<ng-container matColumnDef="id">
+								<th mat-header-cell *matHeaderCellDef> ID</th>
+								<td mat-cell *matCellDef="let row"> {{row.ReviewerID}}</td>
+							</ng-container>
+
+							<!-- Reviewer Name -->
+							<ng-container matColumnDef="fullname">
+
+								<th mat-header-cell *matHeaderCellDef> Reviewer</th>
+								<td mat-cell *matCellDef="let row">{{row.ReviewerName}}</td>
+							</ng-container>
+
+							<!-- Credential -->
+							<ng-container matColumnDef="credentialType">
+								<th mat-header-cell *matHeaderCellDef> Credential</th>
+								<td mat-cell *matCellDef="let row">{{row.Credential}}</td>
+							</ng-container>
+
+							<!-- Role -->
+							<ng-container matColumnDef="roleType">
+								<th mat-header-cell *matHeaderCellDef> Role</th>
+								<td mat-cell *matCellDef="let row">{{row.Role}}</td>
+							</ng-container>
+
+							<!-- Number of Reviews this month -->
+							<ng-container matColumnDef="reviewedThisMonth">
+								<th mat-header-cell *matHeaderCellDef> Reviews This Month</th>
+								<td mat-cell *matCellDef="let row">
+								<span *ngIf="row.ReviewedThisMonth != null; else zero">
+									{{row.ReviewedThisMonth}}
+								</span>
+								</td>
+							</ng-container>
+
+							<!-- Total Reviews -->
+							<ng-container matColumnDef="totalReviews">
+								<th mat-header-cell *matHeaderCellDef> Total Reviews</th>
+								<td mat-cell *matCellDef="let row">{{row.TotalReviews}}</td>
+							</ng-container>
+
+							<!-- Set Due Date Action -->
+							<ng-container matColumnDef="setDueDate">
+								<th mat-header-cell *matHeaderCellDef style="width: 120px"> Set Due Date</th>
+								<td mat-cell *matCellDef="let row">
+
+									<div *ngIf="clicked[row.ReviewerID]">
+										<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+										<mat-datepicker #picker></mat-datepicker>
+										<mat-form-field style="width: 66px">
+											<mat-label>Due date</mat-label>
+											<input matInput [matDatepicker]="picker"
+												   [formControl]="due_date"
+												   readonly="readonly"
+											>
+
+											<mat-error *ngIf="isControlHasError('required')">
+											</mat-error>
+										</mat-form-field>
+
+									</div>
+
+								</td>
+							</ng-container>
+
+							<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+							<tr mat-row *matRowDef="let row; columns: displayedColumns;"
+
+								(click)="selection.toggle(row); rowClicked(row)"
+								[ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}"
+								(mouseover)="row.hovered = true" (mouseout)="row.hovered = false"
+							>
+							</tr>
+						</table>
+					</div>
+				</div>
+
+
+			</mat-dialog-content>
+			<mat-dialog-actions class="d-flex justify-content-center">
+					<span>
+						<button class="mat-raised-button" style="margin-right: 15px" (click)="close()">Close</button>
+						<button class="btn btn-primary " (click)="switch()">Switch</button>
+					</span>
+
+
+			</mat-dialog-actions>
+		</div>
+	</div>
+</div>
+
+
+<ng-template #zero>
+	<span>
+		0
+	</span>
+</ng-template>

@@ -19,9 +19,9 @@ import { CompletedReviewComponent } from './admin/completed-review/completed-rev
 
 import {PublicPageModule} from "../public-page/public-page.module";
 import {
-	MatButtonModule, MatDialogModule,
+	MatButtonModule, MatDatepickerModule, MatDialogModule,
 	MatExpansionModule,
-	MatFormFieldModule, MatListModule,
+	MatFormFieldModule, MatIconModule, MatInputModule, MatListModule,
 	MatPaginatorModule,
 	MatRadioModule,
 	MatSliderModule,
@@ -36,7 +36,11 @@ import {IncomingDatatable} from './admin/incoming-datatable/incomingDatatable.co
 import {ReviewInProgressComponent} from './review-in-progress/review-in-progress.component';
 import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {AssignedListComponent, Modal3Component} from './review-in-progress/assigned-works/assigned-work.component';
+import {AssignedListComponent} from './review-in-progress/assigned-works/assigned-work.component';
+import {ReviewerToAssignComponent} from './reviewersToAssign/reviewer-to-assign.component';
+import {LayoutUtilsService} from '../../core/_base/crud';
+import {ActionNotificationComponent} from '../partials/content/crud';
+import {ExportImportDbComponent} from './export-import-db/export-import-db.component';
 
 const routes:Routes=[
 	{
@@ -89,6 +93,10 @@ const routes:Routes=[
 				loadChildren: () => import('app/views/pages/user-management/user-management.module').then(m => m.UserManagementModule)
 			},
 			{
+				path: 'export-import-db',
+				component: ExportImportDbComponent
+			},
+			{
 				path: 'error/403',
 				component: ErrorPageComponent,
 				data: {
@@ -118,9 +126,10 @@ const routes:Routes=[
 		IncomingDatatable,
 		ReviewInProgressComponent,
 		AssignedListComponent,
-		Modal3Component
+		ReviewerToAssignComponent,
+		ExportImportDbComponent,
 	],
-	entryComponents: [Modal3Component],
+	entryComponents: [ReviewerToAssignComponent,ActionNotificationComponent],
 
 	exports: [
 	],
@@ -148,8 +157,12 @@ const routes:Routes=[
 		MatDialogModule,
 		MatToolbarModule,
 		MatListModule,
+		MatDatepickerModule,
+		MatIconModule,
+		MatInputModule,
 	],
-	providers: [DatePipe]
+	providers: [DatePipe,LayoutUtilsService],
+
 })
 export class PagesModule {
 }

@@ -41,7 +41,8 @@
             "scripts": [
 				"node_modules/popper.js/dist/umd/popper.js",
 				"node_modules/tooltip.js/dist/umd/tooltip.min.js",
-				"node_modules/perfect-scrollbar/dist/perfect-scrollbar.js"
+				"node_modules/perfect-scrollbar/dist/perfect-scrollbar.js",
+				"node_modules/file-saver/src/FileSaver.js"
             ],
 		  	"stylePreprocessorOptions": {
 			  "includePaths": [
