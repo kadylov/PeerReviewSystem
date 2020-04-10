@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthNoticeService} from '../../../core/auth';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 import {Router} from '@angular/router';
 import {EmailService} from '../../../core/email-notification/_services/email.service';
@@ -16,6 +15,8 @@ import {Subscription} from 'rxjs';
 })
 export class ContactComponent implements OnInit, OnDestroy {
 
+	title:string = 'About Peer Review System Application';
+
 	private subscription: Subscription;
 
 	loading: any;
@@ -24,7 +25,6 @@ export class ContactComponent implements OnInit, OnDestroy {
 
 
 	constructor(
-		private authNoticeService: AuthNoticeService,
 		private fb: FormBuilder,
 		private snackBar: MatSnackBar,
 		private router: Router,
@@ -39,7 +39,6 @@ export class ContactComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy() {
-		console.log(this.subscription)
 		if (this.subscription != undefined) {
 			this.subscription.unsubscribe();
 

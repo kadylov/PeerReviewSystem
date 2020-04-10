@@ -10,18 +10,22 @@ import {AuthGuard} from './core/auth';
 // Admin Parts
 
 const routes: Routes = [
+
+	// Public user
+	{path: '', redirectTo: 'home', pathMatch: 'full'},
+	{path: 'home', loadChildren: () => import('app/views/main/main.module').then(m => m.MainModule)},
+
 	{path: 'auth', loadChildren: () => import('app/views/auth/auth.module').then(m => m.AuthModule)},
-	{path: 'home', loadChildren: () => import('app/views/public-page/public-page.module').then(m => m.PublicPageModule)},
+	// {path: 'home', loadChildren: () => import('app/views/public-page/public-page.module').then(m => m.PublicPageModule)},
 	{path: 'author', loadChildren: () => import('app/views/author/author.module').then(m => m.AuthorModule)},
 
 	{path: 'reviewer', loadChildren: () => import('app/views/reviewer-pages/r_pages.module').then(m => m.ReviewerPagesModule)},
 	{path: 'admin', loadChildren: () => import('app/views/pages/pages.module').then(m => m.PagesModule)},
 
-	{path: 'prs', loadChildren: () => import('app/views/company-info-page/company.module').then(m => m.CompanyModule)},
+	// {path: 'prs', loadChildren: () => import('app/views/company-info-page/company.module').then(m => m.CompanyModule)},
 
 
-	// Public user
-	{path: '', redirectTo: 'home', pathMatch: 'full'},
+
 ];
 
 @NgModule({

@@ -17,7 +17,10 @@ import { InProgressComponent } from './admin/in-progress/in-progress.component';
 import { CompletedReviewComponent } from './admin/completed-review/completed-review.component';
 
 
-import {PublicPageModule} from "../public-page/public-page.module";
+// import {PublicPageModule} from "../public-page/public-page.module";
+
+
+
 import {
 	MatButtonModule, MatDatepickerModule, MatDialogModule,
 	MatExpansionModule,
@@ -141,7 +144,7 @@ const routes:Routes=[
 		CoreModule,
 		PartialsModule,
 		UserManagementModule,
-		PublicPageModule,
+		// PublicPageModule,
 		MatRadioModule,
 		MatFormFieldModule,
 		ThemeModule,

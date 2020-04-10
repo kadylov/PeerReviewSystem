@@ -67,6 +67,7 @@ import * as scss from 'highlight.js/lib/languages/scss';
 import * as xml from 'highlight.js/lib/languages/xml';
 import * as json from 'highlight.js/lib/languages/json';
 import {ReactiveFormsModule} from '@angular/forms';
+import {MainModule} from './views/main/main.module';
 
 
 
@@ -135,6 +136,7 @@ export function hljsLanguages(): HighlightLanguage[] {
 		MatInputModule,
 
 		// PublicPageModule ////////////////
+		MainModule
 	],
 	exports: [
 	],
