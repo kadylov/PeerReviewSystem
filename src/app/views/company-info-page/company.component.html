@@ -1,18 +1,19 @@
-<div class="container-fluid header-company" style="	background: url('../assets/media/bg/bg-4.jpg');">
+<div class="container-fluid header-company" style="background: url('../assets/media/bg/bg-4.jpg') no-repeat -2% 26%;">
 	<nav class="navbar navbar-expand-lg navbar-dark ">
 		<div class="d-flex flex-grow-1">
 			<span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
-			<a class="navbar-brand" href="/home">
-				<h3>PRS_Logo</h3>
+			<a class="navbar-brand" routerLink="/home">
+				<!--				<h3>PRS</h3>-->
+				<img style="width: 118px" src="../assets/media/bg/logo.png" alt="PRS"/>
 			</a>
 		</div>
 		<div class="collapse navbar-collapse flex-grow-1 text-right " id="myNavbar7">
-			<ul class="navbar-nav ml-auto flex-nowrap " style="font-size: 15px">
+			<ul class="navbar-nav ml-auto flex-nowrap font-weight-bold" style="font-size: 15px">
 				<li class="nav-item ">
 					<a routerLink="/home" class="nav-link">Home</a>
 				</li>
 				<li class="nav-item">
-					<a  routerLink="./about" routerLinkActive="active" class="nav-link">About</a>
+					<a routerLink="./about" routerLinkActive="active" class="nav-link">About</a>
 				</li>
 				<li class="nav-item">
 					<a routerLink="./contact" routerLinkActive="active" class="nav-link">Contact Us</a>
@@ -23,8 +24,7 @@
 	<div class="h-50" style="color: white; position: relative; margin-top: 20px">
 		<div class="d-flex justify-content-center header-about text-center">
 			<span>
-				<h3>About Peer Review System Application</h3>
-				<p>Some text about who we are and what we do.</p>
+				<h2>{{title}}</h2>
 			</span>
 
 		</div>

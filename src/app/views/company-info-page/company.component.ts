@@ -8,5 +8,6 @@ import {Component, ViewEncapsulation} from '@angular/core';
 	encapsulation: ViewEncapsulation.None
 })
 export class CompanyComponent {
+	title: string = 'About Peer Review System Application';
 
 }

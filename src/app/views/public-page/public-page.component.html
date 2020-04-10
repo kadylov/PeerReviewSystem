@@ -1,20 +1,68 @@
+<div class="container-fluid " style="background: url('../assets/media/bg/bg-4.jpg') no-repeat -2% 26%;">
+	<div class="header-company ">
+		<nav class="navbar navbar-expand-lg navbar-dark ">
+			<div class="d-flex flex-grow-1">
+				<span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
+				<a class="navbar-brand" routerLink="/home">
+					<img style="width: 118px" src="../assets/media/bg/logo.png" alt="PRS"/>
+				</a>
+			</div>
+			<div class="collapse navbar-collapse flex-grow-1 text-right " id="myNavbar7">
+				<ul class="navbar-nav ml-auto flex-nowrap font-weight-bold" style="font-size: 15px">
+					<li class="nav-item ">
+						<a [routerLink]="['/home']" routerLinkActive="active" class="nav-link">Home</a>
+					</li>
+					<li class="nav-item">
+						<a [routerLink]="['/prs/about']" routerLinkActive="active" class="nav-link">About</a>
+					</li>
+					<li class="nav-item">
+						<a [routerLink]="['/prs/contact']" routerLinkActive="active" class="nav-link">Contact Us</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<div class="h-50" style="color: white; position: relative; margin-top: 20px">
+			<div class="d-flex justify-content-center header-about text-center">
+			<span>
+				<h2>{{title}}</h2>
+				<!--				<p>Some text about who we are and what we do.</p>-->
+			</span>
+
+			</div>
+		</div>
+	</div>
+
+
+<!--	<div class="container-fluid text-white" style="background-color: #f2f3f8 ">-->
+<!--		<div class="d-flex justify-content-between">-->
+<!--			<div>-->
+<!--				test1-->
+<!--			</div>-->
+<!--			<div>-->
+<!--				<div>-->
+<!--					<button mat-raised-button-->
+<!--							color="accent"-->
+<!--							class="pulsingButton"-->
+<!--							style="margin-right: 1.3rem;"-->
+<!--							[routerLink]="['/author/submission']">Submit Work-->
+<!--					</button>-->
+
+
+<!--					<button mat-raised-button-->
+<!--							color="primary"-->
+<!--							style="background-color: #6B39B6;"-->
+<!--							[routerLink]="['/auth/login']">Login-->
+<!--					</button>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		</div>-->
+
+<!--	</div>-->
+
+</div>
 <div class="row">
 	<div class="col-xl-12">
 		<kt-portlet [class]="'kt-portlet--height-fluid' ">
-			<mat-toolbar
-				style="background-image: url(../../../assets/media/bg/bg-4.jpg);max-height: 200px;min-height: 200px">
-				<span style="color: white">PRS_Logo</span>
-
-				<div class="flex-container">
-					<div><a href="/">Home</a>
-					</div>
-					<div><a [routerLink]="['/prs/about']"  class="kt-link">About</a>
-					</div>
-					<div><a [routerLink]="['/prs/contact']" class="kt-link">Contact</a>
-					</div>
-				</div>
-
-			</mat-toolbar>
 			<div class="kt-portlet__head kt-portlet__head--lg">
 				<div class="kt-portlet__head-label">
 							<span class="kt-portlet__head-icon">
@@ -50,14 +98,81 @@
 
 					<!--end: Datatable -->
 				</div>
-
-
 			</kt-portlet-body>
-
 		</kt-portlet>
-
-
 	</div>
-
-
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="row">-->
+<!--	<div class="col-xl-12">-->
+<!--		<kt-portlet [class]="'kt-portlet&#45;&#45;height-fluid' ">-->
+<!--			<mat-toolbar-->
+<!--				style="background-image: url(../../../assets/media/bg/bg-4.jpg);max-height: 200px;min-height: 200px">-->
+<!--				<span style="color: white">-->
+<!--&lt;!&ndash;					PRS_Logo&ndash;&gt;-->
+<!--					<img style="width: 118px" src="../assets/media/bg/logo.png" alt="PRS"/>-->
+<!--				</span>-->
+
+<!--				<div class="flex-container">-->
+<!--					<div><a href="/">Home</a>-->
+<!--					</div>-->
+<!--					<div><a [routerLink]="['/prs/about']"  class="kt-link">About</a>-->
+<!--					</div>-->
+<!--					<div><a [routerLink]="['/prs/contact']" class="kt-link">Contact</a>-->
+<!--					</div>-->
+<!--				</div>-->
+
+<!--			</mat-toolbar>-->
+<!--			<div class="kt-portlet__head kt-portlet__head&#45;&#45;lg">-->
+<!--				<div class="kt-portlet__head-label">-->
+<!--							<span class="kt-portlet__head-icon">-->
+<!--								<i class="kt-font-brand flaticon2-line-chart"></i>-->
+<!--							</span>-->
+<!--					<h3 class="kt-portlet__head-title">-->
+<!--						PRS Works-->
+<!--						<small>the highest scored works</small>-->
+<!--					</h3>-->
+<!--				</div>-->
+<!--				<div class="kt-portlet__head-toolbar ">-->
+<!--					<button mat-raised-button-->
+<!--							color="accent"-->
+<!--							class="pulsingButton"-->
+<!--							style="margin-right: 1.3rem;"-->
+<!--							[routerLink]="['/author/submission']">Submit Work</button>-->
+
+
+<!--					<button mat-raised-button-->
+<!--							color="primary"-->
+<!--							style="background-color: #6B39B6;"-->
+<!--							[routerLink]="['/auth/login']">Login</button>-->
+<!--				</div>-->
+<!--			</div>-->
+
+<!--			<kt-portlet-body [class]="'kt-portlet__body&#45;&#45;fit'" style="height:100%; max-height: 100%">-->
+
+<!--				<div class="kt-portlet kt-portlet&#45;&#45;mobile ">-->
+
+
+<!--					&lt;!&ndash;begin: Datatable &ndash;&gt;-->
+<!--					<kt-work-list></kt-work-list>-->
+
+<!--					&lt;!&ndash;end: Datatable &ndash;&gt;-->
+<!--				</div>-->
+<!--			</kt-portlet-body>-->
+<!--		</kt-portlet>-->
+<!--	</div>-->
+<!--</div>-->

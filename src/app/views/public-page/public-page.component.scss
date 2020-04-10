@@ -1,108 +1,130 @@
-:host {
-  ::ng-deep {
-    ngb-tabset > .nav-tabs {
-      display: none;
-    }
-  }
-}
+//:host {
+//  ::ng-deep {
+//    ngb-tabset > .nav-tabs {
+//      display: none;
+//    }
+//  }
+//}
+//
+//.example-button-row {
+//  display: flex;
+//  align-items: center;
+//  justify-content: space-around;
+//}
+//
+//
+//.mat-table{
+//
+//	max-height: 600px;
+//}
+//
+/////////////////////////////////////////////////////////////////////////////////
+//
+//@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+//
+//* {
+//	box-sizing: border-box;
+//}
+//
+//body {
+//	background-image: linear-gradient(to bottom, #cfd9df 0%, #e2ebf0 100%);
+//	font-family: 'Source Sans Pro', sans-serif;
+//	margin: 0;
+//	height: 100vh;
+//	display: flex;
+//	align-items: center;
+//	justify-content: center;
+//	flex-direction: column;
+//}
+//
+///* Basic button styling */
+//
+//.ww{
+//	background: #7225ff;
+//}
+//
+//.pulsingButton {
+//	box-shadow: 0 0 0 0 rgba(85, 157, 228, 0.7);
+//	-webkit-animation: pulsing 5.25s infinite cubic-bezier(0.66, 0, 0, 1);
+//	-moz-animation: pulsing 5.25s infinite cubic-bezier(0.66, 0, 0, 1);
+//	-ms-animation: pulsing 5.25s infinite cubic-bezier(0.66, 0, 0, 1);
+//	animation: pulsing 5.25s infinite cubic-bezier(0.66, 0, 0, 1);
+//	transition: all 800ms ease-in-out;
+//
+//}
+//
+//
+///* Comment-out to have the button continue to pulse on mouseover */
+//
+//a.pulsingButton:hover {
+//	-webkit-animation: none;
+//	-moz-animation: none;
+//	-ms-animation: none;
+//	animation: none;
+//	color: #ffffff;
+//}
+//
+//
+///* Animation */
+//
+//@-webkit-keyframes pulsing {
+//	to {
+//		box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);
+//	}
+//}
+//
+//@-moz-keyframes pulsing {
+//	to {
+//		box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);
+//	}
+//}
+//
+//@-ms-keyframes pulsing {
+//	to {
+//		box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);
+//	}
+//}
+//
+//@keyframes pulsing {
+//	to {
+//		box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);
+//	}
+//}
+//
+//.flex-container{
+//	display: flex;
+//	flex-direction: row;
+//	margin-top: 150px;
+//	margin-left: -55px;
+//
+//}
+//
+//.flex-container > div > a {
+//	text-align: left;
+//	font-size: 16px;
+//	margin-right: 10px;
+//
+//	color:white;
+//}
 
-.example-button-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-
-.mat-table{
-
-	max-height: 600px;
-}
-
-///////////////////////////////////////////////////////////////////////////////
-
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
-
-* {
-	box-sizing: border-box;
-}
-
-body {
-	background-image: linear-gradient(to bottom, #cfd9df 0%, #e2ebf0 100%);
-	font-family: 'Source Sans Pro', sans-serif;
+.header-about {
+	position: absolute;
 	margin: 0;
-	height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
-/* Basic button styling */
-
-.ww{
-	background: #7225ff;
-}
-
-.pulsingButton {
-	box-shadow: 0 0 0 0 rgba(85, 157, 228, 0.7);
-	-webkit-animation: pulsing 5.25s infinite cubic-bezier(0.66, 0, 0, 1);
-	-moz-animation: pulsing 5.25s infinite cubic-bezier(0.66, 0, 0, 1);
-	-ms-animation: pulsing 5.25s infinite cubic-bezier(0.66, 0, 0, 1);
-	animation: pulsing 5.25s infinite cubic-bezier(0.66, 0, 0, 1);
-	transition: all 800ms ease-in-out;
-
+.header-company {
+	height: 280px;
+	max-width: 100%;
 }
 
 
-/* Comment-out to have the button continue to pulse on mouseover */
-
-a.pulsingButton:hover {
-	-webkit-animation: none;
-	-moz-animation: none;
-	-ms-animation: none;
-	animation: none;
-	color: #ffffff;
+.underline {
+	text-decoration: underline;
 }
 
-
-/* Animation */
-
-@-webkit-keyframes pulsing {
-	to {
-		box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);
-	}
-}
-
-@-moz-keyframes pulsing {
-	to {
-		box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);
-	}
-}
-
-@-ms-keyframes pulsing {
-	to {
-		box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);
-	}
-}
-
-@keyframes pulsing {
-	to {
-		box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);
-	}
-}
-
-.flex-container{
-	display: flex;
-	flex-direction: row;
-	margin-top: 150px;
-	margin-left: -55px;
-
-}
-
-.flex-container > div > a {
-	text-align: left;
-	font-size: 16px;
-	margin-right: 10px;
-
-	color:white;
-}
+//#myNavbar7 a.active {
+//	border-bottom: 2px solid white;
+//}

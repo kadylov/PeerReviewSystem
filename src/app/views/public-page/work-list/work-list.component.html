@@ -31,7 +31,7 @@
 
 					<th mat-header-cell *matHeaderCellDef mat-sort-header> Title</th>
 					<td mat-cell *matCellDef="let row">
-						<a href="{{row.URL}}" target="_blank">{{row.Title}}</a>
+						<a href="javascript:;">{{row.Title}}</a>
 
 						<span class="mdc-chip-set">
 							<span *ngFor="let tag of row.Tags | slice:1"
