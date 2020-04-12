@@ -32,8 +32,6 @@ export class MainComponent implements OnInit, OnDestroy {
 
 					switch (event.url) {
 						case '/contact':
-							this.title = 'About Peer Review System Application';
-							break
 						case '/about':
 							this.title = 'About Peer Review System Application';
 							break

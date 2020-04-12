@@ -22,14 +22,14 @@ import { CompletedReviewComponent } from './admin/completed-review/completed-rev
 
 
 import {
-	MatButtonModule, MatDatepickerModule, MatDialogModule,
-	MatExpansionModule,
-	MatFormFieldModule, MatIconModule, MatInputModule, MatListModule,
-	MatPaginatorModule,
-	MatRadioModule,
-	MatSliderModule,
-	MatSortModule,
-	MatTableModule, MatToolbarModule
+    MatButtonModule, MatDatepickerModule, MatDialogModule,
+    MatExpansionModule,
+    MatFormFieldModule, MatIconModule, MatInputModule, MatListModule,
+    MatPaginatorModule, MatProgressSpinnerModule,
+    MatRadioModule,
+    MatSliderModule,
+    MatSortModule,
+    MatTableModule, MatToolbarModule
 } from '@angular/material';
 import {RouterModule, Routes} from '@angular/router';
 import {BaseComponent} from '../theme/base/base.component';
@@ -136,34 +136,35 @@ const routes:Routes=[
 
 	exports: [
 	],
-	imports: [
-		CommonModule,
-		RouterModule.forChild(routes),  //////
-		HttpClientModule,
-		FormsModule,
-		CoreModule,
-		PartialsModule,
-		UserManagementModule,
-		// PublicPageModule,
-		MatRadioModule,
-		MatFormFieldModule,
-		ThemeModule,
-		MatSliderModule,
-		ReactiveFormsModule,
-		MatTableModule,
-		MatPaginatorModule,
-		MatSortModule,
-		PerfectScrollbarModule,
-		NgbModule,
-		MatExpansionModule,
-		MatButtonModule,
-		MatDialogModule,
-		MatToolbarModule,
-		MatListModule,
-		MatDatepickerModule,
-		MatIconModule,
-		MatInputModule,
-	],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),  //////
+        HttpClientModule,
+        FormsModule,
+        CoreModule,
+        PartialsModule,
+        UserManagementModule,
+        // PublicPageModule,
+        MatRadioModule,
+        MatFormFieldModule,
+        ThemeModule,
+        MatSliderModule,
+        ReactiveFormsModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        PerfectScrollbarModule,
+        NgbModule,
+        MatExpansionModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatToolbarModule,
+        MatListModule,
+        MatDatepickerModule,
+        MatIconModule,
+        MatInputModule,
+        MatProgressSpinnerModule,
+    ],
 	providers: [DatePipe,LayoutUtilsService],
 
 })

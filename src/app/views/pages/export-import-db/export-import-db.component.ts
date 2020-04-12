@@ -1,31 +1,49 @@
-import {Component, ViewEncapsulation} from '@angular/core';
-import {HttpClient, HttpEventType, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {saveAs} from 'file-saver';
+import {FileBackupService} from '../../../core/file-service/file-backup.service';
+import {Subject} from 'rxjs';
+import {debounce, debounceTime} from 'rxjs/operators';
 
-	const url = 'http://3.95.8.94/example/backup_request.php';
-
+const backup_file_name = 'prs_backup.sql';
 
 @Component({
 	selector: 'kt-backupDb',
 	templateUrl: './export-import-db.component.html',
-	styleUrls:['./export-import-db.scss'],
+	styleUrls: ['./export-import-db.scss'],
 	encapsulation: ViewEncapsulation.None
 })
-export class ExportImportDbComponent {
-	fileUploadProgress: any;
-	previewUrl: any;
-	uploadedFilePath: any;
+export class ExportImportDbComponent implements OnInit {
+
+	file: File = null;
+	disableUploadBtn: boolean = true;
+	confMsg: string = '';
 
 
-	constructor(private http: HttpClient) {
+	private _success = new Subject<string>();
+
+	uploadResponse = {status: '', message: ''};
+	error: string = '';
+
+	constructor(
+		private fileBackupService: FileBackupService) {
 	}
 
-	onSubmit(){
-		this.http.get(url, {responseType: 'blob'})
+	ngOnInit(): void {
+
+		this._success.subscribe(msg => this.confMsg = msg);
+
+		this._success.pipe(
+			debounceTime(2000)
+		).subscribe(() => {
+			this.confMsg = ''
+			console.log('Conifg ', this.confMsg);
+		});
+	}
+
+	download() {
+		this.fileBackupService.download()
 			.subscribe(res => {
-					// const blob = new Blob([res], { type : 'application/zip' });
-					// const file = new File([blob], 'fileName' + '.jpeg', { type: 'image/jpeg' });
-					saveAs(res,'backup.sql');
+					saveAs(res, backup_file_name);
 				},
 				res => {
 					// notify error
@@ -35,11 +53,30 @@ export class ExportImportDbComponent {
 	}
 
 
-	fileProgress($event: Event) {
-
+	fileChange(fileSelected: any) {
+		if (fileSelected.target.files.length > 0) {
+			this.file = <File> fileSelected.target.files[0];
+			this.disableUploadBtn = false;
+		} else {
+			this.disableUploadBtn = true;
+		}
 	}
 
-	fileChange(event) {
+	upload() {
+
+		if (this.file != null) {
+			let formData = new FormData();
+			formData.append('prs_backup', this.file);
+
+			this.fileBackupService.upload(formData).subscribe(
+				res => {
+					this._success.next('The database has been restored succcessfully.');
+					// this.confMsg = 'The database has been restored succcessfully.';
+
+				},
+				error => this.error
+			);
+		}
 
 	}
 

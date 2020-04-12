@@ -22,6 +22,7 @@ import {
 import {AdminService} from './admin/_services/admin.service';
 import {TitleCheckerDirective} from './admin/directives/title-checker.directive';
 import {EmailService} from './email-notification/_services/email.service';
+import {FileBackupService} from './file-service/file-backup.service';
 
 @NgModule({
 	imports: [CommonModule],
@@ -66,7 +67,7 @@ import {EmailService} from './email-notification/_services/email.service';
 
 		TitleCheckerDirective
 	],
-	providers: [AdminService, EmailService]
+	providers: [AdminService, EmailService, FileBackupService]
 })
 export class CoreModule {
 }
